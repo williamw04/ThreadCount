@@ -1,0 +1,13 @@
+/node_modules
+./dist
+./build
+./coverage
+./docs
+./tests
+./tests-results
+./tests-results-html
+./tests-results-json
+./tests-results-xml
+./tests-results-junit
+./tests-results-junit-xml
+./tests-results-junit-xml-html
