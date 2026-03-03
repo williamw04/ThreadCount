@@ -4,11 +4,12 @@ from functools import lru_cache
 
 class Settings(BaseSettings):
     supabase_url: str
-    supabase_anon_key: str
+    supabase_secret_key: str
     fal_api_key: str
 
     class Config:
         env_file = ".env"
+        extra = "ignore"
 
 
 @lru_cache()

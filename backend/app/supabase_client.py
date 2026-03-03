@@ -4,4 +4,4 @@ from app.config import get_settings
 
 def get_supabase() -> Client:
     settings = get_settings()
-    return create_client(settings.supabase_url, settings.supabase_anon_key)
+    return create_client(settings.supabase_url, settings.supabase_secret_key)
