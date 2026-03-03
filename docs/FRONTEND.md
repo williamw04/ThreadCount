@@ -1,7 +1,7 @@
 # Frontend Guide
 
-**Version**: 1.0.0
-**Last Updated**: 2026-02-12
+**Version**: 1.1.0
+**Last Updated**: 2026-03-02
 
 ## Tech Stack
 
@@ -16,6 +16,41 @@
 | Lucide React                   | Icons                                            |
 | zod                            | Schema validation (parse at boundaries)          |
 | Vitest + React Testing Library | Unit and component testing                       |
+
+## Communication with Backend
+
+The frontend communicates with two primary services:
+
+1.  **Supabase Auth/Storage/DB**: Direct interaction for standard CRUD operations and authentication.
+2.  **FastAPI Backend (`/api`)**: Orchestration for complex business logic, AI generation (fal.ai), and data processing.
+
+### API Layer Pattern
+
+All API calls must include the Supabase session token in the `Authorization` header when calling the FastAPI backend.
+
+```typescript
+// src/features/profile/api.ts
+export async function processAvatar(userId: string) {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+  // Get current session for token
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  const token = session?.access_token;
+
+  const response = await fetch(`${API_BASE_URL}/api/avatar/generate`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ user_id: userId }),
+  });
+
+  // ... handle response
+}
+```
 
 ## Component Patterns
 

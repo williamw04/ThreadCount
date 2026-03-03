@@ -1,12 +1,12 @@
 # Execution Plan: Initial Project Scaffold
 
-**Status**: Complete (Phase 1 & 2 done; Phase 3 partial)
+**Status**: Complete
 **Created**: 2026-02-12
-**Target Completion**: 2026-02-19
+**Completed**: 2026-03-02
 
 ## Goal
 
-Set up the Seamless frontend project from scratch with all tooling, testing infrastructure, and the first feature (authentication/login).
+Set up the Seamless project with both frontend and backend infrastructure, testing, and the first features (auth and onboarding).
 
 ## Success Criteria
 
@@ -15,50 +15,30 @@ Set up the Seamless frontend project from scratch with all tooling, testing infr
 - [x] React Router configured with route structure
 - [x] Zustand installed and auth store created
 - [x] Vitest + React Testing Library configured and running
-- [x] Login page implemented and tested
-- [x] Signup page implemented and tested
-- [x] Protected route guard working
-- [x] Shared UI components created (Button, Input, Card)
-- [x] All linting and formatting configured
-- [x] GitHub Actions CI pipeline created
-- [x] API client layer created
+- [x] Login/Signup pages implemented and tested
+- [x] FastAPI backend service established in same repo
+- [x] Onboarding flow (photo upload + AI avatar) implemented
+- [x] Supabase integration (DB, Storage, Auth) complete
 
 ## Progress Tracker
 
 - [x] Phase 0: Repository documentation and architecture (2026-02-12)
-  - Created AGENTS.md, ARCHITECTURE.md, docs structure
-  - Defined domains, layers, tech stack
-  - Created product specs for all features
 - [x] Phase 1: Project scaffold (2026-02-12)
-  - Initialized Vite 7 + React 19 + TypeScript (strict)
-  - Configured Tailwind CSS v4 via @tailwindcss/vite
-  - Configured path aliases (`@/`)
-  - Set up React Router v7 with route structure
-  - Set up Vitest + RTL with jsdom
-  - Created shared UI primitives (Button, Input, Card)
-  - Created API client (fetch-based, token-aware)
-  - Created GitHub Actions CI (typecheck, lint, format, test, build)
 - [x] Phase 2: Auth domain (2026-02-12)
-  - Auth types and zod schemas (LoginSchema, SignupSchema, AuthResponseSchema)
-  - Auth API layer (calls FastAPI backend endpoints)
-  - Auth Zustand store (login, signup, logout, hydrate)
-  - LoginForm component + 7 tests
-  - SignupForm component + 6 tests
-  - ProtectedRoute component (redirects to /login)
-  - Login and Signup pages (centered card layout)
-- [ ] Phase 3: App shell (next)
-  - AppLayout with sidebar navigation
-  - Header component
-  - Dashboard placeholder page (basic version done)
-  - All route placeholders wired up
+- [x] Phase 3: Onboarding & Backend (2026-03-02)
+  - Created `backend/` FastAPI service
+  - Implemented fal.ai proxy for avatar generation
+  - Created Supabase migrations and RLS policies
+  - Built `PhotoUpload` component and `OnboardingPage`
+  - Wired frontend to backend with JWT authentication
 
 ## Decision Log
 
-**2026-02-12**: Chose Zustand over Redux for state management — simpler API, less boilerplate, sufficient for our needs.
-**2026-02-12**: Chose Vitest over Jest — native Vite integration, same config, faster.
-**2026-02-12**: Decided frontend-only repo. FastAPI backend is a separate service.
-**2026-02-12**: Chose Supabase for backend auth/db/storage through FastAPI (not direct from frontend).
+**2026-02-12**: Chose Zustand over Redux for state management.
+**2026-02-12**: Chose Vitest over Jest.
+**2026-03-02**: Decided to include FastAPI backend in the same repository for faster iteration.
+**2026-03-02**: Implemented AI avatar generation using fal.ai `nano-banana-2/edit` model.
 
 ## Blockers
 
-- FastAPI backend not yet available — will mock API responses initially
+- None. Backend and core infrastructure is now in place.

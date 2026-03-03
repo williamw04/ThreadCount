@@ -1,11 +1,11 @@
 # Agent Operating Guide
 
-**Version:** 1.0.0
-**Last Updated:** 2026-02-12
+**Version:** 1.1.0
+**Last Updated:** 2026-03-02
 
 ## Purpose
 
-This file is your navigation map for the Seamless frontend repository. It points you to the right context for your current task. This is NOT a comprehensive instruction manual—it's a table of contents.
+This file is your navigation map for the Seamless repository. It points you to the right context for your current task. This is NOT a comprehensive instruction manual—it's a table of contents.
 
 ## Project Summary
 
@@ -17,7 +17,7 @@ Seamless is a fashion web app where users upload photos of themselves to create 
 2. **Progressive Disclosure**: Start here, then navigate to specific docs as needed.
 3. **Mechanical Enforcement**: Architectural rules are enforced by linters and tests, not convention.
 4. **Documentation is Code**: All docs are versioned and updated alongside code changes.
-5. **Frontend Only**: This repo is the React frontend. The FastAPI backend is a separate service.
+5. **Full Stack Mono-repo**: This repo contains both the React frontend and the FastAPI backend.
 
 ## Getting Started
 
@@ -25,7 +25,8 @@ Seamless is a fashion web app where users upload photos of themselves to create 
 
 1. Read `ARCHITECTURE.md` for domain map and layer structure
 2. Review `docs/FRONTEND.md` for component patterns and conventions
-3. Check `docs/design-docs/core-beliefs.md` for foundational principles
+3. Review `docs/BACKEND.md` for backend patterns and setup
+4. Check `docs/design-docs/core-beliefs.md` for foundational principles
 
 ### Before Starting Work
 
@@ -42,6 +43,7 @@ Seamless is a fashion web app where users upload photos of themselves to create 
 | Why it's designed this way      | `docs/design-docs/`                    |
 | How the system is organized     | `ARCHITECTURE.md`                      |
 | Frontend patterns & conventions | `docs/FRONTEND.md`                     |
+| Backend patterns & conventions  | `docs/BACKEND.md`                      |
 | Quality expectations            | `docs/QUALITY_SCORE.md`                |
 | Current work in progress        | `docs/exec-plans/active/`              |
 | Supabase & auth setup           | `docs/guides/supabase-setup.md`        |
@@ -50,26 +52,28 @@ Seamless is a fashion web app where users upload photos of themselves to create 
 
 ## Tech Stack
 
-| Layer         | Choice                         |
-| ------------- | ------------------------------ |
-| Framework     | React 18 + TypeScript          |
-| Build         | Vite 6 + SWC                   |
-| Routing       | React Router v7                |
-| Styling       | Tailwind CSS v4                |
-| State         | Zustand                        |
-| UI Primitives | Radix UI (install as needed)   |
-| Icons         | Lucide React                   |
-| Forms         | react-hook-form + zod          |
-| Testing       | Vitest + React Testing Library |
-| HTTP          | fetch → FastAPI backend        |
+### Frontend (`frontend/`)
 
-**Backend** (separate service): Python + FastAPI + Supabase (Postgres, Auth, Storage)
+- React 19 + TypeScript
+- Vite 7 + SWC
+- React Router v7
+- Tailwind CSS v4
+- Zustand
+- Vitest + React Testing Library
+
+### Backend (`backend/`)
+
+- Python 3.12+
+- FastAPI
+- Uvicorn
+- Supabase-py
+- fal-python (AI generation)
 
 ## Key Constraints
 
 ### Architectural Layers (Frontend)
 
-Within each domain, dependencies flow forward:
+Within each domain (`frontend/src/features/`), dependencies flow forward:
 
 ```
 Types → API → Stores → Components → Pages
@@ -79,7 +83,7 @@ See `ARCHITECTURE.md` for full details.
 
 ### Code Quality
 
-- All API responses validated with zod schemas at boundaries
+- All API responses validated with zod schemas at boundaries (Frontend)
 - No `any` types except in adapter layers
 - File size limit: 300 lines (split if exceeded)
 - Test coverage: minimum 80% for stores/API, 70% for components
@@ -97,7 +101,7 @@ See `ARCHITECTURE.md` for full details.
 1. **Understand**: Read related product spec and design docs
 2. **Plan**: For complex tasks, check or create an execution plan
 3. **Implement**: Follow architectural constraints from `ARCHITECTURE.md`
-4. **Test**: Write tests alongside code (Vitest + RTL)
+4. **Test**: Write tests alongside code
 5. **Document**: Update relevant docs in the same PR
 
 ### When You're Stuck

@@ -15,13 +15,13 @@ As a new user, I want to upload a full body photo of myself after signing up so 
 
 #### Step 1: Photo Upload
 
-- [ ] After signup, user is redirected to an onboarding screen
-- [ ] User prompted to upload a full body photo of themselves
-- [ ] Instructions shown (stand straight, neutral background, full body visible)
-- [ ] Photo preview shown before confirming upload
-- [ ] Photo sent to backend for avatar/model creation
-- [ ] Success confirmation shown
-- [ ] Skip option available (can set up later from profile)
+- [x] After signup, user is redirected to an onboarding screen
+- [x] User prompted to upload a full body photo of themselves
+- [x] Instructions shown (stand straight, neutral background, full body visible)
+- [x] Photo preview shown before confirming upload
+- [x] Photo sent to backend for avatar/model creation (fal.ai nano-banana-2/edit)
+- [x] Success confirmation shown
+- [x] Skip option available (can set up later from profile)
 
 #### Step 2: Interactive Tutorial (Guided Walkthrough)
 
@@ -39,7 +39,7 @@ As a new user, I want to upload a full body photo of myself after signing up so 
 #### Step 3: Complete Onboarding
 
 - [ ] After completing (or skipping) tutorial, user reaches dashboard
-- [ ] Preloaded sample items remain in their wardrobe as a starting point
+- [x] Preloaded sample items remain in their wardrobe as a starting point (Database migration created)
 
 ### Avatar Management (returning users)
 

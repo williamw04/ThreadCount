@@ -1,8 +1,37 @@
 # Supabase Setup Guide
 
-**Last Updated**: 2026-02-14
+**Version**: 1.1.0
+**Last Updated**: 2026-03-02
 
-This guide explains how to connect the Seamless frontend to Supabase for authentication, and how to switch between local and deployed instances.
+## Database Migrations
+
+The database schema is managed via SQL migrations located in `supabase/migrations/`.
+
+### Applying Migrations (Local)
+
+```bash
+supabase db push
+```
+
+### Applying Migrations (Deployed)
+
+Copy the contents of the files in `supabase/migrations/` (in order) and paste them into the Supabase SQL Editor.
+
+## Storage Buckets
+
+The following public buckets must be created in Supabase Storage:
+
+1.  `avatars` - User profile photos and AI models
+2.  `wardrobe` - Clothing item images
+3.  `generated` - AI try-on output images
+
+## Row Level Security (RLS)
+
+RLS is enabled for all tables. Users can only read and write their own data (identified by `auth.uid()`).
+
+- **Profiles**: `select`, `insert`, `update` restricted to owner.
+- **Avatars**: `select`, `insert`, `update`, `delete` restricted to owner.
+- **Wardrobe Items**: `select`, `insert`, `update`, `delete` restricted to owner.
 
 ---
 

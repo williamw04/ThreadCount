@@ -1,6 +1,6 @@
 # Product Specifications Index
 
-**Last Updated**: 2026-02-12
+**Last Updated**: 2026-03-02
 
 ## Core Features
 
@@ -25,3 +25,4 @@
 These are planned for future iterations:
 
 - **Inspiration** — Save clothes/outfits you don't own for reference. Will be a section within the Virtual Wardrobe when implemented.
+- **FastAPI Backend** — Transition business logic and AI processing from frontend to dedicated backend service. (Started)
