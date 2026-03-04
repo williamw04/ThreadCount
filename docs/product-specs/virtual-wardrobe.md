@@ -1,9 +1,9 @@
 # Feature: Virtual Wardrobe
 
-**Status**: Planned
+**Status**: In Progress
 **Priority**: P0
-**Domain**: Wardrobe (`src/features/wardrobe/`)
-**Last Updated**: 2026-02-12
+**Domain**: Wardrobe (`frontend/src/features/wardrobe/`)
+**Last Updated**: 2026-03-03
 
 ## User Story
 
@@ -13,35 +13,35 @@ As a user, I want to upload images of my clothing items so that I can build a di
 
 ### Upload Items
 
-- [ ] User can upload an image of a clothing item (JPG, PNG, max 10MB)
+- [x] User can upload an image of a clothing item (JPG, PNG, max 10MB)
 - [ ] Instructions shown for taking flatlay photos (bird's eye view, solid background)
-- [ ] Background automatically removed from uploaded image
+- [x] Background automatically removed from uploaded image
 - [ ] Image compressed and optimized before storage
-- [ ] Processing progress shown to user (removing background, optimizing)
-- [ ] User sees processed preview before saving
+- [x] Processing progress shown to user (removing background, optimizing)
+- [x] User sees processed preview before saving
 
 ### Categorize Items
 
-- [ ] User assigns a category: tops, bottoms, outerwear, shoes, accessories, dresses
+- [x] User assigns a category: tops, bottoms, outerwear, shoes, accessories, dresses
 - [ ] User assigns colors (multi-select from preset palette)
 - [ ] User assigns seasons (spring, summer, fall, winter)
-- [ ] User adds custom tags (comma-separated)
-- [ ] User enters a name for the item
+- [x] User adds custom tags (comma-separated)
+- [x] User enters a name for the item
 
 ### Browse Wardrobe
 
-- [ ] Grid view of all items with thumbnails
-- [ ] Filter by category
+- [x] Grid view of all items with thumbnails
+- [x] Filter by category
 - [ ] Filter by color
 - [ ] Filter by season
-- [ ] Search by name or tags
-- [ ] Items sorted by most recently added (default)
+- [x] Search by name or tags
+- [x] Items sorted by most recently added (default)
 
 ### Edit Items
 
-- [ ] User can edit name, category, colors, seasons, tags
+- [x] User can edit name, category, colors, seasons, tags
 - [ ] User can replace the image
-- [ ] User can delete items (with confirmation)
+- [x] User can delete items (with confirmation)
 
 ### Upload Full Outfits
 
@@ -51,14 +51,60 @@ As a user, I want to upload images of my clothing items so that I can build a di
 
 ## Pages
 
-| Route       | Component    | Description                                    |
-| ----------- | ------------ | ---------------------------------------------- |
-| `/wardrobe` | WardrobePage | Grid of items with filters, search, add button |
+| Route       | Component    | Description                                    | Status |
+| ----------- | ------------ | ---------------------------------------------- | ------ |
+| `/wardrobe` | WardrobePage | Grid of items with filters, search, add button | ✅ Implemented |
+
+## Components
+
+| Component | Description | Status |
+|-----------|-------------|--------|
+| `WardrobePage` | Main page with grid layout | ✅ Implemented |
+| `WardrobeGrid` | Responsive grid of item cards | ✅ Implemented |
+| `WardrobeItemCard` | Individual item card with image overlay | ✅ Implemented |
+| `CategoryFilter` | Category filter buttons | ✅ Implemented |
+| `UploadModal` | Upload form with background removal | ✅ Implemented |
+| `EditItemModal` | Edit/delete item modal | ✅ Implemented |
+
+## Backend API Endpoints
+
+| Endpoint | Method | Description | Status |
+|----------|--------|-------------|--------|
+| `/api/wardrobe/items` | GET | List items with filters | ✅ Implemented |
+| `/api/wardrobe/items/:id` | GET | Get single item | ✅ Implemented |
+| `/api/wardrobe/items` | POST | Create item with image | ✅ Implemented |
+| `/api/wardrobe/items/:id` | PUT | Update item details | ✅ Implemented |
+| `/api/wardrobe/items/:id` | DELETE | Delete item | ✅ Implemented |
+| `/api/image/remove-background` | POST | Remove background from image | ✅ Implemented |
 
 ## Design References
 
-- See `docs/design-docs/image-processing.md` for image pipeline details
-- Backend endpoints: `GET /wardrobe/items`, `POST /wardrobe/items`, `PUT /wardrobe/items/:id`, `DELETE /wardrobe/items/:id`
+- Image processing: Server-side via fal.ai BiRefNet v2
+- Storage: Supabase Storage bucket `wardrobe` with RLS
+- Database: `wardrobe_items` table with RLS policies
+
+## Technical Implementation
+
+### Background Removal
+- **Model**: fal.ai BiRefNet v2
+- **Cost**: ~$0.001 per image
+- **Flow**: Upload → Supabase temp storage → fal.ai processing → Supabase permanent storage
+- **Architecture**: Server-side processing to avoid browser lag
+
+### Image Storage
+- **Bucket**: `wardrobe`
+- **Path**: `{user_id}/{item_id}.png`
+- **Format**: Transparent PNG after background removal
+- **Access**: RLS ensures users only see their own items
+
+### Categories
+Predefined categories:
+- tops
+- bottoms
+- dresses
+- shoes
+- accessories
+- outerwear
 
 ## Out of Scope (for now)
 
@@ -66,3 +112,17 @@ As a user, I want to upload images of my clothing items so that I can build a di
 - Automatic category detection — future enhancement
 - Batch upload — future enhancement
 - Import from retailer URLs — future enhancement
+
+## Remaining Work
+
+### Medium Priority
+- [ ] Color assignment
+- [ ] Season assignment
+- [ ] Upload instructions for flatlay photos
+- [ ] Filter by color
+- [ ] Filter by season
+- [ ] Replace image in edit modal
+
+### Low Priority
+- [ ] Image compression/optimization
+- [ ] Full outfit upload

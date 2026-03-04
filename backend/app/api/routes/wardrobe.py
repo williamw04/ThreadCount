@@ -15,6 +15,8 @@ class WardrobeItem(BaseModel):
     name: str
     category: str
     labels: Optional[List[str]] = []
+    colors: Optional[List[str]] = []
+    seasons: Optional[List[str]] = []
 
 class WardrobeItemResponse(BaseModel):
     id: str
@@ -23,6 +25,8 @@ class WardrobeItemResponse(BaseModel):
     category: str
     image_path: Optional[str] = None
     labels: List[str] = []
+    colors: List[str] = []
+    seasons: List[str] = []
     is_inspiration: bool = False
     is_template: bool = False
     created_at: str
@@ -32,9 +36,17 @@ class UpdateWardrobeItem(BaseModel):
     name: Optional[str] = None
     category: Optional[str] = None
     labels: Optional[List[str]] = None
+    colors: Optional[List[str]] = None
+    seasons: Optional[List[str]] = None
 
 @router.get("/items", response_model=List[WardrobeItemResponse])
-async def get_wardrobe_items(user_id: str, category: Optional[str] = None, search: Optional[str] = None):
+async def get_wardrobe_items(
+    user_id: str, 
+    category: Optional[str] = None, 
+    search: Optional[str] = None,
+    colors: Optional[str] = None,
+    seasons: Optional[str] = None
+):
     """Get all wardrobe items for a user, with optional filters."""
     logger.info(f"Fetching wardrobe items for user: {user_id}")
     supabase = get_supabase()
@@ -52,6 +64,18 @@ async def get_wardrobe_items(user_id: str, category: Optional[str] = None, searc
         
         items = []
         for item in result.data:
+            if colors:
+                color_list = colors.split(',')
+                item_colors = item.get('colors', [])
+                if not any(c in item_colors for c in color_list):
+                    continue
+            
+            if seasons:
+                season_list = seasons.split(',')
+                item_seasons = item.get('seasons', [])
+                if not any(s in item_seasons for s in season_list):
+                    continue
+            
             items.append(WardrobeItemResponse(
                 id=item["id"],
                 user_id=item["user_id"],
@@ -59,6 +83,8 @@ async def get_wardrobe_items(user_id: str, category: Optional[str] = None, searc
                 category=item["category"],
                 image_path=item.get("image_path"),
                 labels=item.get("labels", []),
+                colors=item.get("colors", []),
+                seasons=item.get("seasons", []),
                 is_inspiration=item.get("is_inspiration", False),
                 is_template=item.get("is_template", False),
                 created_at=item["created_at"],
@@ -109,6 +135,8 @@ async def create_wardrobe_item(
     name: str = Form(...),
     category: str = Form(...),
     labels: Optional[str] = Form(None),
+    colors: Optional[str] = Form(None),
+    seasons: Optional[str] = Form(None),
     image_path: Optional[str] = Form(None),
     image: Optional[UploadFile] = File(None)
 ):
@@ -136,6 +164,14 @@ async def create_wardrobe_item(
         if labels:
             labels_list = [label.strip() for label in labels.split(',') if label.strip()]
         
+        colors_list = []
+        if colors:
+            colors_list = [c.strip() for c in colors.split(',') if c.strip()]
+        
+        seasons_list = []
+        if seasons:
+            seasons_list = [s.strip() for s in seasons.split(',') if s.strip()]
+        
         result = supabase.table("wardrobe_items").insert({
             "id": item_id,
             "user_id": user_id,
@@ -143,6 +179,8 @@ async def create_wardrobe_item(
             "category": category,
             "image_path": file_path,
             "labels": labels_list,
+            "colors": colors_list,
+            "seasons": seasons_list,
             "created_at": datetime.utcnow().isoformat(),
             "updated_at": datetime.utcnow().isoformat()
         }).execute()
