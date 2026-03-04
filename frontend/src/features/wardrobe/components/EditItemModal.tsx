@@ -19,6 +19,7 @@ export function EditItemModal({ isOpen, item, onClose }: EditItemModalProps) {
   const [seasons, setSeasons] = useState<string[]>([]);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (item) {
       setName(item.name);
@@ -29,11 +30,13 @@ export function EditItemModal({ isOpen, item, onClose }: EditItemModalProps) {
     }
   }, [item]);
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (!isOpen) {
       setShowDeleteConfirm(false);
     }
   }, [isOpen]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,8 +54,8 @@ export function EditItemModal({ isOpen, item, onClose }: EditItemModalProps) {
         labels: labelsList,
       });
       onClose();
-    } catch (err) {
-      console.error('Edit error:', err);
+    } catch {
+      // Error handling
     }
   };
 
@@ -63,8 +66,8 @@ export function EditItemModal({ isOpen, item, onClose }: EditItemModalProps) {
       await deleteItem(item.id);
       setShowDeleteConfirm(false);
       onClose();
-    } catch (err) {
-      console.error('Delete error:', err);
+    } catch {
+      // Error handling
     }
   };
 

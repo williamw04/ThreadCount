@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { WardrobeItem, WardrobeFilters } from './types';
+import type { WardrobeItem, WardrobeFilters, Category } from './types';
 import * as api from './api';
 import { useAuthStore } from '@/features/auth/store';
 
@@ -12,7 +12,7 @@ interface WardrobeState {
   fetchItems: () => Promise<void>;
   setFilters: (filters: WardrobeFilters) => void;
   clearFilters: () => void;
-  addItem: (name: string, category: string, image?: File, labels?: string[], imagePath?: string, colors?: string[], seasons?: string[]) => Promise<void>;
+  addItem: (name: string, category: Category, image?: File, labels?: string[], imagePath?: string, colors?: string[], seasons?: string[]) => Promise<void>;
   updateItem: (itemId: string, updates: Partial<WardrobeItem>) => Promise<void>;
   deleteItem: (itemId: string) => Promise<void>;
   clearError: () => void;
@@ -55,7 +55,7 @@ export const useWardrobeStore = create<WardrobeState>((set, get) => ({
     get().fetchItems();
   },
   
-  addItem: async (name: string, category: string, image?: File, labels?: string[], imagePath?: string, colors?: string[], seasons?: string[]) => {
+  addItem: async (name: string, category: Category, image?: File, labels?: string[], imagePath?: string, colors?: string[], seasons?: string[]) => {
     const user = useAuthStore.getState().user;
     if (!user) {
       set({ error: 'User not authenticated' });
@@ -67,7 +67,7 @@ export const useWardrobeStore = create<WardrobeState>((set, get) => ({
     try {
       await api.createWardrobeItem(user.id, {
         name,
-        category: category as any,
+        category: category || 'tops',
         image,
         labels,
         colors,

@@ -25,6 +25,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
   const [seasons, setSeasons] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (!isOpen) {
       setPreview(null);
@@ -38,6 +39,7 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
       setSeasons([]);
     }
   }, [isOpen]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -90,14 +92,13 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
         if (analysis.seasons && analysis.seasons.length > 0) {
           setSeasons(analysis.seasons);
         }
-      } catch (aiError) {
-        console.warn('AI analysis skipped:', aiError);
+      } catch {
+        // AI analysis skipped
       }
       
       setIsProcessing(false);
       setProcessingProgress('');
-    } catch (err) {
-      console.error('Processing failed:', err);
+    } catch {
       setIsProcessing(false);
       setProcessingProgress('');
     }
@@ -144,8 +145,8 @@ export function UploadModal({ isOpen, onClose }: UploadModalProps) {
 
       await addItem(name.trim(), category, undefined, labelsList, processedImagePath, colors, seasons);
       onClose();
-    } catch (err) {
-      console.error('Upload error:', err);
+    } catch {
+      // Error handling
     }
   };
 

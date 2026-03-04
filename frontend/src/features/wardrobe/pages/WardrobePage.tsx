@@ -35,11 +35,6 @@ export function WardrobePage() {
     }
   };
 
-  const handleClearSearch = () => {
-    setSearchQuery('');
-    setFilters({ ...filters, search: undefined });
-  };
-
   const handleSeasonChange = (seasons: Season[]) => {
     setFilters({ ...filters, seasons: seasons.length > 0 ? seasons : undefined });
   };

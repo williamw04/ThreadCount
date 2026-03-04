@@ -29,12 +29,9 @@ export function DashboardPage() {
     setIsGenerating(true);
     setError(null);
     try {
-      console.log('Starting avatar generation...');
       await processAvatar(user.id);
-      console.log('Avatar generation complete');
       await loadAvatar();
     } catch (err) {
-      console.error('Avatar generation error:', err);
       setError(err instanceof Error ? err.message : 'Failed to generate avatar');
     } finally {
       setIsGenerating(false);

@@ -76,7 +76,6 @@ async function ensureProfile(userId: string): Promise<void> {
     .single();
 
   if (fetchError && fetchError.code !== 'PGRST116') {
-    console.error('Error fetching profile:', fetchError);
     throw new Error(`Failed to fetch profile: ${fetchError.message}`);
   }
 
@@ -86,7 +85,6 @@ async function ensureProfile(userId: string): Promise<void> {
       .insert({ id: userId, display_name: null });
 
     if (insertError) {
-      console.error('Error creating profile:', insertError);
       throw new Error(`Failed to create profile: ${insertError.message}`);
     }
   }
