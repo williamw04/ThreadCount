@@ -14,17 +14,23 @@ export function OutfitCanvas() {
     setCanvasItem(slot, null);
   };
 
-  const renderClothingSlot = (slot: OutfitSlot) => {
+  const renderSlot = (slot: OutfitSlot) => {
     const item = canvas[slot];
     const isSelected = selectedSlot === slot;
     const imageUrl = item ? getItemImageUrl(item.image_path) : null;
-    
+
     const heights: Record<OutfitSlot, string> = {
-      base: '35%',
-      outer: '30%',
-      bottom: '25%',
+      top1: '30%',
+      top2: '30%',
+      bottom: '30%',
       shoes: '10%',
-      accessory: '100%',
+    };
+
+    const placeholders: Record<OutfitSlot, string> = {
+      top1: '👕',
+      top2: '+',
+      bottom: '👖',
+      shoes: '👟',
     };
 
     return (
@@ -32,14 +38,14 @@ export function OutfitCanvas() {
         key={slot}
         onClick={() => handleSlotClick(slot)}
         className={`
-          relative w-full flex items-center justify-center
+          relative flex items-center justify-center
           transition-all duration-200 cursor-pointer
-          ${isSelected ? 'ring-2 ring-[var(--color-primary)]' : ''}
+          ${isSelected ? 'ring-2 ring-[var(--color-primary)] ring-offset-2' : ''}
         `}
         style={{ height: heights[slot] }}
       >
         {imageUrl ? (
-          <div className="relative w-full h-full p-2">
+          <div className="relative w-full h-full p-1">
             <img
               src={imageUrl}
               alt={item?.name || ''}
@@ -56,52 +62,7 @@ export function OutfitCanvas() {
           </div>
         ) : (
           <div className={`w-full h-full flex items-center justify-center ${isSelected ? 'bg-[var(--color-primary)]/10' : ''}`}>
-            <span className="text-xl opacity-20">
-              {slot === 'base' && '👕'}
-              {slot === 'outer' && '🧥'}
-              {slot === 'bottom' && '👖'}
-              {slot === 'shoes' && '👟'}
-            </span>
-          </div>
-        )}
-      </div>
-    );
-  };
-
-  const renderAccessorySlot = () => {
-    const slot: OutfitSlot = 'accessory';
-    const item = canvas[slot];
-    const isSelected = selectedSlot === slot;
-    const imageUrl = item ? getItemImageUrl(item.image_path) : null;
-
-    return (
-      <div
-        onClick={() => handleSlotClick(slot)}
-        className={`
-          relative w-full h-full flex items-center justify-center
-          transition-all duration-200 cursor-pointer
-          ${isSelected ? 'ring-2 ring-[var(--color-primary)]' : ''}
-        `}
-      >
-        {imageUrl ? (
-          <div className="relative w-full h-full p-2">
-            <img
-              src={imageUrl}
-              alt={item?.name || ''}
-              className="w-full h-full object-contain"
-            />
-            <button
-              onClick={(e) => handleRemoveItem(slot, e)}
-              className="absolute top-1 right-1 p-1 rounded-full bg-red-500 text-white hover:bg-red-600 opacity-0 hover:opacity-100 transition-opacity"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </button>
-          </div>
-        ) : (
-          <div className={`w-full h-full flex items-center justify-center ${isSelected ? 'bg-[var(--color-primary)]/10' : ''}`}>
-            <span className="text-xl opacity-20">👜</span>
+            <span className="text-2xl opacity-20">{placeholders[slot]}</span>
           </div>
         )}
       </div>
@@ -109,16 +70,11 @@ export function OutfitCanvas() {
   };
 
   return (
-    <div className="relative w-full h-full flex">
-      <div className="w-[20%] h-full">
-        {renderAccessorySlot()}
-      </div>
-      <div className="w-[80%] h-full flex flex-col">
-        {renderClothingSlot('base')}
-        {renderClothingSlot('outer')}
-        {renderClothingSlot('bottom')}
-        {renderClothingSlot('shoes')}
-      </div>
+    <div className="relative w-full h-full flex flex-col">
+      {renderSlot('top1')}
+      {renderSlot('top2')}
+      {renderSlot('bottom')}
+      {renderSlot('shoes')}
     </div>
   );
 }

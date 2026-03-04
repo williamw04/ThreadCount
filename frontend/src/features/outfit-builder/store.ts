@@ -26,11 +26,10 @@ export const useOutfitBuilderStore = create<OutfitBuilderState>((set, get) => ({
   outfits: [],
   currentOutfit: null,
   canvas: {
-    base: null,
-    outer: null,
+    top1: null,
+    top2: null,
     bottom: null,
     shoes: null,
-    accessory: null,
   },
   isLoading: false,
   error: null,
@@ -66,11 +65,10 @@ export const useOutfitBuilderStore = create<OutfitBuilderState>((set, get) => ({
   clearCanvas: () => {
     set({
       canvas: {
-        base: null,
-        outer: null,
+        top1: null,
+        top2: null,
         bottom: null,
         shoes: null,
-        accessory: null,
       },
       currentOutfit: null,
     });
@@ -125,31 +123,33 @@ export const useOutfitBuilderStore = create<OutfitBuilderState>((set, get) => ({
     try {
       const items = await api.fetchOutfitItems(outfit.item_ids);
       const canvas: OutfitCanvasState = {
-        base: null,
-        outer: null,
+        top1: null,
+        top2: null,
         bottom: null,
         shoes: null,
-        accessory: null,
       };
 
-      const categoryToSlot: Record<Category, OutfitSlot> = {
-        tops: 'base',
-        dresses: 'base',
-        outerwear: 'outer',
-        bottoms: 'bottom',
-        shoes: 'shoes',
-        accessories: 'accessory',
+      const categoryToSlot: Record<Category, OutfitSlot[]> = {
+        tops: ['top1', 'top2'],
+        dresses: ['top1'],
+        outerwear: ['top1', 'top2'],
+        bottoms: ['bottom'],
+        shoes: ['shoes'],
+        accessories: [],
       };
 
       for (const item of items) {
-        const slot = categoryToSlot[item.category as Category];
-        if (slot) {
-          canvas[slot] = {
-            id: item.id,
-            name: item.name,
-            category: item.category as Category,
-            image_path: item.image_path,
-          };
+        const possibleSlots = categoryToSlot[item.category as Category] || [];
+        for (const slot of possibleSlots) {
+          if (!canvas[slot]) {
+            canvas[slot] = {
+              id: item.id,
+              name: item.name,
+              category: item.category as Category,
+              image_path: item.image_path,
+            };
+            break;
+          }
         }
       }
 
