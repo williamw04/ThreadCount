@@ -27,27 +27,24 @@ export interface OutfitUpdateInput {
   item_ids?: string[];
 }
 
-export type OutfitSlot = 'top1' | 'top2' | 'bottom' | 'shoes';
+export type OutfitSlot = 'top' | 'bottom' | 'shoes';
 
 export interface OutfitCanvasState {
-  top1: OutfitItem | null;
-  top2: OutfitItem | null;
+  top: OutfitItem[];
   bottom: OutfitItem | null;
   shoes: OutfitItem | null;
 }
 
-export const SLOT_ORDER: OutfitSlot[] = ['top1', 'top2', 'bottom', 'shoes'];
+export const SLOT_ORDER: OutfitSlot[] = ['top', 'bottom', 'shoes'];
 
 export const SLOT_LABELS: Record<OutfitSlot, string> = {
-  top1: 'Top',
-  top2: 'Layer',
+  top: 'Top',
   bottom: 'Bottoms',
   shoes: 'Shoes',
 };
 
 export const SLOT_CATEGORIES: Record<OutfitSlot, Category[]> = {
-  top1: ['tops', 'dresses', 'outerwear'],
-  top2: ['tops', 'outerwear'],
+  top: ['tops', 'dresses', 'outerwear'],
   bottom: ['bottoms'],
   shoes: ['shoes'],
 };

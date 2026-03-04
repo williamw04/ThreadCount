@@ -14,7 +14,7 @@ function getItemImageUrl(path: string | null): string | null {
 const TAB_ORDER: Category[] = ['tops', 'bottoms', 'dresses', 'outerwear', 'shoes', 'accessories'];
 
 export function WardrobePanel() {
-  const { selectedSlot, setCanvasItem, canvas } = useOutfitBuilderStore();
+  const { selectedSlot, addToSlot, canvas } = useOutfitBuilderStore();
   const { items: wardrobeItems } = useWardrobeStore();
   const [activeTab, setActiveTab] = useState<Category>('tops');
   const tabsRef = useRef<HTMLDivElement>(null);
@@ -47,11 +47,14 @@ export function WardrobePanel() {
       category: item.category,
       image_path: item.image_path,
     };
-    setCanvasItem(selectedSlot, outfitItem);
+    addToSlot(selectedSlot, outfitItem);
   };
 
   const isItemInCanvas = (itemId: string) => {
-    return Object.values(canvas).some((item) => item?.id === itemId);
+    const inTop = canvas.top.some((item) => item.id === itemId);
+    const inBottom = canvas.bottom?.id === itemId;
+    const inShoes = canvas.shoes?.id === itemId;
+    return inTop || inBottom || inShoes;
   };
 
   return (
@@ -60,7 +63,7 @@ export function WardrobePanel() {
         <h2 className="text-lg font-semibold text-[var(--text-primary)]">Wardrobe</h2>
         {selectedSlot && (
           <p className="text-sm text-[var(--text-tertiary)] mt-1">
-            Select a {selectedSlot.replace('_', ' ')} to add
+            Select a {selectedSlot} to add
           </p>
         )}
       </div>

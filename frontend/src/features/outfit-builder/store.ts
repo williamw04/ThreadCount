@@ -13,7 +13,8 @@ interface OutfitBuilderState {
   selectedSlot: OutfitSlot | null;
 
   fetchOutfits: () => Promise<void>;
-  setCanvasItem: (slot: OutfitSlot, item: OutfitItem | null) => void;
+  addToSlot: (slot: OutfitSlot, item: OutfitItem) => void;
+  removeFromSlot: (slot: OutfitSlot, index?: number) => void;
   clearCanvas: () => void;
   setSelectedSlot: (slot: OutfitSlot | null) => void;
   saveOutfit: (name: string) => Promise<void>;
@@ -26,8 +27,7 @@ export const useOutfitBuilderStore = create<OutfitBuilderState>((set, get) => ({
   outfits: [],
   currentOutfit: null,
   canvas: {
-    top1: null,
-    top2: null,
+    top: [],
     bottom: null,
     shoes: null,
   },
@@ -55,18 +55,36 @@ export const useOutfitBuilderStore = create<OutfitBuilderState>((set, get) => ({
     }
   },
 
-  setCanvasItem: (slot: OutfitSlot, item: OutfitItem | null) => {
-    set((state) => ({
-      canvas: { ...state.canvas, [slot]: item },
-      selectedSlot: null,
-    }));
+  addToSlot: (slot: OutfitSlot, item: OutfitItem) => {
+    set((state) => {
+      if (slot === 'top') {
+        return {
+          canvas: { ...state.canvas, top: [...state.canvas.top, item] },
+          selectedSlot: null,
+        };
+      }
+      return {
+        canvas: { ...state.canvas, [slot]: item },
+        selectedSlot: null,
+      };
+    });
+  },
+
+  removeFromSlot: (slot: OutfitSlot, index?: number) => {
+    set((state) => {
+      if (slot === 'top' && index !== undefined) {
+        const newTop = [...state.canvas.top];
+        newTop.splice(index, 1);
+        return { canvas: { ...state.canvas, top: newTop } };
+      }
+      return { canvas: { ...state.canvas, [slot]: null } };
+    });
   },
 
   clearCanvas: () => {
     set({
       canvas: {
-        top1: null,
-        top2: null,
+        top: [],
         bottom: null,
         shoes: null,
       },
@@ -86,9 +104,11 @@ export const useOutfitBuilderStore = create<OutfitBuilderState>((set, get) => ({
     }
 
     const { canvas, currentOutfit } = get();
-    const itemIds = Object.values(canvas)
-      .filter((item): item is OutfitItem => item !== null)
-      .map((item) => item.id);
+    const itemIds = [
+      ...canvas.top.map((item) => item.id),
+      ...(canvas.bottom ? [canvas.bottom.id] : []),
+      ...(canvas.shoes ? [canvas.shoes.id] : []),
+    ];
 
     if (itemIds.length === 0) {
       set({ error: 'Add at least one item to the outfit' });
@@ -123,33 +143,43 @@ export const useOutfitBuilderStore = create<OutfitBuilderState>((set, get) => ({
     try {
       const items = await api.fetchOutfitItems(outfit.item_ids);
       const canvas: OutfitCanvasState = {
-        top1: null,
-        top2: null,
+        top: [],
         bottom: null,
         shoes: null,
       };
 
-      const categoryToSlot: Record<Category, OutfitSlot[]> = {
-        tops: ['top1', 'top2'],
-        dresses: ['top1'],
-        outerwear: ['top1', 'top2'],
-        bottoms: ['bottom'],
-        shoes: ['shoes'],
-        accessories: [],
+      const categoryToSlot: Record<Category, OutfitSlot> = {
+        tops: 'top',
+        dresses: 'top',
+        outerwear: 'top',
+        bottoms: 'bottom',
+        shoes: 'shoes',
+        accessories: 'top',
       };
 
       for (const item of items) {
-        const possibleSlots = categoryToSlot[item.category as Category] || [];
-        for (const slot of possibleSlots) {
-          if (!canvas[slot]) {
-            canvas[slot] = {
-              id: item.id,
-              name: item.name,
-              category: item.category as Category,
-              image_path: item.image_path,
-            };
-            break;
-          }
+        const slot = categoryToSlot[item.category as Category];
+        if (slot === 'top') {
+          canvas.top.push({
+            id: item.id,
+            name: item.name,
+            category: item.category as Category,
+            image_path: item.image_path,
+          });
+        } else if (slot === 'bottom' && !canvas.bottom) {
+          canvas.bottom = {
+            id: item.id,
+            name: item.name,
+            category: item.category as Category,
+            image_path: item.image_path,
+          };
+        } else if (slot === 'shoes' && !canvas.shoes) {
+          canvas.shoes = {
+            id: item.id,
+            name: item.name,
+            category: item.category as Category,
+            image_path: item.image_path,
+          };
         }
       }
 
