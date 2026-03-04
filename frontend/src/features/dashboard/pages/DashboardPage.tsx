@@ -7,9 +7,9 @@ import { supabase } from '@/shared/api/supabase';
 export function DashboardPage() {
   const { user, logout } = useAuthStore();
   const [avatar, setAvatar] = useState<{
-    original_photo_path?: string;
-    model_canvas_path?: string;
-    model_status?: string;
+    original_photo_path?: string | null;
+    model_canvas_path?: string | null;
+    model_status?: string | null;
   } | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
