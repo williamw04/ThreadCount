@@ -49,42 +49,35 @@ export const SLOT_CATEGORIES: Record<OutfitSlot, Category[]> = {
   shoes: ['shoes'],
 };
 
-export type MainCategory = 'tops' | 'bottoms' | 'accessories';
+export type MainCategory = 'top' | 'bottoms' | 'accessories';
 
-export interface SubCategory {
-  id: string;
-  label: string;
-  categories: Category[];
-}
+export type SubCategory = string;
 
-export const MAIN_CATEGORIES: Record<MainCategory, { label: string; subCategories: SubCategory[] }> = {
-  tops: {
-    label: 'Tops',
-    subCategories: [
-      { id: 'shirts', label: 'Shirts', categories: ['tops'] },
-      { id: 'outerwear', label: 'Outerwear', categories: ['outerwear'] },
-      { id: 'dresses', label: 'Dresses', categories: ['dresses'] },
-    ],
-  },
-  bottoms: {
-    label: 'Bottoms',
-    subCategories: [
-      { id: 'pants', label: 'Pants', categories: ['bottoms'] },
-    ],
-  },
-  accessories: {
-    label: 'Accessories',
-    subCategories: [
-      { id: 'shoes', label: 'Shoes', categories: ['shoes'] },
-      { id: 'other', label: 'Other', categories: ['accessories'] },
-    ],
-  },
+export const MAIN_CATEGORIES: MainCategory[] = ['top', 'bottoms', 'accessories'];
+
+export const MAIN_CATEGORY_LABELS: Record<MainCategory, string> = {
+  top: 'Tops',
+  bottoms: 'Bottoms',
+  accessories: 'Accessories',
 };
 
-export const MAIN_CATEGORY_ORDER: MainCategory[] = ['tops', 'bottoms', 'accessories'];
-
-export const categoryToSlot = (category: Category): OutfitSlot => {
-  if (category === 'tops' || category === 'dresses' || category === 'outerwear') return 'top';
-  if (category === 'bottoms') return 'bottom';
-  return 'shoes';
+export const SUB_CATEGORIES: Record<MainCategory, SubCategory[]> = {
+  top: [
+    't-shirts',
+    'tank-tops',
+    'dresses',
+  ],
+  bottoms: [
+    'jeans',
+    'dress-pants',
+  ],
+  accessories: [
+    'shoes',
+    'hats',
+    'jewelry',
+    'bags',
+    'watches',
+    'sunglasses',
+    'other',
+  ],
 };
