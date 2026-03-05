@@ -49,15 +49,16 @@ export const SLOT_CATEGORIES: Record<OutfitSlot, Category[]> = {
   shoes: ['shoes'],
 };
 
-export type MainCategory = 'top' | 'bottoms' | 'accessories';
+export type MainCategory = 'top' | 'bottoms' | 'shoes' | 'accessories';
 
 export type SubCategory = string;
 
-export const MAIN_CATEGORIES: MainCategory[] = ['top', 'bottoms', 'accessories'];
+export const MAIN_CATEGORIES: MainCategory[] = ['top', 'bottoms', 'shoes', 'accessories'];
 
 export const MAIN_CATEGORY_LABELS: Record<MainCategory, string> = {
   top: 'Tops',
   bottoms: 'Bottoms',
+  shoes: 'Shoes',
   accessories: 'Accessories',
 };
 
@@ -71,8 +72,10 @@ export const SUB_CATEGORIES: Record<MainCategory, SubCategory[]> = {
     'jeans',
     'dress-pants',
   ],
-  accessories: [
+  shoes: [
     'shoes',
+  ],
+  accessories: [
     'hats',
     'jewelry',
     'bags',

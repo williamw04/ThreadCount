@@ -11,9 +11,11 @@ interface OutfitBuilderState {
   isLoading: boolean;
   error: string | null;
   selectedSlot: OutfitSlot | null;
+  topLayerIndex: number;
 
   fetchOutfits: () => Promise<void>;
   addToSlot: (slot: OutfitSlot, item: OutfitItem) => void;
+  setCanvasItem: (slot: OutfitSlot, item: OutfitItem) => void;
   removeFromSlot: (slot: OutfitSlot, index?: number) => void;
   clearCanvas: () => void;
   setSelectedSlot: (slot: OutfitSlot | null) => void;
@@ -21,6 +23,7 @@ interface OutfitBuilderState {
   loadOutfit: (outfit: Outfit) => Promise<void>;
   deleteOutfit: (outfitId: string) => Promise<void>;
   clearError: () => void;
+  swapTopLayer: () => void;
 }
 
 export const useOutfitBuilderStore = create<OutfitBuilderState>((set, get) => ({
@@ -34,6 +37,7 @@ export const useOutfitBuilderStore = create<OutfitBuilderState>((set, get) => ({
   isLoading: false,
   error: null,
   selectedSlot: null,
+  topLayerIndex: 0,
 
   fetchOutfits: async () => {
     const user = useAuthStore.getState().user;
@@ -61,6 +65,23 @@ export const useOutfitBuilderStore = create<OutfitBuilderState>((set, get) => ({
         return {
           canvas: { ...state.canvas, top: [...state.canvas.top, item] },
           selectedSlot: null,
+          topLayerIndex: 0,
+        };
+      }
+      return {
+        canvas: { ...state.canvas, [slot]: item },
+        selectedSlot: null,
+      };
+    });
+  },
+
+  setCanvasItem: (slot: OutfitSlot, item: OutfitItem) => {
+    set((state) => {
+      if (slot === 'top') {
+        return {
+          canvas: { ...state.canvas, top: [item] },
+          selectedSlot: null,
+          topLayerIndex: 0,
         };
       }
       return {
@@ -75,7 +96,7 @@ export const useOutfitBuilderStore = create<OutfitBuilderState>((set, get) => ({
       if (slot === 'top' && index !== undefined) {
         const newTop = [...state.canvas.top];
         newTop.splice(index, 1);
-        return { canvas: { ...state.canvas, top: newTop } };
+        return { canvas: { ...state.canvas, top: newTop }, topLayerIndex: 0 };
       }
       return { canvas: { ...state.canvas, [slot]: null } };
     });
@@ -89,6 +110,7 @@ export const useOutfitBuilderStore = create<OutfitBuilderState>((set, get) => ({
         shoes: null,
       },
       currentOutfit: null,
+      topLayerIndex: 0,
     });
   },
 
@@ -215,5 +237,12 @@ export const useOutfitBuilderStore = create<OutfitBuilderState>((set, get) => ({
 
   clearError: () => {
     set({ error: null });
+  },
+
+  swapTopLayer: () => {
+    const { canvas, topLayerIndex } = get();
+    if (canvas.top.length > 1) {
+      set({ topLayerIndex: topLayerIndex === 0 ? 1 : 0 });
+    }
   },
 }));
