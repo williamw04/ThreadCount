@@ -98,6 +98,7 @@ backend/
 
 ## Security
 
-- **CORS**: Currently allows all origins in development (`.*` regex). Must be restricted in production.
+- **CORS**: Configured for localhost origins (`http://localhost:5173`, `http://localhost:3000`). Must be updated with production domain(s) before deployment.
 - **Supabase Admin**: The backend uses the Service Role key (or Anon key with high permissions) to bypass RLS for orchestration.
 - **Secrets**: API keys (fal.ai) are stored server-side to prevent exposure in the browser.
+- **Environment Variables**: See `ENV_SETUP.md` for complete guide on configuring secrets.
