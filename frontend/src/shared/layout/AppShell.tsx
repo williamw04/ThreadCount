@@ -47,7 +47,12 @@ export function AppShell() {
   const chromeActive = isBuilderRoute || isScrolled;
 
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] page-enter">
+    <div
+      className={clsx(
+        'min-h-screen bg-[var(--bg)] text-[var(--text-primary)] page-enter',
+        isBuilderRoute && 'h-[100vh] h-[100dvh] overflow-hidden',
+      )}
+    >
       <header
         className={clsx(
           'fixed inset-x-0 top-0 z-50 h-[var(--header-h)] min-h-[var(--header-h)] max-h-[var(--header-h)] transition-all duration-500',
@@ -99,7 +104,7 @@ export function AppShell() {
       <main
         className={clsx(
           'min-h-screen px-[var(--page-px)] pb-12 pt-[calc(var(--header-h)+24px)]',
-          isBuilderRoute && 'h-[100vh] h-[100dvh] overflow-hidden px-0 pb-0 pt-0',
+          isBuilderRoute && 'h-[100vh] h-[100dvh] overflow-hidden px-0 pb-0 pt-[var(--header-h)]',
         )}
       >
         <Outlet />

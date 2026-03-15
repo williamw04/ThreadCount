@@ -36,14 +36,14 @@ export function CanvasSlotShell({
         className,
       )}
     >
-      <div className="absolute left-0 top-0 z-10 border-r border-b border-[var(--border)] bg-[var(--bg)] px-3 py-2">
+      <div className="absolute left-0 top-0 z-10 border-r border-b border-[var(--border)] bg-[var(--bg)] px-2.5 py-1.5">
         <p className="eyebrow text-[var(--text-muted)]">{label}</p>
-        {meta ? <p className="mt-1 text-[11px] uppercase tracking-[0.16em] text-[var(--text-secondary)]">{meta}</p> : null}
+        {meta ? <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-[var(--text-secondary)]">{meta}</p> : null}
       </div>
 
       <div
         className={clsx(
-          'relative h-full min-h-0 w-full pt-16',
+          'relative h-full min-h-0 w-full pt-12',
           !isFilled && 'bg-[linear-gradient(135deg,rgba(17,17,17,0.03)_0,rgba(17,17,17,0.03)_1px,transparent_1px,transparent_100%)] bg-[length:18px_18px]',
         )}
       >
