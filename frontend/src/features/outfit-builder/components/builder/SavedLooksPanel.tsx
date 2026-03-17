@@ -64,12 +64,7 @@ export function SavedLooksPanel({
         ) : (
           <div className="grid gap-4">
             {outfits.map((outfit) => (
-              <OutfitCard
-                key={outfit.id}
-                onDelete={onDelete}
-                onSelect={onLoad}
-                outfit={outfit}
-              />
+              <OutfitCard key={outfit.id} onDelete={onDelete} onSelect={onLoad} outfit={outfit} />
             ))}
           </div>
         )}

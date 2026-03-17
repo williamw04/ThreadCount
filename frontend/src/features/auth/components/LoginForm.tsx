@@ -58,9 +58,7 @@ export function LoginForm() {
 
       <div className="flex items-center gap-4">
         <div className="flex-1 border-t border-[var(--border)]" />
-        <span className="eyebrow text-[var(--text-muted)]">
-          or
-        </span>
+        <span className="eyebrow text-[var(--text-muted)]">or</span>
         <div className="flex-1 border-t border-[var(--border)]" />
       </div>
 
@@ -88,7 +86,10 @@ export function LoginForm() {
         />
 
         {error && (
-          <p className="text-[11px] uppercase tracking-[0.18em] text-[var(--text-primary)]" role="alert">
+          <p
+            className="text-[11px] uppercase tracking-[0.18em] text-[var(--text-primary)]"
+            role="alert"
+          >
             {error}
           </p>
         )}

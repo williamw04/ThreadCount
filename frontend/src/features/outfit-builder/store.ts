@@ -23,7 +23,7 @@ interface OutfitBuilderState {
     fromSlot: 'accessoriesLeft' | 'accessoriesRight',
     toSlot: 'accessoriesLeft' | 'accessoriesRight',
     fromIndex: number,
-    toIndex?: number
+    toIndex?: number,
   ) => void;
   clearCanvas: () => void;
   setSelectedSlot: (slot: OutfitSlot | null) => void;
@@ -143,12 +143,18 @@ export const useOutfitBuilderStore = create<OutfitBuilderState>((set, get) => ({
       if (slot === 'accessoriesLeft' && index !== undefined) {
         const newAccessories = [...state.canvas.accessoriesLeft];
         newAccessories.splice(index, 1);
-        return { canvas: { ...state.canvas, accessoriesLeft: newAccessories }, accessoryLeftLayerIndex: 0 };
+        return {
+          canvas: { ...state.canvas, accessoriesLeft: newAccessories },
+          accessoryLeftLayerIndex: 0,
+        };
       }
       if (slot === 'accessoriesRight' && index !== undefined) {
         const newAccessories = [...state.canvas.accessoriesRight];
         newAccessories.splice(index, 1);
-        return { canvas: { ...state.canvas, accessoriesRight: newAccessories }, accessoryRightLayerIndex: 0 };
+        return {
+          canvas: { ...state.canvas, accessoriesRight: newAccessories },
+          accessoryRightLayerIndex: 0,
+        };
       }
       return { canvas: { ...state.canvas, [slot]: null } };
     });
@@ -158,12 +164,16 @@ export const useOutfitBuilderStore = create<OutfitBuilderState>((set, get) => ({
     fromSlot: 'accessoriesLeft' | 'accessoriesRight',
     toSlot: 'accessoriesLeft' | 'accessoriesRight',
     fromIndex: number,
-    _toIndex?: number
+    _toIndex?: number,
   ) => {
     set((state) => {
-      const fromItems = fromSlot === 'accessoriesLeft' ? state.canvas.accessoriesLeft : state.canvas.accessoriesRight;
-      const toItems = toSlot === 'accessoriesLeft' ? state.canvas.accessoriesLeft : state.canvas.accessoriesRight;
-      
+      const fromItems =
+        fromSlot === 'accessoriesLeft'
+          ? state.canvas.accessoriesLeft
+          : state.canvas.accessoriesRight;
+      const toItems =
+        toSlot === 'accessoriesLeft' ? state.canvas.accessoriesLeft : state.canvas.accessoriesRight;
+
       const item = fromItems[fromIndex];
       if (!item) return state;
 

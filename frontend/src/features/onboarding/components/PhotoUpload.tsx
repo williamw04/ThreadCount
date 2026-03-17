@@ -95,23 +95,23 @@ export function PhotoUpload({ onPhotoSelected, onUpload, onContinue, onSkip }: P
           <div className="space-y-4 border border-[var(--border)] bg-[var(--bg)] p-5">
             <p className="eyebrow text-[var(--text-muted)]">Photo guidelines</p>
             <ul className="space-y-3 text-sm leading-6 text-[var(--text-secondary)]">
-          <li className="flex items-start gap-2">
-            <span className="mt-[7px] h-[6px] w-[6px] bg-[var(--text-primary)]" />
-            Stand straight with arms at your sides
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="mt-[7px] h-[6px] w-[6px] bg-[var(--text-primary)]" />
-            Use a neutral background
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="mt-[7px] h-[6px] w-[6px] bg-[var(--text-primary)]" />
-            Full body must be visible
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="mt-[7px] h-[6px] w-[6px] bg-[var(--text-primary)]" />
-            Wear form-fitting clothing
-          </li>
-        </ul>
+              <li className="flex items-start gap-2">
+                <span className="mt-[7px] h-[6px] w-[6px] bg-[var(--text-primary)]" />
+                Stand straight with arms at your sides
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-[7px] h-[6px] w-[6px] bg-[var(--text-primary)]" />
+                Use a neutral background
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-[7px] h-[6px] w-[6px] bg-[var(--text-primary)]" />
+                Full body must be visible
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-[7px] h-[6px] w-[6px] bg-[var(--text-primary)]" />
+                Wear form-fitting clothing
+              </li>
+            </ul>
           </div>
 
           {!preview ? (
@@ -126,46 +126,45 @@ export function PhotoUpload({ onPhotoSelected, onUpload, onContinue, onSkip }: P
               onDrop={handleDrop}
               onDragOver={(e) => e.preventDefault()}
             >
-            <input
-              ref={inputRef}
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={handleFileSelect}
-            />
-            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center border border-[var(--border)] bg-[var(--bg)] text-[var(--text-primary)] transition-all duration-300 group-hover:border-[var(--border-strong)]">
-              <svg
-                className="h-10 w-10"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
-            </div>
-            <p className="eyebrow text-[var(--text-muted)]">Upload portrait</p>
-            <p className="mt-4 text-2xl font-semibold uppercase tracking-[0.08em] text-[var(--text-primary)]">
-              Drop image or browse archive
-            </p>
-            <p className="mx-auto mt-4 max-w-md text-sm leading-6 text-[var(--text-secondary)]">
-              JPG or PNG. Maximum file size 10MB. Use an uncompromised front-facing shot.
-            </p>
-            {error ? (
-              <p className="mt-5 text-[11px] uppercase tracking-[0.18em] text-[var(--text-primary)]">
-                {error}
+              <input
+                ref={inputRef}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleFileSelect}
+              />
+              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center border border-[var(--border)] bg-[var(--bg)] text-[var(--text-primary)] transition-all duration-300 group-hover:border-[var(--border-strong)]">
+                <svg className="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <p className="eyebrow text-[var(--text-muted)]">Upload portrait</p>
+              <p className="mt-4 text-2xl font-semibold uppercase tracking-[0.08em] text-[var(--text-primary)]">
+                Drop image or browse archive
               </p>
-            ) : null}
+              <p className="mx-auto mt-4 max-w-md text-sm leading-6 text-[var(--text-secondary)]">
+                JPG or PNG. Maximum file size 10MB. Use an uncompromised front-facing shot.
+              </p>
+              {error ? (
+                <p className="mt-5 text-[11px] uppercase tracking-[0.18em] text-[var(--text-primary)]">
+                  {error}
+                </p>
+              ) : null}
             </button>
           ) : (
             <div className="space-y-4">
               <div className="relative border border-[var(--border)] bg-[var(--bg)]">
                 <div className="aspect-[4/5] overflow-hidden">
-                  <img src={preview} alt="Selected avatar preview" className="h-full w-full object-cover" />
+                  <img
+                    src={preview}
+                    alt="Selected avatar preview"
+                    className="h-full w-full object-cover"
+                  />
                 </div>
                 <button
                   type="button"
@@ -174,12 +173,12 @@ export function PhotoUpload({ onPhotoSelected, onUpload, onContinue, onSkip }: P
                   className="absolute right-3 top-3 inline-flex h-10 w-10 items-center justify-center border border-[var(--border)] bg-[var(--bg-elevated)] text-[var(--text-primary)] transition-opacity hover:opacity-60"
                 >
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </div>

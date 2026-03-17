@@ -7,7 +7,12 @@ interface CanvasItemFigureProps {
   muted?: boolean;
 }
 
-export function CanvasItemFigure({ alt, className, imageUrl, muted = false }: CanvasItemFigureProps) {
+export function CanvasItemFigure({
+  alt,
+  className,
+  imageUrl,
+  muted = false,
+}: CanvasItemFigureProps) {
   if (!imageUrl) {
     return (
       <div className="flex h-full w-full items-center justify-center border border-dashed border-[var(--border)] bg-[var(--bg)] text-[10px] uppercase tracking-[0.22em] text-[var(--text-muted)]">

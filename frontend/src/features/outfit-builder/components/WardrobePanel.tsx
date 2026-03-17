@@ -1,11 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Check, Sparkles } from 'lucide-react';
 import { useOutfitBuilderStore } from '../store';
-import {
-  MAIN_CATEGORY_LABELS,
-  type OutfitItem,
-  type OutfitSlot,
-} from '../types';
+import { MAIN_CATEGORY_LABELS, type OutfitItem, type OutfitSlot } from '../types';
 import { getItemImageUrl } from '../api';
 import { useWardrobeStore } from '@/features/wardrobe/store';
 import { Card } from '@/shared/ui/Card';
@@ -37,25 +33,22 @@ export function WardrobePanel() {
   const [pendingItem, setPendingItem] = useState<OutfitItem | null>(null);
 
   const effectiveMain = selectedSlot ? SLOT_TO_MAIN[selectedSlot] : selectedMain;
+  const activeSelectedSub = selectedSlot ? null : selectedSub;
   const subCategories = effectiveMain ? SUB_CATEGORIES[effectiveMain] : [];
-
-  useEffect(() => {
-    setSelectedSub(null);
-  }, [selectedSlot]);
 
   const filteredItems = useMemo(() => {
     if (!effectiveMain) {
       return wardrobeItems;
     }
 
-    if (selectedSub) {
-      const categories = SUB_TO_CATEGORY[selectedSub] || [];
+    if (activeSelectedSub) {
+      const categories = SUB_TO_CATEGORY[activeSelectedSub] || [];
       return wardrobeItems.filter((item) => categories.includes(item.category));
     }
 
     const categories = MAIN_TO_CATEGORY[effectiveMain];
     return wardrobeItems.filter((item) => categories.includes(item.category));
-  }, [effectiveMain, selectedSub, wardrobeItems]);
+  }, [activeSelectedSub, effectiveMain, wardrobeItems]);
 
   const handleSelectMain = (main: MainCategory) => {
     setSelectedMain(main);
@@ -198,7 +191,9 @@ export function WardrobePanel() {
           Pull pieces into the canvas
         </h2>
         <div className="mt-3 flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-[var(--text-muted)]">
-          <span className="border border-[var(--border)] px-2.5 py-1.5">{formatSlotLabel(selectedSlot)}</span>
+          <span className="border border-[var(--border)] px-2.5 py-1.5">
+            {formatSlotLabel(selectedSlot)}
+          </span>
           <span className="border border-[var(--border)] px-2.5 py-1.5">
             {filteredItems.length} visible item{filteredItems.length === 1 ? '' : 's'}
           </span>
@@ -235,7 +230,7 @@ export function WardrobePanel() {
               onClick={() => setSelectedSub(null)}
               className={[
                 'border px-3 py-2 text-[10px] font-medium uppercase tracking-[0.22em] whitespace-nowrap transition-colors',
-                !selectedSub
+                !activeSelectedSub
                   ? 'border-[var(--border-strong)] bg-[var(--surface-inverse)] text-[var(--text-inverse)]'
                   : 'border-[var(--border)] bg-[var(--bg)] text-[var(--text-secondary)] hover:border-[var(--border-strong)] hover:text-[var(--text-primary)]',
               ].join(' ')}
@@ -249,7 +244,7 @@ export function WardrobePanel() {
                 onClick={() => setSelectedSub(sub)}
                 className={[
                   'border px-3 py-2 text-[10px] font-medium uppercase tracking-[0.22em] whitespace-nowrap transition-colors',
-                  selectedSub === sub
+                  activeSelectedSub === sub
                     ? 'border-[var(--border-strong)] bg-[var(--surface-inverse)] text-[var(--text-inverse)]'
                     : 'border-[var(--border)] bg-[var(--bg)] text-[var(--text-secondary)] hover:border-[var(--border-strong)] hover:text-[var(--text-primary)]',
                 ].join(' ')}
@@ -296,7 +291,11 @@ export function WardrobePanel() {
                 >
                   <div className="flex aspect-square items-center justify-center border border-[var(--border)] bg-[color:rgba(244,244,239,0.65)] p-4">
                     {imageUrl ? (
-                      <img src={imageUrl} alt={item.name} className="max-h-full max-w-full object-contain" />
+                      <img
+                        src={imageUrl}
+                        alt={item.name}
+                        className="max-h-full max-w-full object-contain"
+                      />
                     ) : (
                       <span className="text-[11px] uppercase tracking-[0.22em] text-[var(--text-muted)]">
                         No image

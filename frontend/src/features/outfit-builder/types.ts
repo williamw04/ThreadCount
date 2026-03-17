@@ -37,7 +37,13 @@ export interface OutfitCanvasState {
   accessoriesRight: OutfitItem[];
 }
 
-export const SLOT_ORDER: OutfitSlot[] = ['top', 'bottom', 'shoes', 'accessoriesLeft', 'accessoriesRight'];
+export const SLOT_ORDER: OutfitSlot[] = [
+  'top',
+  'bottom',
+  'shoes',
+  'accessoriesLeft',
+  'accessoriesRight',
+];
 
 export const SLOT_LABELS: Record<OutfitSlot, string> = {
   top: 'Top',

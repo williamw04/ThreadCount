@@ -20,7 +20,10 @@ export function SaveOutfitModal({
 }: SaveOutfitModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[color:rgba(17,17,17,0.78)] px-[var(--page-px)] py-6">
-      <Card className="w-full max-w-md border-[var(--border-strong)] shadow-[var(--shadow-floating)]" padding="md">
+      <Card
+        className="w-full max-w-md border-[var(--border-strong)] shadow-[var(--shadow-floating)]"
+        padding="md"
+      >
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="eyebrow text-[var(--text-muted)]">Archive outfit</p>

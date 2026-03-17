@@ -33,13 +33,13 @@ export function Button({
   ...props
 }: ButtonProps) {
   return (
-      <button
-        className={clsx(
-          'inline-flex items-center justify-center gap-2 font-medium uppercase transition-all duration-300',
-          'focus:outline-none focus:ring-2 focus:ring-[var(--focus)] focus:ring-offset-2 focus:ring-offset-[var(--bg)]',
-          'disabled:opacity-40 disabled:cursor-not-allowed',
-          variantStyles[variant],
-          sizeStyles[size],
+    <button
+      className={clsx(
+        'inline-flex items-center justify-center gap-2 font-medium uppercase transition-all duration-300',
+        'focus:outline-none focus:ring-2 focus:ring-[var(--focus)] focus:ring-offset-2 focus:ring-offset-[var(--bg)]',
+        'disabled:opacity-40 disabled:cursor-not-allowed',
+        variantStyles[variant],
+        sizeStyles[size],
         className,
       )}
       disabled={disabled}

@@ -50,10 +50,7 @@ export function OutfitCanvas() {
     event.dataTransfer.setData('index', String(index));
   };
 
-  const handleDrop = (
-    event: DragEvent,
-    toSlot: 'accessoriesLeft' | 'accessoriesRight',
-  ) => {
+  const handleDrop = (event: DragEvent, toSlot: 'accessoriesLeft' | 'accessoriesRight') => {
     event.preventDefault();
     const fromSlot = event.dataTransfer.getData('slot') as 'accessoriesLeft' | 'accessoriesRight';
     const fromIndex = Number.parseInt(event.dataTransfer.getData('index'), 10);
@@ -80,7 +77,9 @@ export function OutfitCanvas() {
         isFilled={items.length > 0}
         isSelected={isSelected}
         label={SLOT_LABELS.top}
-        meta={items.length > 1 ? `${items.length} layers` : items.length === 1 ? '1 layer' : 'Empty'}
+        meta={
+          items.length > 1 ? `${items.length} layers` : items.length === 1 ? '1 layer' : 'Empty'
+        }
         onClick={() => handleSlotClick('top')}
       >
         {items.length === 0 ? (
@@ -101,7 +100,10 @@ export function OutfitCanvas() {
 
             {activeItem ? (
               <div className="relative z-10 flex h-full w-full max-w-[14rem] items-center justify-center">
-                <CanvasItemFigure alt={activeItem.name} imageUrl={getItemImageUrl(activeItem.image_path)} />
+                <CanvasItemFigure
+                  alt={activeItem.name}
+                  imageUrl={getItemImageUrl(activeItem.image_path)}
+                />
                 <CanvasActionButton
                   aria-label={`Remove ${activeItem.name}`}
                   className="absolute right-0 top-0"
@@ -167,7 +169,9 @@ export function OutfitCanvas() {
         ) : (
           <CanvasEmptyState
             hint={slot === 'bottom' ? 'Foundation zone' : 'Footing zone'}
-            title={slot === 'bottom' ? 'Select trousers or bottoms' : 'Select shoes to finish the look'}
+            title={
+              slot === 'bottom' ? 'Select trousers or bottoms' : 'Select shoes to finish the look'
+            }
           />
         )}
       </CanvasSlotShell>
@@ -176,12 +180,17 @@ export function OutfitCanvas() {
 
   const renderAccessoriesSlot = (slot: 'accessoriesLeft' | 'accessoriesRight') => {
     const items = slot === 'accessoriesLeft' ? canvas.accessoriesLeft : canvas.accessoriesRight;
-    const activeIndex = slot === 'accessoriesLeft' ? accessoryLeftLayerIndex : accessoryRightLayerIndex;
+    const activeIndex =
+      slot === 'accessoriesLeft' ? accessoryLeftLayerIndex : accessoryRightLayerIndex;
     const swapLayer = slot === 'accessoriesLeft' ? swapAccessoryLeftLayer : swapAccessoryRightLayer;
     const isSelected = selectedSlot === slot;
 
     return (
-      <div onDrop={(event) => handleDrop(event, slot)} onDragOver={handleDragOver} className="h-full">
+      <div
+        onDrop={(event) => handleDrop(event, slot)}
+        onDragOver={handleDragOver}
+        className="h-full"
+      >
         <CanvasSlotShell
           className="h-full min-h-0"
           heightClassName="h-full"
@@ -192,7 +201,10 @@ export function OutfitCanvas() {
           onClick={() => handleSlotClick(slot)}
         >
           {items.length === 0 ? (
-            <CanvasEmptyState hint="Accent rail" title="Add jewelry, bags, watches, or small details" />
+            <CanvasEmptyState
+              hint="Accent rail"
+              title="Add jewelry, bags, watches, or small details"
+            />
           ) : (
             <div className="relative h-full overflow-hidden pb-4 pt-3">
               {items.map((item, index) => {

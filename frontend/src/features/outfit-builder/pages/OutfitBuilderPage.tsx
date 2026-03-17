@@ -61,7 +61,8 @@ export function OutfitBuilderPage() {
     canvas.accessoriesLeft.length +
     canvas.accessoriesRight.length;
 
-  const isBootstrapping = (isLoading && outfits.length === 0) || (isWardrobeLoading && wardrobeItems.length === 0);
+  const isBootstrapping =
+    (isLoading && outfits.length === 0) || (isWardrobeLoading && wardrobeItems.length === 0);
   const isRefreshDisabled = isLoading || isWardrobeLoading;
 
   const handleSave = async () => {
@@ -108,7 +109,10 @@ export function OutfitBuilderPage() {
             />
           </div>
 
-          <Card className="flex min-h-0 flex-col overflow-hidden border-[var(--border-strong)]" padding="none">
+          <Card
+            className="flex min-h-0 flex-col overflow-hidden border-[var(--border-strong)]"
+            padding="none"
+          >
             <div className="flex flex-none items-start justify-between gap-4 border-b border-[var(--border)] px-5 py-4">
               <div className="min-w-0">
                 <p className="eyebrow text-[var(--text-muted)]">Outfit atelier</p>
@@ -116,12 +120,15 @@ export function OutfitBuilderPage() {
                   Outfit Builder
                 </h1>
                 <p className="mt-2 max-w-2xl text-[13px] leading-5 text-[var(--text-secondary)]">
-                  Compose silhouettes, stack layers, and keep the entire canvas visible inside a locked viewport studio.
+                  Compose silhouettes, stack layers, and keep the entire canvas visible inside a
+                  locked viewport studio.
                 </p>
               </div>
               <div className="flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.18em] text-[var(--text-muted)]">
                 <span className="border border-[var(--border)] px-2.5 py-1.5">
-                  {currentOutfit ? `Editing ${currentOutfit.name || 'untitled look'}` : 'New composition'}
+                  {currentOutfit
+                    ? `Editing ${currentOutfit.name || 'untitled look'}`
+                    : 'New composition'}
                 </span>
                 <span className="border border-[var(--border)] px-2.5 py-1.5">
                   {hasItems ? 'Canvas populated' : 'Canvas empty'}
@@ -151,9 +158,15 @@ export function OutfitBuilderPage() {
             ) : null}
 
             <div className="flex flex-none gap-3 border-b border-[var(--border)] px-5 py-3">
-              <BuilderMetric label="Active items" value={String(totalCanvasItems).padStart(2, '0')} />
+              <BuilderMetric
+                label="Active items"
+                value={String(totalCanvasItems).padStart(2, '0')}
+              />
               <BuilderMetric label="Saved looks" value={String(outfits.length).padStart(2, '0')} />
-              <BuilderMetric label="Wardrobe ready" value={String(wardrobeItems.length).padStart(2, '0')} />
+              <BuilderMetric
+                label="Wardrobe ready"
+                value={String(wardrobeItems.length).padStart(2, '0')}
+              />
             </div>
 
             <div className="canvas-area min-h-0 flex-1 overflow-hidden p-3">
@@ -178,7 +191,11 @@ export function OutfitBuilderPage() {
 
       <div className="builder-controls flex items-center justify-between gap-6 px-[var(--page-px)]">
         <div className="flex items-center gap-4 text-[11px] uppercase tracking-[0.18em] text-[var(--text-muted)]">
-          <span>{hasItems ? `${totalCanvasItems} item${totalCanvasItems === 1 ? '' : 's'} active` : 'Canvas empty'}</span>
+          <span>
+            {hasItems
+              ? `${totalCanvasItems} item${totalCanvasItems === 1 ? '' : 's'} active`
+              : 'Canvas empty'}
+          </span>
           <span>{currentOutfit ? 'Edit mode' : 'Draft mode'}</span>
         </div>
         <div className="flex items-center gap-3">

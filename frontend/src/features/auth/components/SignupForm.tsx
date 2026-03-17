@@ -59,9 +59,7 @@ export function SignupForm() {
 
       <div className="flex items-center gap-4">
         <div className="flex-1 border-t border-[rgba(255,255,255,0.2)]" />
-        <span className="eyebrow text-[var(--text-inverse)]/56">
-          or
-        </span>
+        <span className="eyebrow text-[var(--text-inverse)]/56">or</span>
         <div className="flex-1 border-t border-[rgba(255,255,255,0.2)]" />
       </div>
 
@@ -109,7 +107,10 @@ export function SignupForm() {
         />
 
         {error && (
-          <p className="text-[11px] uppercase tracking-[0.18em] text-[var(--text-inverse)]" role="alert">
+          <p
+            className="text-[11px] uppercase tracking-[0.18em] text-[var(--text-inverse)]"
+            role="alert"
+          >
             {error}
           </p>
         )}

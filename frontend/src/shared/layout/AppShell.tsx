@@ -23,10 +23,7 @@ export function AppShell() {
   const isBuilderRoute = location.pathname === '/outfit-builder';
 
   useEffect(() => {
-    if (isBuilderRoute) {
-      setIsScrolled(false);
-      return undefined;
-    }
+    if (isBuilderRoute) return undefined;
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 24);

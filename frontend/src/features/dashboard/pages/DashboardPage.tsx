@@ -68,15 +68,29 @@ export function DashboardPage() {
           title="Your private fashion workspace is live."
           description={`Welcome back${user?.email ? `, ${user.email}` : ''}. Review the model canvas, verify the archive status, and return to styling.`}
         />
-        <Button variant="ghost" size="sm" onClick={() => void logout()} className="self-start xl:mb-6">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => void logout()}
+          className="self-start xl:mb-6"
+        >
           Log out
         </Button>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
-        <DashboardMetric label="Avatar status" value={(avatar?.model_status || 'Pending').toUpperCase()} />
-        <DashboardMetric label="Source image" value={avatar?.original_photo_path ? 'Ready' : 'Missing'} />
-        <DashboardMetric label="Canvas image" value={avatar?.model_canvas_path ? 'Ready' : 'Pending'} />
+        <DashboardMetric
+          label="Avatar status"
+          value={(avatar?.model_status || 'Pending').toUpperCase()}
+        />
+        <DashboardMetric
+          label="Source image"
+          value={avatar?.original_photo_path ? 'Ready' : 'Missing'}
+        />
+        <DashboardMetric
+          label="Canvas image"
+          value={avatar?.model_canvas_path ? 'Ready' : 'Pending'}
+        />
       </div>
 
       {error ? (
@@ -96,7 +110,8 @@ export function DashboardPage() {
               Model canvas
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-[var(--text-secondary)]">
-              Keep the source and processed image visible so you can check framing before moving deeper into the wardrobe and builder.
+              Keep the source and processed image visible so you can check framing before moving
+              deeper into the wardrobe and builder.
             </p>
           </div>
 
@@ -138,7 +153,11 @@ export function DashboardPage() {
               ) : (
                 <SurfaceMessage
                   kicker="Canvas"
-                  title={avatar.model_status === 'processing' ? 'Canvas in progress' : 'Canvas not generated'}
+                  title={
+                    avatar.model_status === 'processing'
+                      ? 'Canvas in progress'
+                      : 'Canvas not generated'
+                  }
                   description={
                     avatar.model_status === 'processing'
                       ? 'The system is still preparing the processed model image.'
@@ -169,7 +188,12 @@ export function DashboardPage() {
               Regenerate when you need a cleaner canvas or updated output for try-on generation.
             </p>
             <div className="mt-6 space-y-3">
-              <Button size="sm" onClick={handleRegenerate} disabled={isGenerating} className="w-full">
+              <Button
+                size="sm"
+                onClick={handleRegenerate}
+                disabled={isGenerating}
+                className="w-full"
+              >
                 {isGenerating ? 'Generating...' : 'Regenerate avatar'}
               </Button>
               <Button
