@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import { type KeyboardEvent, type ReactNode } from 'react';
 import { clsx } from 'clsx';
 
 interface CanvasSlotShellProps {
@@ -22,10 +22,21 @@ export function CanvasSlotShell({
   meta,
   onClick,
 }: CanvasSlotShellProps) {
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (!onClick) return;
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onClick();
+    }
+  };
+
   return (
-    <button
-      type="button"
+    <div
+      role="button"
+      tabIndex={0}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
       className={clsx(
         'group relative w-full overflow-hidden border text-left transition-all duration-200',
         'focus:outline-none focus:ring-2 focus:ring-[var(--focus)] focus:ring-offset-2 focus:ring-offset-[var(--bg)]',
@@ -38,17 +49,22 @@ export function CanvasSlotShell({
     >
       <div className="absolute left-0 top-0 z-10 border-r border-b border-[var(--border)] bg-[var(--bg)] px-2.5 py-1.5">
         <p className="eyebrow text-[var(--text-muted)]">{label}</p>
-        {meta ? <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-[var(--text-secondary)]">{meta}</p> : null}
+        {meta ? (
+          <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-[var(--text-secondary)]">
+            {meta}
+          </p>
+        ) : null}
       </div>
 
       <div
         className={clsx(
           'relative h-full min-h-0 w-full pt-12',
-          !isFilled && 'bg-[linear-gradient(135deg,rgba(17,17,17,0.03)_0,rgba(17,17,17,0.03)_1px,transparent_1px,transparent_100%)] bg-[length:18px_18px]',
+          !isFilled &&
+            'bg-[linear-gradient(135deg,rgba(17,17,17,0.03)_0,rgba(17,17,17,0.03)_1px,transparent_1px,transparent_100%)] bg-[length:18px_18px]',
         )}
       >
         <div className="h-full min-h-0">{children}</div>
       </div>
-    </button>
+    </div>
   );
 }
