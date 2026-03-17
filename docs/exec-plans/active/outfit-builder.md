@@ -22,6 +22,8 @@ Allow users to create and visualize outfits by combining items from their virtua
 - [x] Visual highlight on selected garment (not slot container)
 - [x] Dedicated Shoes category (separated from Accessories)
 - [x] Save outfits to database
+- [ ] Builder header, canvas, and controls stay contained within `100dvh` with no page scroll on `/outfit-builder`
+- [ ] Builder shell has regression coverage for `AppShell` route behavior and viewport containment
 - [ ] View saved outfits
 - [ ] Generate AI images of outfits
 
@@ -68,6 +70,12 @@ Allow users to create and visualize outfits by combining items from their virtua
 - [ ] Load saved outfits
 - [ ] Out display
 - [fit cards ] AI generation of outfit images
+
+### Phase 7: Viewport Containment Follow-Up (2026-03-16)
+
+- [ ] Document builder-specific shell behavior and viewport budget
+- [ ] Add regression tests for `AppShell` builder mode
+- [ ] Add viewport validation for header/canvas/controls containment
 
 ## Technical Decisions
 
@@ -119,3 +127,4 @@ Using 4 main categories:
 
 - Image sizing inconsistency: Different uploaded images have different aspect ratios. Consider normalizing on upload.
 - Accessories currently map to shoes slot - may need separate handling in future.
+- Current builder implementation already uses a viewport-locked shell in `AppShell` and `globals.css`; follow-up work is validation and regression coverage, not a new layout direction.

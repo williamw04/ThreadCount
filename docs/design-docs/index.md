@@ -1,12 +1,13 @@
 # Design Decisions Index
 
-**Last Updated**: 2026-02-12
+**Last Updated**: 2026-03-16
 
 ## Active Decisions
 
 - [Core Beliefs](./core-beliefs.md) - Foundational principles guiding all decisions
 - [Auth Strategy](./auth-strategy.md) - Supabase Auth via FastAPI, JWT tokens on frontend
 - [Image Processing](./image-processing.md) - Client-side background removal and compression
+- [Outfit Builder Viewport Containment](./outfit-builder-viewport-containment.md) - Builder-specific shell behavior and viewport budgeting
 
 ## Pending Decisions
 

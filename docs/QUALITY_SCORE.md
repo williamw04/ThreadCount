@@ -1,6 +1,6 @@
 # Quality Scorecard
 
-**Last Updated**: 2026-03-06
+**Last Updated**: 2026-03-16
 **Update Frequency**: Weekly
 
 ## Grading Scale
@@ -69,22 +69,23 @@
 
 ### Outfit Builder
 
-**Overall Grade**: D (Implementation complete, minimal tests)
-**Last Assessed**: 2026-03-06
+**Overall Grade**: D (Implementation complete, route and viewport tests missing)
+**Last Assessed**: 2026-03-16
 
 | Layer      | Coverage | Architecture | Grade |
 | ---------- | -------- | ------------ | ----- |
 | Types      | N/A      | Complete     | —     |
 | API        | 0%       | Complete     | F     |
-| Stores     | ~40%     | Complete     | F     |
+| Stores     | ~70%     | Complete     | C     |
 | Components | 0%       | Partial      | F     |
 | Pages      | 0%       | Complete     | F     |
 
 **Status**: ✅ Implemented
 - Complete layer structure: types, api, store, components, pages
-- Tests: 1 store test (store.test.ts)
-- Missing: Component tests, API tests, page integration tests
-- Next steps: Add component tests, expand store test coverage
+- Viewport-locked builder shell is implemented across `AppShell`, `OutfitBuilderPage`, and shared viewport CSS tokens
+- Tests: broad store coverage in `frontend/src/features/outfit-builder/store.test.ts`
+- Missing: `AppShell` builder-mode tests, `OutfitBuilderPage` integration tests, and viewport containment validation for `100dvh` overflow regressions
+- Next steps: add `AppShell` tests for builder route behavior, add builder page tests for shell structure and controls, then add viewport validation checks for header/canvas/controls containment
 
 ---
 
@@ -204,9 +205,9 @@
 
 1. Complete Profile domain (store, components, pages)
 2. Complete Onboarding domain (types, api, store)
-3. Add comprehensive tests for Wardrobe domain
-4. Build out Dashboard with widgets and navigation
-5. Start implementation of Try-On domain
+3. Add builder/AppShell regression tests and viewport containment validation
+4. Add comprehensive tests for Wardrobe domain
+5. Build out Dashboard with widgets and navigation
 
 ## Performance Targets
 
