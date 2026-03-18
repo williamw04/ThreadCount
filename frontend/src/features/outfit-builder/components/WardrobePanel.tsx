@@ -41,7 +41,7 @@ export function WardrobePanel({
   outfits,
   saveState,
 }: WardrobePanelProps) {
-const { addToSlot, canvas, removeFromSlot, selectedSlot } = useOutfitBuilderStore();
+  const { addToSlot, canvas, removeFromSlot, selectedSlot } = useOutfitBuilderStore();
   const { items: wardrobeItems, isLoading } = useWardrobeStore();
   const [navLevel, setNavLevel] = useState<NavLevel>('root');
   const [selectedTab, setSelectedTab] = useState<RailTab | null>(null);

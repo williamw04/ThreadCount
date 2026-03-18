@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { OutfitCanvas } from './OutfitCanvas';
@@ -43,7 +43,7 @@ describe('OutfitCanvas', () => {
     expect(canvasSection).toHaveClass('flex', 'h-full', 'min-h-0', 'flex-col', 'overflow-hidden');
 
     const slotGrid = container.querySelector('section > .grid');
-    expect(slotGrid).toHaveClass('grid', 'min-h-0', 'flex-1', 'gap-3', 'p-3');
+    expect(slotGrid).toHaveClass('grid', 'min-h-0', 'h-full', 'gap-3', 'p-3');
 
     expect(screen.getByText(/select tops, dresses, or outerwear/i)).toBeInTheDocument();
     expect(screen.getByText(/select trousers or bottoms/i)).toBeInTheDocument();
@@ -78,5 +78,50 @@ describe('OutfitCanvas', () => {
     await user.click(topSlot!);
 
     expect(useOutfitBuilderStore.getState().selectedSlot).toBe('top');
+  });
+
+  it('maintains fixed slot proportions regardless of garment content', () => {
+    const { container, rerender } = render(<OutfitCanvas />);
+
+    const innerSlotGrid = container.querySelectorAll('.grid')[1] as HTMLElement;
+    expect(innerSlotGrid).toBeTruthy();
+    expect(innerSlotGrid.className).toContain('grid-rows-[30%_50%_20%]');
+
+    act(() => {
+      useOutfitBuilderStore.setState({
+        canvas: {
+          top: [
+            createItem('top-1', 'Overshirt', 'tops'),
+            createItem('top-2', 'Trench', 'outerwear'),
+          ],
+          bottom: createItem('bottom-1', 'Wide Trousers', 'bottoms'),
+          shoes: createItem('shoes-1', 'Loafers', 'shoes'),
+          accessoriesLeft: [createItem('accessory-1', 'Watch', 'accessories')],
+          accessoriesRight: [createItem('accessory-2', 'Leather Bag', 'accessories')],
+        },
+      });
+    });
+
+    rerender(<OutfitCanvas />);
+
+    const populatedSlotGrid = container.querySelectorAll('.grid')[1] as HTMLElement;
+    expect(populatedSlotGrid.className).toContain('grid-rows-[30%_50%_20%]');
+
+    act(() => {
+      useOutfitBuilderStore.setState({
+        canvas: {
+          top: [],
+          bottom: null,
+          shoes: createItem('shoes-1', 'Loafers', 'shoes'),
+          accessoriesLeft: [],
+          accessoriesRight: [],
+        },
+      });
+    });
+
+    rerender(<OutfitCanvas />);
+
+    const partialSlotGrid = container.querySelectorAll('.grid')[1] as HTMLElement;
+    expect(partialSlotGrid.className).toContain('grid-rows-[30%_50%_20%]');
   });
 });
