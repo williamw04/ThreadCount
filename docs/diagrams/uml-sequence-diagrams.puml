@@ -1,0 +1,252 @@
+@startuml sequence_diagrams
+
+skinparam backgroundColor White
+skinparam sequenceMessageAlign center
+
+title Seamless Application - UML Sequence Diagrams
+
+' ============================================
+' DIAGRAM 1: AI Image Analysis Flow
+' ============================================
+group "1. AI Image Analysis Flow"
+    actor User
+    participant "Frontend\n(React)" as FE
+    participant "Backend API\n(FastAPI)" as API
+    participant "GeminiClient\n(Service)" as Gemini
+    participant "Google Gemini\nAPI" as GeminiAPI
+    
+    User -> FE : select image file
+    FE -> FE : getAuthToken() from Supabase
+    FE -> API : POST /api/ai/analyze\nFormData { file }
+    activate API
+    
+    API -> API : await file.read()
+    API -> Gemini : new GeminiClient()
+    activate Gemini
+    
+    Gemini -> Gemini : configure(api_key)
+    Gemini -> GeminiAPI : generate_content_async(\n  [base64_image, prompt])
+    activate GeminiAPI
+    
+    GeminiAPI --> Gemini : JSON {\n  suggested_name,\n  suggested_category,\n  colors[], seasons[],\n  tags[], style[],\n  material_guess,\n  confidence\n}
+    deactivate GeminiAPI
+    
+    Gemini -> Gemini : validate_category()
+    Gemini -> Gemini : validate_seasons()
+    Gemini --> API : Dict[str, Any]
+    deactivate Gemini
+    
+    API --> FE : AnalyzeImageResponse\n{ validated metadata }
+    deactivate API
+    
+    FE -> FE : zod validation
+    FE --> User : display suggestions
+end
+
+' ============================================
+' DIAGRAM 2: Wardrobe Item Creation Flow
+' ============================================
+group "2. Wardrobe Item Creation Flow"
+    actor User
+    participant "Frontend\n(React)" as FE
+    participant "Backend API\n(FastAPI)" as API
+    participant "Supabase\nStorage" as Storage
+    participant "Supabase\nDatabase" as DB
+    
+    User -> FE : fill form, select image
+    FE -> FE : getAuthToken()
+    FE -> API : POST /api/wardrobe/items\nFormData {\n  user_id, name, category,\n  labels, colors, seasons,\n  image\n}
+    activate API
+    
+    API -> API : uuid.uuid4()
+    API -> API : generate file_path
+    API -> API : await image.read()
+    
+    API -> Storage : storage.from_("wardrobe")\n  .upload(file_path, content)
+    activate Storage
+    Storage --> API : success
+    deactivate Storage
+    
+    API -> API : parse comma-separated\n  labels, colors, seasons
+    
+    API -> DB : table("wardrobe_items")\n  .insert({\n    id, user_id, name,\n    category, image_path,\n    labels[], colors[],\n    seasons[],\n    created_at, updated_at\n  })
+    activate DB
+    DB --> API : inserted row
+    deactivate DB
+    
+    API --> FE : WardrobeItemResponse\n{ item data }
+    deactivate API
+    
+    FE -> FE : zod validation
+    FE --> User : show success, new item card
+end
+
+' ============================================
+' DIAGRAM 3: Avatar Generation Flow
+' ============================================
+group "3. Avatar Generation Flow"
+    actor User
+    participant "Frontend\n(React)" as FE
+    participant "Backend API\n(FastAPI)" as API
+    participant "Supabase\n(Database+Storage)" as Supabase
+    participant "FalClient\n(Service)" as Fal
+    participant "fal.ai\nAPI" as FalAPI
+    
+    User -> FE : click "Generate Avatar"
+    FE -> API : POST /api/avatar/generate\n{ user_id }
+    activate API
+    
+    API -> Supabase : table("avatars")\n  .select("*")\n  .eq("user_id", user_id)\n  .eq("is_active", true)\n  .order("created_at", desc)\n  .limit(1)
+    activate Supabase
+    Supabase --> API : { avatar record with\n  original_photo_path }
+    deactivate Supabase
+    
+    API -> Supabase : table("avatars")\n  .update({ model_status: "processing" })
+    activate Supabase
+    Supabase --> API : updated
+    deactivate Supabase
+    
+    API -> Supabase : storage.from_("avatars")\n  .get_public_url(photo_path)
+    activate Supabase
+    Supabase --> API : original_url
+    deactivate Supabase
+    
+    API -> Fal : new FalClient()
+    activate Fal
+    Fal -> FalAPI : subscribe(\n  "fal-ai/nano-banana-2/edit",\n  { prompt, image_urls }\n)
+    activate FalAPI
+    FalAPI --> Fal : { url: generated_image }
+    deactivate FalAPI
+    Fal --> API : { url }
+    deactivate Fal
+    
+    API -> FalAPI : httpx.get(generated_url)
+    activate FalAPI
+    FalAPI --> API : response.content (bytes)
+    deactivate FalAPI
+    
+    API -> Supabase : storage.from_("avatars")\n  .upload(file_path, content)
+    activate Supabase
+    Supabase --> API : success
+    deactivate Supabase
+    
+    API -> Supabase : table("avatars")\n  .update({\n    model_status: "ready",\n    model_canvas_path: file_path\n  })
+    activate Supabase
+    Supabase --> API : updated
+    deactivate Supabase
+    
+    API --> FE : { status: "success",\n  model_path }
+    deactivate API
+    
+    FE --> User : show avatar ready state
+    
+    note right of API : On error:\n  update model_status\n  to "failed"\n  return HTTPException
+end
+
+' ============================================
+' DIAGRAM 4: Outfit Creation Flow
+' ============================================
+group "4. Outfit Creation & Save Flow"
+    actor User
+    participant "Frontend\n(React)" as FE
+    participant "OutfitBuilder\nStore" as Store
+    participant "Supabase\nDatabase" as DB
+    
+    User -> FE : navigate to outfit builder
+    FE -> Store : fetchOutfits(userId)
+    activate Store
+    
+    Store -> DB : .from("outfits")\n  .select("*")\n  .eq("user_id", userId)
+    activate DB
+    DB --> Store : outfits[]
+    deactivate DB
+    
+    Store -> Store : store.outfits = []
+    Store --> FE : outfits loaded
+    deactivate Store
+    
+    FE --> User : render saved outfits list
+    
+    User -> FE : drag item to canvas slot
+    FE -> Store : addToSlot(slot, item)
+    activate Store
+    Store -> Store : canvas[slot].push(item)
+    Store --> FE : canvas updated
+    deactivate Store
+    
+    FE --> User : update canvas display
+    
+    User -> FE : click "Save"
+    FE -> FE : open save modal
+    User -> FE : enter name "Summer Look"
+    
+    FE -> Store : saveOutfit(name)
+    activate Store
+    Store -> Store : collect item_ids from canvas
+    
+    Store -> DB : .from("outfits")\n  .insert({\n    user_id,\n    name,\n    item_ids[]\n  })
+    activate DB
+    DB --> Store : new Outfit record
+    deactivate DB
+    
+    Store -> Store : outfits.push(newOutfit)
+    Store -> Store : clearCanvas()
+    Store --> FE : outfit saved
+    deactivate Store
+    
+    FE --> User : show success, outfit card
+end
+
+' ============================================
+' DIAGRAM 5: Background Removal Flow
+' ============================================
+group "5. Background Removal Flow"
+    actor User
+    participant "Frontend\n(React)" as FE
+    participant "Backend API\n(FastAPI)" as API
+    participant "Supabase\nStorage" as Storage
+    participant "FalClient\n(Service)" as Fal
+    participant "fal.ai\nAPI" as FalAPI
+    
+    User -> FE : upload image, click\n  "Remove Background"
+    FE -> API : POST /api/image/remove-background\nFormData { user_id, file }
+    activate API
+    
+    API -> API : generate temp file_path
+    API -> Storage : upload temp file
+    activate Storage
+    Storage --> API : success
+    deactivate Storage
+    
+    API -> Storage : get_public_url(temp_path)
+    activate Storage
+    Storage --> API : image_url
+    deactivate Storage
+    
+    API -> Fal : new FalClient()
+    activate Fal
+    Fal -> FalAPI : subscribe(\n  "fal-ai/birefnet/v2",\n  { image_url }\n)
+    activate FalAPI
+    FalAPI --> Fal : { image: { url } }
+    deactivate FalAPI
+    Fal --> API : processed_url
+    deactivate Fal
+    
+    API -> FalAPI : httpx.get(processed_url)
+    activate FalAPI
+    FalAPI --> API : image_bytes
+    deactivate FalAPI
+    
+    API -> API : generate final file_path
+    API -> Storage : upload(final_path, bytes)
+    activate Storage
+    Storage --> API : success
+    deactivate Storage
+    
+    API --> FE : RemoveBackgroundResponse\n{\n  processed_image_url,\n  storage_path\n}
+    deactivate API
+    
+    FE --> User : display processed image
+end
+
+@enduml

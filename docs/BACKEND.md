@@ -1,7 +1,7 @@
 # Backend Guide
 
-**Version**: 1.0.0
-**Last Updated**: 2026-03-02
+**Version**: 1.2.0
+**Last Updated**: 2026-03-24
 
 ## Overview
 
@@ -46,47 +46,160 @@ backend/
 
 ### Local Setup
 
-1.  **Create Virtual Environment**:
+#### Unix-based systems (macOS/Linux)
 
-    ```bash
-    cd backend
-    python3.12 -m venv .venv
-    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-    ```
+1. **Navigate to backend directory**:
+   ```bash
+   cd backend
+   ```
 
-2.  **Install Dependencies**:
+2. **Check Python version and create Virtual Environment**:
+   
+   First, verify you have Python 3.12+ installed:
+   ```bash
+   python3 --version
+   ```
+   
+   If the version is 3.12 or higher, create the virtual environment:
+   ```bash
+   python3 -m venv venv
+   ```
+   
+   > **Note**: If `python3 --version` shows an older version, you may need to use `python3.12` or `python3.13` explicitly, or install a newer Python version from [python.org](https://www.python.org/downloads/).
 
-    ```bash
-    python -m pip install -r requirements.txt
-    ```
+3. **Activate Virtual Environment**:
+   ```bash
+   source venv/bin/activate
+   ```
+   
+   The previous step created a `venv/` folder containing an isolated Python environment with its own interpreter, pip, and packages. Activating it modifies your shell's PATH so that `python` and `pip` commands use this environment instead of your system Python. You'll see `(venv)` appear in your terminal prompt when active.
 
-3.  **Configure Environment**:
-    Create `.env` file in the `backend/` directory:
+4. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-    ```
-    SUPABASE_URL=https://your-project.supabase.co
-    SUPABASE_SECRET_KEY=your-secret-key
-    FAL_API_KEY=your-fal-api-key
-    ```
+5. **Configure Environment**:
+   Create `.env` file in the `backend/` directory:
+   ```
+   SUPABASE_URL=https://your-project.supabase.co
+   SUPABASE_SECRET_KEY=your-secret-key
+   SUPABASE_ANON_KEY=your-anon-key
+   FAL_API_KEY=your-fal-api-key
+   ```
 
-    SUPABASE_URL=https://your-project.supabase.co
-    SUPABASE_ANON_KEY=your-anon-key
-    FAL_API_KEY=your-fal-api-key
+6. **Run Server**:
+   ```bash
+   uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+   ```
 
-    ```
+#### Windows (PowerShell)
 
-    ```
+1. **Navigate to backend directory**:
+   ```powershell
+   cd backend
+   ```
 
-4.  **Run Server**:
-     ```bash
-     python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-     ```
+2. **Check Python version and create Virtual Environment**:
+   
+   First, verify you have Python 3.12+ installed:
+   ```powershell
+   python --version
+   ```
+   
+   If the version is 3.12 or higher, create the virtual environment:
+   ```powershell
+   python -m venv venv
+   ```
+   
+   > **Note**: If your Python version is below 3.12, download and install a newer version from [python.org](https://www.python.org/downloads/). During installation, check "Add Python to PATH".
 
-### Why `python -m uvicorn`?
+3. **Activate Virtual Environment**:
+   ```powershell
+   .\venv\Scripts\Activate.ps1
+   ```
+   
+   The previous step created a `venv\` folder containing an isolated Python environment with its own interpreter, pip, and packages. Activating it modifies your shell's PATH so that `python` and `pip` commands use this environment instead of your system Python. You'll see `(venv)` appear in your terminal prompt when active.
+   
+   > **Note**: If you get an execution policy error, run this first:
+   > ```powershell
+   > Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+   > ```
 
-- `uvicorn ...` uses whichever `uvicorn` executable appears first on your shell `PATH`.
-- On this machine, that currently resolves to a global Python 3.9 install.
-- `python -m uvicorn ...` guarantees that Uvicorn runs with the active interpreter from `.venv`, which should be Python 3.12.
+4. **Install Dependencies**:
+   ```powershell
+   pip install -r requirements.txt
+   ```
+
+5. **Configure Environment**:
+   Create `.env` file in the `backend/` directory:
+   ```
+   SUPABASE_URL=https://your-project.supabase.co
+   SUPABASE_SECRET_KEY=your-secret-key
+   SUPABASE_ANON_KEY=your-anon-key
+   FAL_API_KEY=your-fal-api-key
+   ```
+
+6. **Run Server**:
+   ```powershell
+   uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+   ```
+
+#### Windows (Command Prompt)
+
+1. **Navigate to backend directory**:
+   ```cmd
+   cd backend
+   ```
+
+2. **Check Python version and create Virtual Environment**:
+   
+   First, verify you have Python 3.12+ installed:
+   ```cmd
+   python --version
+   ```
+   
+   If the version is 3.12 or higher, create the virtual environment:
+   ```cmd
+   python -m venv venv
+   ```
+   
+   > **Note**: If your Python version is below 3.12, download and install a newer version from [python.org](https://www.python.org/downloads/). During installation, check "Add Python to PATH".
+
+3. **Activate Virtual Environment**:
+   ```cmd
+   venv\Scripts\activate.bat
+   ```
+   
+   The previous step created a `venv\` folder containing an isolated Python environment with its own interpreter, pip, and packages. Activating it modifies your shell's PATH so that `python` and `pip` commands use this environment instead of your system Python. You'll see `(venv)` appear in your terminal prompt when active.
+
+4. **Install Dependencies**:
+   ```cmd
+   pip install -r requirements.txt
+   ```
+
+5. **Configure Environment**:
+   Create `.env` file in the `backend/` directory:
+   ```
+   SUPABASE_URL=https://your-project.supabase.co
+   SUPABASE_SECRET_KEY=your-secret-key
+   SUPABASE_ANON_KEY=your-anon-key
+   FAL_API_KEY=your-fal-api-key
+   ```
+
+6. **Run Server**:
+   ```cmd
+   uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+   ```
+
+### Deactivating the Virtual Environment
+
+When you're done working, deactivate the virtual environment:
+
+| Platform | Command |
+| -------- | ------- |
+| Unix (macOS/Linux) | `deactivate` |
+| Windows (PowerShell/CMD) | `deactivate` |
 
 ## API Endpoints
 

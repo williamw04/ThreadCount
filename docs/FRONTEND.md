@@ -1,7 +1,86 @@
 # Frontend Guide
 
-**Version**: 1.2.0
-**Last Updated**: 2026-03-14
+**Version**: 1.3.0
+**Last Updated**: 2026-03-24
+
+## Setup & Development
+
+### Prerequisites
+
+- Node.js 20+ (LTS recommended)
+- npm 10+ (comes with Node.js)
+
+### Installation
+
+#### Unix-based systems (macOS/Linux)
+
+```bash
+cd frontend
+npm install
+```
+
+#### Windows (PowerShell)
+
+```powershell
+cd frontend
+npm install
+```
+
+#### Windows (Command Prompt)
+
+```cmd
+cd frontend
+npm install
+```
+
+### Running the Development Server
+
+#### Unix-based systems (macOS/Linux)
+
+```bash
+cd frontend
+npm run dev
+```
+
+#### Windows (PowerShell)
+
+```powershell
+cd frontend
+npm run dev
+```
+
+#### Windows (Command Prompt)
+
+```cmd
+cd frontend
+npm run dev
+```
+
+The development server will start at `http://localhost:5173`.
+
+### Other Commands
+
+| Command | Description |
+| ------- | ----------- |
+| `npm run build` | Production build |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
+| `npm run lint:fix` | Auto-fix lint errors |
+| `npm run format` | Format with Prettier |
+| `npm run test` | Run tests in watch mode |
+| `npm run test:run` | Run tests once |
+| `npm run test:coverage` | Run tests with coverage |
+| `npm run typecheck` | Run TypeScript type checking |
+
+### Environment Variables
+
+Create a `.env` file in the `frontend/` directory:
+
+```env
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key
+VITE_API_URL=http://localhost:8000
+```
 
 ## Stack
 
