@@ -68,14 +68,6 @@ export function DashboardPage() {
           title="Your private fashion workspace is live."
           description={`Welcome back${user?.email ? `, ${user.email}` : ''}. Review the model canvas, verify the wardrobe status, and return to styling.`}
         />
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => void logout()}
-          className="self-start xl:mb-6"
-        >
-          Log out
-        </Button>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
@@ -219,7 +211,7 @@ export function DashboardPage() {
 
               <Button
                 size="sm"
-                onClick={() => navigate('/onboarding')}
+                onClick={() => navigate('/wardrobe')}
                 className="w-full"
               >
                 Continue to Wardrobe
