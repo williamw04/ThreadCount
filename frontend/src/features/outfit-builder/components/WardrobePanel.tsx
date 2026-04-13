@@ -242,8 +242,8 @@ export function WardrobePanel({
                 className={[
                   'flex-1 px-3 py-2 text-left text-[11px] font-medium uppercase tracking-[0.22em] transition-colors',
                   navLevel === 'garments' || (activeTab && activeTab !== 'saved')
-                    ? 'bg-[color:rgba(17,17,17,0.08)] text-[var(--text-primary)]'
-                    : 'bg-[color:rgba(251,251,248,0.52)] text-[var(--text-secondary)] hover:bg-[color:rgba(17,17,17,0.06)] hover:text-[var(--text-primary)]',
+                    ? 'bg-[var(--text-primary)] !text-[var(--text-inverse)]'
+                    : 'bg-transparent !text-[var(--text-secondary)] hover:bg-[var(--bg-muted)] active:bg-[var(--text-primary)] active:!text-[var(--text-inverse)]',
                 ].join(' ')}
               >
                 Garments
@@ -254,8 +254,8 @@ export function WardrobePanel({
                 className={[
                   'flex-1 px-3 py-2 text-left text-[11px] font-medium uppercase tracking-[0.22em] transition-colors',
                   activeTab === 'saved'
-                    ? 'bg-[color:rgba(17,17,17,0.08)] text-[var(--text-primary)]'
-                    : 'bg-[color:rgba(251,251,248,0.52)] text-[var(--text-secondary)] hover:bg-[color:rgba(17,17,17,0.06)] hover:text-[var(--text-primary)]',
+                    ? 'bg-[var(--text-primary)] !text-[var(--text-inverse)]'
+                    : 'bg-transparent !text-[var(--text-secondary)] hover:bg-[var(--bg-muted)] active:bg-[var(--text-primary)] active:!text-[var(--text-inverse)]',
                 ].join(' ')}
               >
                 Saved
@@ -282,8 +282,8 @@ export function WardrobePanel({
                     className={[
                       'flex-1 px-2 py-2 text-left text-[10px] font-medium uppercase tracking-[0.22em] transition-colors',
                       isActive
-                        ? 'bg-[color:rgba(17,17,17,0.08)] text-[var(--text-primary)]'
-                        : 'bg-[color:rgba(251,251,248,0.52)] text-[var(--text-secondary)] hover:bg-[color:rgba(17,17,17,0.06)] hover:text-[var(--text-primary)]',
+                        ? 'bg-[var(--text-primary)] !text-[var(--text-inverse)]'
+                        : 'bg-transparent !text-[var(--text-secondary)] hover:bg-[var(--bg-muted)] active:bg-[var(--text-primary)] active:!text-[var(--text-inverse)]',
                     ].join(' ')}
                   >
                     {label}
@@ -302,8 +302,8 @@ export function WardrobePanel({
               className={[
                 'px-3 py-2 text-[10px] font-medium uppercase tracking-[0.22em] whitespace-nowrap transition-colors',
                 !activeSelectedSub
-                  ? 'bg-[color:rgba(17,17,17,0.08)] text-[var(--text-primary)]'
-                  : 'bg-[color:rgba(251,251,248,0.52)] text-[var(--text-secondary)] hover:bg-[color:rgba(17,17,17,0.06)] hover:text-[var(--text-primary)]',
+                  ? 'bg-[var(--text-primary)] !text-[var(--text-inverse)]'
+                  : 'bg-transparent !text-[var(--text-secondary)] hover:bg-[var(--bg-muted)] active:bg-[var(--text-primary)] active:!text-[var(--text-inverse)]',
               ].join(' ')}
             >
               All
@@ -316,8 +316,8 @@ export function WardrobePanel({
                 className={[
                   'px-3 py-2 text-[10px] font-medium uppercase tracking-[0.22em] whitespace-nowrap transition-colors',
                   activeSelectedSub === sub
-                    ? 'bg-[color:rgba(17,17,17,0.08)] text-[var(--text-primary)]'
-                    : 'bg-[color:rgba(251,251,248,0.52)] text-[var(--text-secondary)] hover:bg-[color:rgba(17,17,17,0.06)] hover:text-[var(--text-primary)]',
+                    ? 'bg-[var(--text-primary)] !text-[var(--text-inverse)]'
+                    : 'bg-transparent !text-[var(--text-secondary)] hover:bg-[var(--bg-muted)] active:bg-[var(--text-primary)] active:!text-[var(--text-inverse)]',
                 ].join(' ')}
               >
                 {sub}

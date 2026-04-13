@@ -300,9 +300,9 @@ async def generate_outfit_thumbnail(request: GenerateThumbnailRequest):
 
         async with httpx.AsyncClient(timeout=30.0) as client:
 
-            async def load_image(item_url: str) -> Image.Image | None:
+            async def load_image(url: str) -> Image.Image | None:
                 try:
-                    response = await client.get(image_url)
+                    response = await client.get(url)
                     response.raise_for_status()
                     return Image.open(io.BytesIO(response.content)).convert("RGBA")
                 except Exception as e:

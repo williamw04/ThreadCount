@@ -29,8 +29,8 @@ export function CategoryFilter({ selectedCategory, onCategoryChange }: CategoryF
         className={clsx(
           'border px-4 py-3 text-[11px] font-medium uppercase tracking-[0.2em] whitespace-nowrap transition-colors',
           !selectedCategory
-            ? 'border-[var(--border-strong)] bg-[var(--surface-inverse)] text-[var(--text-inverse)]'
-            : 'border-[var(--border)] bg-[var(--bg-elevated)] text-[var(--text-secondary)] hover:border-[var(--border-strong)] hover:text-[var(--text-primary)]',
+            ? 'border-[var(--border-strong)] bg-[var(--text-primary)] !text-[var(--text-inverse)]'
+            : 'border-[var(--border)] bg-transparent !text-[var(--text-secondary)] hover:border-[var(--border-strong)] hover:bg-[var(--bg-muted)] active:border-[var(--border-strong)] active:bg-[var(--text-primary)] active:!text-[var(--text-inverse)]',
         )}
       >
         All
@@ -44,8 +44,8 @@ export function CategoryFilter({ selectedCategory, onCategoryChange }: CategoryF
           className={clsx(
             'border px-4 py-3 text-[11px] font-medium uppercase tracking-[0.2em] whitespace-nowrap transition-colors',
             selectedCategory === category
-              ? 'border-[var(--border-strong)] bg-[var(--surface-inverse)] text-[var(--text-inverse)]'
-              : 'border-[var(--border)] bg-[var(--bg-elevated)] text-[var(--text-secondary)] hover:border-[var(--border-strong)] hover:text-[var(--text-primary)]',
+              ? 'border-[var(--border-strong)] bg-[var(--text-primary)] !text-[var(--text-inverse)]'
+              : 'border-[var(--border)] bg-transparent !text-[var(--text-secondary)] hover:border-[var(--border-strong)] hover:bg-[var(--bg-muted)] active:border-[var(--border-strong)] active:bg-[var(--text-primary)] active:!text-[var(--text-inverse)]',
           )}
         >
           {CATEGORY_LABELS[category]}
