@@ -25,35 +25,49 @@ async def generate_avatar(request: GenerateAvatarRequest):
     logger.info(f"Generating avatar for user: {request.user_id}")
     supabase = get_supabase()
     avatar_id = None
-    
+
     try:
         # Get user's latest avatar
-        result = supabase.table("avatars").select("*").eq("user_id", request.user_id).eq("is_active", True).order("created_at", desc=True).limit(1).execute()
+        result = (
+            supabase.table("avatars")
+            .select("*")
+            .eq("user_id", request.user_id)
+            .eq("is_active", True)
+            .order("created_at", desc=True)
+            .limit(1)
+            .execute()
+        )
 
         if not result.data or len(result.data) == 0:
             logger.warning(f"No avatar found for user: {request.user_id}")
-            raise HTTPException(status_code=404, detail="Avatar not found. Please upload a photo first.")
+            raise HTTPException(
+                status_code=404, detail="Avatar not found. Please upload a photo first."
+            )
 
         avatar = result.data[0]
         if not isinstance(avatar, dict):
-            raise HTTPException(status_code=500, detail="Invalid avatar data format from database")
-            
+            raise HTTPException(
+                status_code=500, detail="Invalid avatar data format from database"
+            )
+
         avatar_id = avatar.get("id")
         original_photo_path = avatar.get("original_photo_path")
-        
+
         if not avatar_id or not original_photo_path:
             logger.error(f"Avatar record is incomplete for user: {request.user_id}")
             raise HTTPException(status_code=500, detail="Avatar record is incomplete")
 
         # Update status to processing
         logger.info(f"Setting avatar {avatar_id} status to processing")
-        supabase.table("avatars").update({"model_status": "processing"}).eq("id", avatar_id).execute()
+        supabase.table("avatars").update({"model_status": "processing"}).eq(
+            "id", avatar_id
+        ).execute()
 
         # Get public URL of original photo
         photo_path = str(original_photo_path)
         if photo_path.startswith("avatars/"):
             photo_path = photo_path[8:]
-        
+
         url_resp = supabase.storage.from_("avatars").get_public_url(photo_path)
         # Handle different response types from get_public_url
         original_url = url_resp if isinstance(url_resp, str) else str(url_resp)
@@ -62,12 +76,12 @@ async def generate_avatar(request: GenerateAvatarRequest):
         # Generate new image via fal.ai
         logger.info("Calling fal.ai for image generation...")
         fal_client = FalClient()
-        generated = fal_client.generate_image(original_url, AVATAR_PROMPT)
-        
+        generated = fal_client.generate_image([original_url], AVATAR_PROMPT)
+
         generated_url = None
         if isinstance(generated, dict):
             generated_url = generated.get("url")
-        
+
         if not generated_url:
             logger.error("fal.ai response did not contain an image URL")
             raise Exception("fal.ai generation failed - no URL in response")
@@ -80,12 +94,12 @@ async def generate_avatar(request: GenerateAvatarRequest):
 
         file_path = f"{request.user_id}/model.png"
         logger.info(f"Uploading model canvas to Supabase: {file_path}")
-        
+
         try:
             supabase.storage.from_("avatars").upload(
                 path=file_path,
                 file=response.content,
-                file_options={"content-type": "image/png", "upsert": "true"}
+                file_options={"content-type": "image/png", "upsert": "true"},
             )
         except Exception:
             # Fallback for different SDK version
@@ -93,10 +107,9 @@ async def generate_avatar(request: GenerateAvatarRequest):
 
         # Update avatar record
         logger.info(f"Setting avatar {avatar_id} status to ready")
-        supabase.table("avatars").update({
-            "model_status": "ready",
-            "model_canvas_path": file_path
-        }).eq("id", avatar_id).execute()
+        supabase.table("avatars").update(
+            {"model_status": "ready", "model_canvas_path": file_path}
+        ).eq("id", avatar_id).execute()
 
         return {"status": "success", "model_path": file_path}
 
@@ -105,11 +118,13 @@ async def generate_avatar(request: GenerateAvatarRequest):
     except Exception as e:
         error_detail = traceback.format_exc()
         logger.error(f"Error in generate_avatar: {error_detail}")
-        
+
         if avatar_id:
             try:
-                supabase.table("avatars").update({"model_status": "failed"}).eq("id", avatar_id).execute()
+                supabase.table("avatars").update({"model_status": "failed"}).eq(
+                    "id", avatar_id
+                ).execute()
             except:
                 pass
-            
+
         raise HTTPException(status_code=500, detail=str(e))
