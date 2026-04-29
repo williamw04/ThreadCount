@@ -30,10 +30,6 @@ export function LooksPage() {
     return looks.filter((look) => look.type === filter);
   }, [looks, filter]);
 
-  const savedCount = useMemo(() => looks.filter((l) => l.type === 'saved').length, [looks]);
-
-  const renderedCount = useMemo(() => looks.filter((l) => l.type === 'rendered').length, [looks]);
-
   return (
     <div className="min-h-screen bg-gray-50">
       <PageIntro
