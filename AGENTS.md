@@ -9,7 +9,7 @@ This file is your navigation map for the Seamless repository. It points you to t
 
 ## Project Summary
 
-Seamless is a fashion web app where users upload photos of themselves to create an avatar, build a virtual wardrobe of clothing items, assemble outfits, and generate AI images of themselves wearing those outfits. See `docs/product-specs/` for full feature definitions.
+Seamless is a fashion web app where users upload photos of themselves to create an avatar, build a virtual wardrobe of clothing items, assemble outfits, and generate AI images of themselves wearing those outfits. See `docs/features/` for full feature definitions.
 
 ## Core Principles
 
@@ -32,21 +32,22 @@ Seamless is a fashion web app where users upload photos of themselves to create 
 
 1. Identify the affected domain(s) from `ARCHITECTURE.md`
 2. Check `docs/QUALITY_SCORE.md` for current quality baseline
-3. Review relevant product specs in `docs/product-specs/`
-4. For complex work, check `docs/exec-plans/active/` for ongoing initiatives
+3. Review relevant feature specs in `docs/features/`
+4. For complex work, check `docs/exec-plans/tech-debt-tracker.md` for ongoing initiatives
 
 ## Where to Find Information
 
 | Need                            | Location                               |
 | ------------------------------- | -------------------------------------- |
-| What to build                   | `docs/product-specs/`                  |
+| What to build                   | `docs/features/`                       |
 | Why it's designed this way      | `docs/design-docs/`                    |
 | How the system is organized     | `ARCHITECTURE.md`                      |
 | Frontend patterns & conventions | `docs/FRONTEND.md`                     |
 | Backend patterns & conventions  | `docs/BACKEND.md`                      |
 | Quality expectations            | `docs/QUALITY_SCORE.md`                |
-| Current work in progress        | `docs/exec-plans/active/`              |
+| Current work in progress        | `docs/exec-plans/tech-debt-tracker.md` |
 | Supabase & auth setup           | `docs/guides/supabase-setup.md`        |
+| Deployment guide                | `docs/DEPLOYMENT.md`                   |
 | Tech debt backlog               | `docs/exec-plans/tech-debt-tracker.md` |
 | Library references              | `docs/references/`                     |
 
