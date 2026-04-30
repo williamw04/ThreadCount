@@ -8,8 +8,12 @@ env/
 # Build output
 dist/
 build/
+docs/build/
 *.pyc
 __pycache__/
+
+# Docusaurus
+docs/.docusaurus/
 
 # Environment
 .env

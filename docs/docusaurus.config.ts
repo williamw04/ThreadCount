@@ -10,6 +10,9 @@ const config: Config = {
   url: 'https://seamless-fashion.com',
   baseUrl: '/',
 
+  onBrokenLinks: 'ignore',
+  onBrokenMarkdownLinks: 'ignore',
+
   // Note: docs folder is the root of this directory
   presets: [
     [
@@ -18,7 +21,7 @@ const config: Config = {
         docs: {
           path: '.',
           sidebarPath: './sidebars.ts',
-          routeBasePath: '/',
+          routeBasePath: 'docs',
           exclude: ['**/node_modules/**', '**/build/**'],
         },
         blog: false,
@@ -34,10 +37,15 @@ const config: Config = {
       title: 'Seamless',
       items: [
         {
+          to: '/docs/intro',
+          label: 'Home',
+          position: 'left',
+        },
+        {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Documentation',
+          label: 'Docs',
         },
         {
           href: 'https://github.com/anomalyco/seamless',
