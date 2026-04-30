@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/Dispatcher",
+  "title": "Dispatcher",
+  "description": "Extends: events.EventEmitter",
+  "source": "@site/node_modules/undici/docs/docs/api/Dispatcher.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/Dispatcher",
+  "permalink": "/node_modules/undici/docs/docs/api/Dispatcher",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

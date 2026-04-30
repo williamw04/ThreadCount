@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/CacheStorage",
+  "title": "CacheStorage",
+  "description": "Undici exposes a W3C spec-compliant implementation of CacheStorage and Cache.",
+  "source": "@site/node_modules/undici/docs/docs/api/CacheStorage.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/CacheStorage",
+  "permalink": "/node_modules/undici/docs/docs/api/CacheStorage",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

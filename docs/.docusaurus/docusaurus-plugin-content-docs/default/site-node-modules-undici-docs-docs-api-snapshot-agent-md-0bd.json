@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/SnapshotAgent",
+  "title": "SnapshotAgent",
+  "description": "The SnapshotAgent provides a powerful way to record and replay HTTP requests for testing purposes. It extends MockAgent to enable automatic snapshot testing, eliminating the need to manually define mock responses.",
+  "source": "@site/node_modules/undici/docs/docs/api/SnapshotAgent.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/SnapshotAgent",
+  "permalink": "/node_modules/undici/docs/docs/api/SnapshotAgent",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

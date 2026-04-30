@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/RoundRobinPool",
+  "title": "Class: RoundRobinPool",
+  "description": "Extends: undici.Dispatcher",
+  "source": "@site/node_modules/undici/docs/docs/api/RoundRobinPool.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/RoundRobinPool",
+  "permalink": "/node_modules/undici/docs/docs/api/RoundRobinPool",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

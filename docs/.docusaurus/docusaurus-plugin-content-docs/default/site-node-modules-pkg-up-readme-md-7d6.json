@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/pkg-up/readme",
+  "title": "pkg-up [![Build Status](https://travis-ci.org/sindresorhus/pkg-up.svg?branch=master)](https://travis-ci.org/sindresorhus/pkg-up)",
+  "description": "Find the closest package.json file",
+  "source": "@site/node_modules/pkg-up/readme.md",
+  "sourceDirName": "node_modules/pkg-up",
+  "slug": "/node_modules/pkg-up/",
+  "permalink": "/node_modules/pkg-up/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

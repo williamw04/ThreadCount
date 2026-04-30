@@ -1,0 +1,23 @@
+{
+  "id": "getting-started/setup",
+  "title": "Setup Guide",
+  "description": "This guide covers how to set up your development environment. We recommend using Docker for the simplest local development experience.",
+  "source": "@site/getting-started/setup.md",
+  "sourceDirName": "getting-started",
+  "slug": "/getting-started/setup",
+  "permalink": "/getting-started/setup",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Welcome to Seamless",
+    "permalink": "/intro"
+  },
+  "next": {
+    "title": "Architecture",
+    "permalink": "/getting-started/architecture"
+  }
+}

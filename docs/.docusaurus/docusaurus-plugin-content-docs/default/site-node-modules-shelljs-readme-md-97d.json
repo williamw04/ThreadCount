@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/shelljs/README",
+  "title": "ShellJS - Unix shell commands for Node.js",
+  "description": "Travis",
+  "source": "@site/node_modules/shelljs/README.md",
+  "sourceDirName": "node_modules/shelljs",
+  "slug": "/node_modules/shelljs/",
+  "permalink": "/node_modules/shelljs/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,23 @@
+{
+  "id": "guides/supabase-setup",
+  "title": "Supabase Setup Guide",
+  "description": "Version: 1.1.0",
+  "source": "@site/guides/supabase-setup.md",
+  "sourceDirName": "guides",
+  "slug": "/guides/supabase-setup",
+  "permalink": "/guides/supabase-setup",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Backend Guide",
+    "permalink": "/guides/BACKEND"
+  },
+  "next": {
+    "title": "Technology Selection Justification",
+    "permalink": "/decisions/technology-selection"
+  }
+}

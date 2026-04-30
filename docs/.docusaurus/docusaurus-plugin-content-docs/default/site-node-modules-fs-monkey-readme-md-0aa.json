@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/fs-monkey/README",
+  "title": "fs-monkey",
+  "description": "Monkey-patches for filesystem related things.",
+  "source": "@site/node_modules/fs-monkey/README.md",
+  "sourceDirName": "node_modules/fs-monkey",
+  "slug": "/node_modules/fs-monkey/",
+  "permalink": "/node_modules/fs-monkey/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

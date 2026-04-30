@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/Errors",
+  "title": "Errors",
+  "description": "Undici exposes a variety of error objects that you can use to enhance your error handling.",
+  "source": "@site/node_modules/undici/docs/docs/api/Errors.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/Errors",
+  "permalink": "/node_modules/undici/docs/docs/api/Errors",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

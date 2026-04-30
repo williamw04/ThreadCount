@@ -1,0 +1,623 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "loadedVersions": [
+        {
+          "versionName": "current",
+          "label": "Next",
+          "banner": null,
+          "badge": false,
+          "noIndex": false,
+          "className": "docs-version-current",
+          "path": "/",
+          "tagsPath": "/tags",
+          "isLast": true,
+          "routePriority": -1,
+          "sidebarFilePath": "/Users/williamwu/Documents/academics/class/sdnd/sandbox/ThreadCount-dev/docs/sidebars.ts",
+          "contentPath": "/Users/williamwu/Documents/academics/class/sdnd/sandbox/ThreadCount-dev/docs",
+          "contentPathLocalized": "/Users/williamwu/Documents/academics/class/sdnd/sandbox/ThreadCount-dev/docs/i18n/en/docusaurus-plugin-content-docs/current",
+          "docs": [
+            {
+              "id": "decisions/core-beliefs",
+              "title": "Core Beliefs",
+              "description": "Version: 1.0",
+              "source": "@site/decisions/core-beliefs.md",
+              "sourceDirName": "decisions",
+              "slug": "/decisions/core-beliefs",
+              "permalink": "/decisions/core-beliefs",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Technology Selection Justification",
+                "permalink": "/decisions/technology-selection"
+              },
+              "next": {
+                "title": "Design Decision: Visual Style — Monochrome Brutalist Luxury",
+                "permalink": "/decisions/visual-style"
+              }
+            },
+            {
+              "id": "decisions/image-processing",
+              "title": "Design Decision: Image Processing Pipeline",
+              "description": "Status: Planned",
+              "source": "@site/decisions/image-processing.md",
+              "sourceDirName": "decisions",
+              "slug": "/decisions/image-processing",
+              "permalink": "/decisions/image-processing",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Design Decision: Visual Style — Monochrome Brutalist Luxury",
+                "permalink": "/decisions/visual-style"
+              },
+              "next": {
+                "title": "Features Documentation",
+                "permalink": "/features/"
+              }
+            },
+            {
+              "id": "decisions/index",
+              "title": "Design Decisions",
+              "description": "This section contains architectural and design decisions with their rationale.",
+              "source": "@site/decisions/index.md",
+              "sourceDirName": "decisions",
+              "slug": "/decisions/",
+              "permalink": "/decisions/",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {}
+            },
+            {
+              "id": "decisions/technology-selection",
+              "title": "Technology Selection Justification",
+              "description": "Version: 1.0",
+              "source": "@site/decisions/technology-selection.md",
+              "sourceDirName": "decisions",
+              "slug": "/decisions/technology-selection",
+              "permalink": "/decisions/technology-selection",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Supabase Setup Guide",
+                "permalink": "/guides/supabase-setup"
+              },
+              "next": {
+                "title": "Core Beliefs",
+                "permalink": "/decisions/core-beliefs"
+              }
+            },
+            {
+              "id": "decisions/visual-style",
+              "title": "Design Decision: Visual Style — Monochrome Brutalist Luxury",
+              "description": "Status: Active",
+              "source": "@site/decisions/visual-style.md",
+              "sourceDirName": "decisions",
+              "slug": "/decisions/visual-style",
+              "permalink": "/decisions/visual-style",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Core Beliefs",
+                "permalink": "/decisions/core-beliefs"
+              },
+              "next": {
+                "title": "Design Decision: Image Processing Pipeline",
+                "permalink": "/decisions/image-processing"
+              }
+            },
+            {
+              "id": "exec-plans/tech-debt-tracker",
+              "title": "Tech Debt Tracker",
+              "description": "Last Updated: 2026-04-13",
+              "source": "@site/exec-plans/tech-debt-tracker.md",
+              "sourceDirName": "exec-plans",
+              "slug": "/exec-plans/tech-debt-tracker",
+              "permalink": "/exec-plans/tech-debt-tracker",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Quality Scorecard",
+                "permalink": "/project/QUALITY_SCORE"
+              }
+            },
+            {
+              "id": "features/auth/design",
+              "title": "Design Decision: Authentication Strategy",
+              "description": "Status: Needs Update",
+              "source": "@site/features/auth/design.md",
+              "sourceDirName": "features/auth",
+              "slug": "/features/auth/design",
+              "permalink": "/features/auth/design",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {}
+            },
+            {
+              "id": "features/auth/product-spec",
+              "title": "Feature: User Authentication",
+              "description": "Status: Completed",
+              "source": "@site/features/auth/product-spec.md",
+              "sourceDirName": "features/auth",
+              "slug": "/features/auth/product-spec",
+              "permalink": "/features/auth/product-spec",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {}
+            },
+            {
+              "id": "features/index",
+              "title": "Features Documentation",
+              "description": "This directory contains all feature documentation organized by feature area.",
+              "source": "@site/features/index.md",
+              "sourceDirName": "features",
+              "slug": "/features/",
+              "permalink": "/features/",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Design Decision: Image Processing Pipeline",
+                "permalink": "/decisions/image-processing"
+              },
+              "next": {
+                "title": "API Contracts",
+                "permalink": "/references/api-contracts"
+              }
+            },
+            {
+              "id": "features/outfit-builder/design",
+              "title": "Design Decision: Outfit Builder Viewport Containment",
+              "description": "Status: Active",
+              "source": "@site/features/outfit-builder/design.md",
+              "sourceDirName": "features/outfit-builder",
+              "slug": "/features/outfit-builder/design",
+              "permalink": "/features/outfit-builder/design",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {}
+            },
+            {
+              "id": "features/outfit-builder/exec-plan",
+              "title": "Execution Plan: Outfit Builder",
+              "description": "Status: In Progress",
+              "source": "@site/features/outfit-builder/exec-plan.md",
+              "sourceDirName": "features/outfit-builder",
+              "slug": "/features/outfit-builder/exec-plan",
+              "permalink": "/features/outfit-builder/exec-plan",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {}
+            },
+            {
+              "id": "features/outfit-builder/product-spec",
+              "title": "Feature: Outfit Builder & Try-On",
+              "description": "Status: In Progress",
+              "source": "@site/features/outfit-builder/product-spec.md",
+              "sourceDirName": "features/outfit-builder",
+              "slug": "/features/outfit-builder/product-spec",
+              "permalink": "/features/outfit-builder/product-spec",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {}
+            },
+            {
+              "id": "features/previous-looks/design",
+              "title": "Design Decision: Previous Looks Page Implementation",
+              "description": "Status: Draft",
+              "source": "@site/features/previous-looks/design.md",
+              "sourceDirName": "features/previous-looks",
+              "slug": "/features/previous-looks/design",
+              "permalink": "/features/previous-looks/design",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {}
+            },
+            {
+              "id": "features/previous-looks/product-spec",
+              "title": "Feature: Previous Looks",
+              "description": "Status: Planned",
+              "source": "@site/features/previous-looks/product-spec.md",
+              "sourceDirName": "features/previous-looks",
+              "slug": "/features/previous-looks/product-spec",
+              "permalink": "/features/previous-looks/product-spec",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {}
+            },
+            {
+              "id": "features/style-analysis/product-spec",
+              "title": "Feature: Style Analysis",
+              "description": "Status: Planned",
+              "source": "@site/features/style-analysis/product-spec.md",
+              "sourceDirName": "features/style-analysis",
+              "slug": "/features/style-analysis/product-spec",
+              "permalink": "/features/style-analysis/product-spec",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {}
+            },
+            {
+              "id": "features/user-profile/product-spec",
+              "title": "Feature: Onboarding & User Profile",
+              "description": "Status: In Progress",
+              "source": "@site/features/user-profile/product-spec.md",
+              "sourceDirName": "features/user-profile",
+              "slug": "/features/user-profile/product-spec",
+              "permalink": "/features/user-profile/product-spec",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {}
+            },
+            {
+              "id": "features/virtual-wardrobe/exec-plan",
+              "title": "Execution Plan: Virtual Wardrobe",
+              "description": "Status: Complete",
+              "source": "@site/features/virtual-wardrobe/exec-plan.md",
+              "sourceDirName": "features/virtual-wardrobe",
+              "slug": "/features/virtual-wardrobe/exec-plan",
+              "permalink": "/features/virtual-wardrobe/exec-plan",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {}
+            },
+            {
+              "id": "features/virtual-wardrobe/product-spec",
+              "title": "Feature: Virtual Wardrobe",
+              "description": "Status: In Progress",
+              "source": "@site/features/virtual-wardrobe/product-spec.md",
+              "sourceDirName": "features/virtual-wardrobe",
+              "slug": "/features/virtual-wardrobe/product-spec",
+              "permalink": "/features/virtual-wardrobe/product-spec",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {}
+            },
+            {
+              "id": "getting-started/architecture",
+              "title": "Architecture",
+              "description": "This document covers the system architecture, frontend structure, and development conventions.",
+              "source": "@site/getting-started/architecture.md",
+              "sourceDirName": "getting-started",
+              "slug": "/getting-started/architecture",
+              "permalink": "/getting-started/architecture",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Setup Guide",
+                "permalink": "/getting-started/setup"
+              },
+              "next": {
+                "title": "Frontend Guide",
+                "permalink": "/guides/FRONTEND"
+              }
+            },
+            {
+              "id": "getting-started/setup",
+              "title": "Setup Guide",
+              "description": "This guide covers how to set up your development environment. We recommend using Docker for the simplest local development experience.",
+              "source": "@site/getting-started/setup.md",
+              "sourceDirName": "getting-started",
+              "slug": "/getting-started/setup",
+              "permalink": "/getting-started/setup",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Welcome to Seamless",
+                "permalink": "/intro"
+              },
+              "next": {
+                "title": "Architecture",
+                "permalink": "/getting-started/architecture"
+              }
+            },
+            {
+              "id": "guides/BACKEND",
+              "title": "Backend Guide",
+              "description": "Version: 1.4.0",
+              "source": "@site/guides/BACKEND.md",
+              "sourceDirName": "guides",
+              "slug": "/guides/BACKEND",
+              "permalink": "/guides/BACKEND",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Frontend Guide",
+                "permalink": "/guides/FRONTEND"
+              },
+              "next": {
+                "title": "Supabase Setup Guide",
+                "permalink": "/guides/supabase-setup"
+              }
+            },
+            {
+              "id": "guides/FRONTEND",
+              "title": "Frontend Guide",
+              "description": "Version: 1.5.0",
+              "source": "@site/guides/FRONTEND.md",
+              "sourceDirName": "guides",
+              "slug": "/guides/FRONTEND",
+              "permalink": "/guides/FRONTEND",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Architecture",
+                "permalink": "/getting-started/architecture"
+              },
+              "next": {
+                "title": "Backend Guide",
+                "permalink": "/guides/BACKEND"
+              }
+            },
+            {
+              "id": "guides/supabase-setup",
+              "title": "Supabase Setup Guide",
+              "description": "Version: 1.1.0",
+              "source": "@site/guides/supabase-setup.md",
+              "sourceDirName": "guides",
+              "slug": "/guides/supabase-setup",
+              "permalink": "/guides/supabase-setup",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Backend Guide",
+                "permalink": "/guides/BACKEND"
+              },
+              "next": {
+                "title": "Technology Selection Justification",
+                "permalink": "/decisions/technology-selection"
+              }
+            },
+            {
+              "id": "intro",
+              "title": "Welcome to Seamless",
+              "description": "Seamless is a fashion web application where users can:",
+              "source": "@site/intro.md",
+              "sourceDirName": ".",
+              "slug": "/intro",
+              "permalink": "/intro",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "next": {
+                "title": "Setup Guide",
+                "permalink": "/getting-started/setup"
+              }
+            },
+            {
+              "id": "project/QUALITY_SCORE",
+              "title": "Quality Scorecard",
+              "description": "Last Updated: 2026-03-16",
+              "source": "@site/project/QUALITY_SCORE.md",
+              "sourceDirName": "project",
+              "slug": "/project/QUALITY_SCORE",
+              "permalink": "/project/QUALITY_SCORE",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "API Contracts",
+                "permalink": "/references/api-contracts"
+              },
+              "next": {
+                "title": "Tech Debt Tracker",
+                "permalink": "/exec-plans/tech-debt-tracker"
+              }
+            },
+            {
+              "id": "references/api-contracts",
+              "title": "API Contracts",
+              "description": "Version: 1.0.0",
+              "source": "@site/references/api-contracts.md",
+              "sourceDirName": "references",
+              "slug": "/references/api-contracts",
+              "permalink": "/references/api-contracts",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Features Documentation",
+                "permalink": "/features/"
+              },
+              "next": {
+                "title": "Quality Scorecard",
+                "permalink": "/project/QUALITY_SCORE"
+              }
+            }
+          ],
+          "drafts": [],
+          "sidebars": {
+            "tutorialSidebar": [
+              {
+                "type": "doc",
+                "id": "intro"
+              },
+              {
+                "type": "category",
+                "label": "Getting Started",
+                "collapsed": false,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "getting-started/setup"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "getting-started/architecture"
+                  }
+                ],
+                "collapsible": true
+              },
+              {
+                "type": "category",
+                "label": "Guides",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "guides/FRONTEND"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/BACKEND"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/supabase-setup"
+                  }
+                ],
+                "collapsed": true,
+                "collapsible": true
+              },
+              {
+                "type": "category",
+                "label": "Decisions",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "decisions/technology-selection"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "decisions/core-beliefs"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "decisions/visual-style"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "decisions/image-processing"
+                  }
+                ],
+                "collapsed": true,
+                "collapsible": true
+              },
+              {
+                "type": "category",
+                "label": "Features",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "features/index"
+                  }
+                ],
+                "collapsed": true,
+                "collapsible": true
+              },
+              {
+                "type": "category",
+                "label": "References",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "references/api-contracts"
+                  }
+                ],
+                "collapsed": true,
+                "collapsible": true
+              },
+              {
+                "type": "category",
+                "label": "Project",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "project/QUALITY_SCORE"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "exec-plans/tech-debt-tracker"
+                  }
+                ],
+                "collapsed": true,
+                "collapsible": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "docusaurus-plugin-content-pages": {
+    "default": []
+  },
+  "docusaurus-plugin-debug": {},
+  "docusaurus-theme-classic": {},
+  "docusaurus-bootstrap-plugin": {},
+  "docusaurus-mdx-fallback-plugin": {}
+}

@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/best-practices/undici-vs-builtin-fetch",
+  "title": "Undici Module vs. Node.js Built-in Fetch",
+  "description": "Node.js has shipped a built-in fetch() implementation powered by undici since",
+  "source": "@site/node_modules/undici/docs/docs/best-practices/undici-vs-builtin-fetch.md",
+  "sourceDirName": "node_modules/undici/docs/docs/best-practices",
+  "slug": "/node_modules/undici/docs/docs/best-practices/undici-vs-builtin-fetch",
+  "permalink": "/node_modules/undici/docs/docs/best-practices/undici-vs-builtin-fetch",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/RedirectHandler",
+  "title": "Class: RedirectHandler",
+  "description": "A class that handles redirection logic for HTTP requests.",
+  "source": "@site/node_modules/undici/docs/docs/api/RedirectHandler.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/RedirectHandler",
+  "permalink": "/node_modules/undici/docs/docs/api/RedirectHandler",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/rimraf/CHANGELOG",
+  "title": "v3.0",
+  "description": "- Add --preserve-root option to executable (default true)",
+  "source": "@site/node_modules/rimraf/CHANGELOG.md",
+  "sourceDirName": "node_modules/rimraf",
+  "slug": "/node_modules/rimraf/CHANGELOG",
+  "permalink": "/node_modules/rimraf/CHANGELOG",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

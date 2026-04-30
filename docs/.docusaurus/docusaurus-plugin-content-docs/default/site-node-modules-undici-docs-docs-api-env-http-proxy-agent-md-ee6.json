@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/EnvHttpProxyAgent",
+  "title": "Class: EnvHttpProxyAgent",
+  "description": "Extends: undici.Dispatcher",
+  "source": "@site/node_modules/undici/docs/docs/api/EnvHttpProxyAgent.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/EnvHttpProxyAgent",
+  "permalink": "/node_modules/undici/docs/docs/api/EnvHttpProxyAgent",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

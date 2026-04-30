@@ -1,0 +1,23 @@
+{
+  "id": "features/index",
+  "title": "Features Documentation",
+  "description": "This directory contains all feature documentation organized by feature area.",
+  "source": "@site/features/index.md",
+  "sourceDirName": "features",
+  "slug": "/features/",
+  "permalink": "/features/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Design Decision: Image Processing Pipeline",
+    "permalink": "/decisions/image-processing"
+  },
+  "next": {
+    "title": "API Contracts",
+    "permalink": "/references/api-contracts"
+  }
+}

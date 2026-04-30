@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/api-lifecycle",
+  "title": "Client Lifecycle",
+  "description": "An Undici Client can be best described as a state machine. The following list is a summary of the various state transitions the Client will go through in its lifecycle. This document also contains detailed breakdowns of each state.",
+  "source": "@site/node_modules/undici/docs/docs/api/api-lifecycle.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/api-lifecycle",
+  "permalink": "/node_modules/undici/docs/docs/api/api-lifecycle",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

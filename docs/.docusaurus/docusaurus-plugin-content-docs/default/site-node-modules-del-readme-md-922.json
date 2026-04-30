@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/del/readme",
+  "title": "del",
+  "description": "Delete files and directories using globs",
+  "source": "@site/node_modules/del/readme.md",
+  "sourceDirName": "node_modules/del",
+  "slug": "/node_modules/del/",
+  "permalink": "/node_modules/del/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

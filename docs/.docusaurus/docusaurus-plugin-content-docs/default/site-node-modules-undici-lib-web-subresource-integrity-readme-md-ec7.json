@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/lib/web/subresource-integrity/Readme",
+  "title": "Subresource Integrity",
+  "description": "based on Editor’s Draft, 12 June 2025",
+  "source": "@site/node_modules/undici/lib/web/subresource-integrity/Readme.md",
+  "sourceDirName": "node_modules/undici/lib/web/subresource-integrity",
+  "slug": "/node_modules/undici/lib/web/subresource-integrity/",
+  "permalink": "/node_modules/undici/lib/web/subresource-integrity/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

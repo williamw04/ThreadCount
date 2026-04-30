@@ -1,0 +1,14 @@
+{
+  "id": "features/auth/product-spec",
+  "title": "Feature: User Authentication",
+  "description": "Status: Completed",
+  "source": "@site/features/auth/product-spec.md",
+  "sourceDirName": "features/auth",
+  "slug": "/features/auth/product-spec",
+  "permalink": "/features/auth/product-spec",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,23 @@
+{
+  "id": "decisions/image-processing",
+  "title": "Design Decision: Image Processing Pipeline",
+  "description": "Status: Planned",
+  "source": "@site/decisions/image-processing.md",
+  "sourceDirName": "decisions",
+  "slug": "/decisions/image-processing",
+  "permalink": "/decisions/image-processing",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Design Decision: Visual Style — Monochrome Brutalist Luxury",
+    "permalink": "/decisions/visual-style"
+  },
+  "next": {
+    "title": "Features Documentation",
+    "permalink": "/features/"
+  }
+}

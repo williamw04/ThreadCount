@@ -1,0 +1,19 @@
+{
+  "id": "exec-plans/tech-debt-tracker",
+  "title": "Tech Debt Tracker",
+  "description": "Last Updated: 2026-04-13",
+  "source": "@site/exec-plans/tech-debt-tracker.md",
+  "sourceDirName": "exec-plans",
+  "slug": "/exec-plans/tech-debt-tracker",
+  "permalink": "/exec-plans/tech-debt-tracker",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Quality Scorecard",
+    "permalink": "/project/QUALITY_SCORE"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/best-practices/writing-tests",
+  "title": "Writing tests",
+  "description": "Undici is tuned for a production use case and its default will keep",
+  "source": "@site/node_modules/undici/docs/docs/best-practices/writing-tests.md",
+  "sourceDirName": "node_modules/undici/docs/docs/best-practices",
+  "slug": "/node_modules/undici/docs/docs/best-practices/writing-tests",
+  "permalink": "/node_modules/undici/docs/docs/best-practices/writing-tests",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

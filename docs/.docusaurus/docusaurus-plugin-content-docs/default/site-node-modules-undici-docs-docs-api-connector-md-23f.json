@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/Connector",
+  "title": "Connector",
+  "description": "Undici creates the underlying socket via the connector builder.",
+  "source": "@site/node_modules/undici/docs/docs/api/Connector.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/Connector",
+  "permalink": "/node_modules/undici/docs/docs/api/Connector",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

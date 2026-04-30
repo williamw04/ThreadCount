@@ -1,0 +1,23 @@
+{
+  "id": "project/QUALITY_SCORE",
+  "title": "Quality Scorecard",
+  "description": "Last Updated: 2026-03-16",
+  "source": "@site/project/QUALITY_SCORE.md",
+  "sourceDirName": "project",
+  "slug": "/project/QUALITY_SCORE",
+  "permalink": "/project/QUALITY_SCORE",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "API Contracts",
+    "permalink": "/references/api-contracts"
+  },
+  "next": {
+    "title": "Tech Debt Tracker",
+    "permalink": "/exec-plans/tech-debt-tracker"
+  }
+}

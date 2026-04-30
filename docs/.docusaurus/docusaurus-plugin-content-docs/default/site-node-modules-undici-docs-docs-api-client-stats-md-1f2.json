@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/ClientStats",
+  "title": "Class: ClientStats",
+  "description": "Stats for a Client.",
+  "source": "@site/node_modules/undici/docs/docs/api/ClientStats.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/ClientStats",
+  "permalink": "/node_modules/undici/docs/docs/api/ClientStats",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

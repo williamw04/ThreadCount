@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/whatwg-mimetype/README",
+  "title": "Parse, serialize, and manipulate MIME types",
+  "description": "This package will parse MIME types into a structured format, which can then be manipulated and serialized:",
+  "source": "@site/node_modules/whatwg-mimetype/README.md",
+  "sourceDirName": "node_modules/whatwg-mimetype",
+  "slug": "/node_modules/whatwg-mimetype/",
+  "permalink": "/node_modules/whatwg-mimetype/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

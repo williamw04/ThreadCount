@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/best-practices/client-certificate",
+  "title": "Client certificate",
+  "description": "Client certificate authentication can be configured with the Client, the required options are passed along through the connect option.",
+  "source": "@site/node_modules/undici/docs/docs/best-practices/client-certificate.md",
+  "sourceDirName": "node_modules/undici/docs/docs/best-practices",
+  "slug": "/node_modules/undici/docs/docs/best-practices/client-certificate",
+  "permalink": "/node_modules/undici/docs/docs/best-practices/client-certificate",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

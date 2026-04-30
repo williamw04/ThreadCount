@@ -49,30 +49,20 @@ pytest            # Python tests
 
 ### 1. Understand the Feature
 - Read the product spec in `docs/features/[feature]/`
-- Check for existing design docs in `docs/design-docs/`
+- Check for existing design docs in `docs/decisions/`
 - Review relevant API contracts in `docs/references/api-contracts.md`
 
 ### 2. Implement
-- Follow the layer rules from ARCHITECTURE.md
+- Follow the layer rules from `docs/getting-started/architecture.md`
 - Write tests alongside code
 - Keep components small and focused
 
 ### 3. Test
-Run the appropriate test commands for your changes:
-
-```bash
-# Frontend tests
-npm run test:coverage   # Full coverage report
-npm run test:watch      # Watch mode
-
-# Backend tests
-pytest -v              # Verbose output
-```
 
 ### 4. Document
 - Update relevant docs in the same PR
 - Add product specs if creating new features
-- Update ARCHITECTURE.md if adding new routes or domains
+- Update `docs/getting-started/architecture.md` if adding new routes or domains
 
 ## PR Requirements
 
@@ -144,14 +134,13 @@ pytest --cov          # With coverage
 | Need | Location |
 |------|----------|
 | What to build | `docs/features/` |
-| Why designed this way | `docs/design-docs/` |
-| How system is organized | `ARCHITECTURE.md` |
-| Frontend patterns | `docs/FRONTEND.md` |
-| Backend patterns | `docs/BACKEND.md` |
-| Quality baseline | `docs/QUALITY_SCORE.md` |
-| Current work | `docs/exec-plans/tech-debt-tracker.md` |
+| Why designed this way | `docs/decisions/` |
+| How system is organized | `docs/getting-started/architecture.md` |
+| Frontend patterns | `docs/guides/frontend.md` |
+| Backend patterns | `docs/guides/backend.md` |
+| Setup guide | `docs/getting-started/setup.md` |
+| Quality baseline | `docs/project/quality-score.md` |
 | Tech debt | `docs/exec-plans/tech-debt-tracker.md` |
-| Supabase setup | `docs/guides/supabase-setup.md` |
 
 ## Questions?
 

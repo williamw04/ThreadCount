@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/best-practices/proxy",
+  "title": "Connecting through a proxy",
+  "description": "Connecting through a proxy is possible by:",
+  "source": "@site/node_modules/undici/docs/docs/best-practices/proxy.md",
+  "sourceDirName": "node_modules/undici/docs/docs/best-practices",
+  "slug": "/node_modules/undici/docs/docs/best-practices/proxy",
+  "permalink": "/node_modules/undici/docs/docs/best-practices/proxy",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,23 @@
+{
+  "id": "getting-started/architecture",
+  "title": "Architecture",
+  "description": "This document covers the system architecture, frontend structure, and development conventions.",
+  "source": "@site/getting-started/architecture.md",
+  "sourceDirName": "getting-started",
+  "slug": "/getting-started/architecture",
+  "permalink": "/getting-started/architecture",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Setup Guide",
+    "permalink": "/getting-started/setup"
+  },
+  "next": {
+    "title": "Frontend Guide",
+    "permalink": "/guides/FRONTEND"
+  }
+}

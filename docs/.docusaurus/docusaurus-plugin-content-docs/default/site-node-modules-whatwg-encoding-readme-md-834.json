@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/whatwg-encoding/README",
+  "title": "Decode According to the WHATWG Encoding Standard",
+  "description": "This package provides a thin layer on top of iconv-lite which makes it expose some of the same primitives as the Encoding Standard.",
+  "source": "@site/node_modules/whatwg-encoding/README.md",
+  "sourceDirName": "node_modules/whatwg-encoding",
+  "slug": "/node_modules/whatwg-encoding/",
+  "permalink": "/node_modules/whatwg-encoding/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

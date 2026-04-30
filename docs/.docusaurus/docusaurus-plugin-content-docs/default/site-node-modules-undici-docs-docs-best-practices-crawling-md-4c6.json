@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/best-practices/crawling",
+  "title": "Crawling",
+  "description": "RFC 9309 defines crawlers as automated clients.",
+  "source": "@site/node_modules/undici/docs/docs/best-practices/crawling.md",
+  "sourceDirName": "node_modules/undici/docs/docs/best-practices",
+  "slug": "/node_modules/undici/docs/docs/best-practices/crawling",
+  "permalink": "/node_modules/undici/docs/docs/best-practices/crawling",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

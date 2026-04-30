@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/ProxyAgent",
+  "title": "Class: ProxyAgent",
+  "description": "Extends: undici.Dispatcher",
+  "source": "@site/node_modules/undici/docs/docs/api/ProxyAgent.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/ProxyAgent",
+  "permalink": "/node_modules/undici/docs/docs/api/ProxyAgent",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

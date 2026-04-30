@@ -1,0 +1,14 @@
+{
+  "id": "features/virtual-wardrobe/exec-plan",
+  "title": "Execution Plan: Virtual Wardrobe",
+  "description": "Status: Complete",
+  "source": "@site/features/virtual-wardrobe/exec-plan.md",
+  "sourceDirName": "features/virtual-wardrobe",
+  "slug": "/features/virtual-wardrobe/exec-plan",
+  "permalink": "/features/virtual-wardrobe/exec-plan",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

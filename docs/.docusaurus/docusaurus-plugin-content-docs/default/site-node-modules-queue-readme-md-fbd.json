@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/queue/readme",
+  "title": "readme",
+  "description": "Asynchronous function queue with adjustable concurrency.",
+  "source": "@site/node_modules/queue/readme.md",
+  "sourceDirName": "node_modules/queue",
+  "slug": "/node_modules/queue/",
+  "permalink": "/node_modules/queue/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

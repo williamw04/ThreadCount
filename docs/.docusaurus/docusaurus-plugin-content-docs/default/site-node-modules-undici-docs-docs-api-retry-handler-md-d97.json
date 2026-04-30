@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/RetryHandler",
+  "title": "Class: RetryHandler",
+  "description": "Extends: undici.DispatcherHandlers",
+  "source": "@site/node_modules/undici/docs/docs/api/RetryHandler.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/RetryHandler",
+  "permalink": "/node_modules/undici/docs/docs/api/RetryHandler",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

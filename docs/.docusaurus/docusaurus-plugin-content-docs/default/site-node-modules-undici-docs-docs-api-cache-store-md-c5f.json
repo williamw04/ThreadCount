@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/CacheStore",
+  "title": "Cache Store",
+  "description": "A Cache Store is responsible for storing and retrieving cached responses.",
+  "source": "@site/node_modules/undici/docs/docs/api/CacheStore.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/CacheStore",
+  "permalink": "/node_modules/undici/docs/docs/api/CacheStore",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

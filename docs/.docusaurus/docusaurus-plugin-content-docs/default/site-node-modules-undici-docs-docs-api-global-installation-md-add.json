@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/GlobalInstallation",
+  "title": "Global Installation",
+  "description": "Undici provides an install() function to add all WHATWG fetch classes to globalThis, making them available globally without requiring imports.",
+  "source": "@site/node_modules/undici/docs/docs/api/GlobalInstallation.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/GlobalInstallation",
+  "permalink": "/node_modules/undici/docs/docs/api/GlobalInstallation",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

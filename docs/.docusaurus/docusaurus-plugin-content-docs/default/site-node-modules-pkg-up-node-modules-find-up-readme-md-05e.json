@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/pkg-up/node_modules/find-up/readme",
+  "title": "find-up [![Build Status: Linux and macOS](https://travis-ci.org/sindresorhus/find-up.svg?branch=master)](https://travis-ci.org/sindresorhus/find-up) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/l0cyjmvh5lq72vq2/branch/master?svg=true)](https://ci.appveyor.com/project/sindresorhus/find-up/branch/master)",
+  "description": "Find a file or directory by walking up parent directories",
+  "source": "@site/node_modules/pkg-up/node_modules/find-up/readme.md",
+  "sourceDirName": "node_modules/pkg-up/node_modules/find-up",
+  "slug": "/node_modules/pkg-up/node_modules/find-up/",
+  "permalink": "/node_modules/pkg-up/node_modules/find-up/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

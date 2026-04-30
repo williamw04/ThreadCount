@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/MockErrors",
+  "title": "MockErrors",
+  "description": "Undici exposes a variety of mock error objects that you can use to enhance your mock error handling.",
+  "source": "@site/node_modules/undici/docs/docs/api/MockErrors.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/MockErrors",
+  "permalink": "/node_modules/undici/docs/docs/api/MockErrors",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

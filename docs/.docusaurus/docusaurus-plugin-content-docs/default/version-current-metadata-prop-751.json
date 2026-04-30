@@ -1,0 +1,306 @@
+{
+  "pluginId": "default",
+  "version": "current",
+  "label": "Next",
+  "banner": null,
+  "badge": false,
+  "noIndex": false,
+  "className": "docs-version-current",
+  "isLast": true,
+  "docsSidebars": {
+    "tutorialSidebar": [
+      {
+        "type": "link",
+        "label": "Welcome to Seamless",
+        "href": "/intro",
+        "docId": "intro",
+        "unlisted": false
+      },
+      {
+        "type": "category",
+        "label": "Getting Started",
+        "collapsed": false,
+        "items": [
+          {
+            "type": "link",
+            "label": "Setup Guide",
+            "href": "/getting-started/setup",
+            "docId": "getting-started/setup",
+            "unlisted": false
+          },
+          {
+            "type": "link",
+            "label": "Architecture",
+            "href": "/getting-started/architecture",
+            "docId": "getting-started/architecture",
+            "unlisted": false
+          }
+        ],
+        "collapsible": true
+      },
+      {
+        "type": "category",
+        "label": "Guides",
+        "items": [
+          {
+            "type": "link",
+            "label": "Frontend Guide",
+            "href": "/guides/FRONTEND",
+            "docId": "guides/FRONTEND",
+            "unlisted": false
+          },
+          {
+            "type": "link",
+            "label": "Backend Guide",
+            "href": "/guides/BACKEND",
+            "docId": "guides/BACKEND",
+            "unlisted": false
+          },
+          {
+            "type": "link",
+            "label": "Supabase Setup Guide",
+            "href": "/guides/supabase-setup",
+            "docId": "guides/supabase-setup",
+            "unlisted": false
+          }
+        ],
+        "collapsed": true,
+        "collapsible": true
+      },
+      {
+        "type": "category",
+        "label": "Decisions",
+        "items": [
+          {
+            "type": "link",
+            "label": "Technology Selection Justification",
+            "href": "/decisions/technology-selection",
+            "docId": "decisions/technology-selection",
+            "unlisted": false
+          },
+          {
+            "type": "link",
+            "label": "Core Beliefs",
+            "href": "/decisions/core-beliefs",
+            "docId": "decisions/core-beliefs",
+            "unlisted": false
+          },
+          {
+            "type": "link",
+            "label": "Design Decision: Visual Style — Monochrome Brutalist Luxury",
+            "href": "/decisions/visual-style",
+            "docId": "decisions/visual-style",
+            "unlisted": false
+          },
+          {
+            "type": "link",
+            "label": "Design Decision: Image Processing Pipeline",
+            "href": "/decisions/image-processing",
+            "docId": "decisions/image-processing",
+            "unlisted": false
+          }
+        ],
+        "collapsed": true,
+        "collapsible": true
+      },
+      {
+        "type": "category",
+        "label": "Features",
+        "items": [
+          {
+            "type": "link",
+            "label": "Features Documentation",
+            "href": "/features/",
+            "docId": "features/index",
+            "unlisted": false
+          }
+        ],
+        "collapsed": true,
+        "collapsible": true
+      },
+      {
+        "type": "category",
+        "label": "References",
+        "items": [
+          {
+            "type": "link",
+            "label": "API Contracts",
+            "href": "/references/api-contracts",
+            "docId": "references/api-contracts",
+            "unlisted": false
+          }
+        ],
+        "collapsed": true,
+        "collapsible": true
+      },
+      {
+        "type": "category",
+        "label": "Project",
+        "items": [
+          {
+            "type": "link",
+            "label": "Quality Scorecard",
+            "href": "/project/QUALITY_SCORE",
+            "docId": "project/QUALITY_SCORE",
+            "unlisted": false
+          },
+          {
+            "type": "link",
+            "label": "Tech Debt Tracker",
+            "href": "/exec-plans/tech-debt-tracker",
+            "docId": "exec-plans/tech-debt-tracker",
+            "unlisted": false
+          }
+        ],
+        "collapsed": true,
+        "collapsible": true
+      }
+    ]
+  },
+  "docs": {
+    "decisions/core-beliefs": {
+      "id": "decisions/core-beliefs",
+      "title": "Core Beliefs",
+      "description": "Version: 1.0",
+      "sidebar": "tutorialSidebar"
+    },
+    "decisions/image-processing": {
+      "id": "decisions/image-processing",
+      "title": "Design Decision: Image Processing Pipeline",
+      "description": "Status: Planned",
+      "sidebar": "tutorialSidebar"
+    },
+    "decisions/index": {
+      "id": "decisions/index",
+      "title": "Design Decisions",
+      "description": "This section contains architectural and design decisions with their rationale."
+    },
+    "decisions/technology-selection": {
+      "id": "decisions/technology-selection",
+      "title": "Technology Selection Justification",
+      "description": "Version: 1.0",
+      "sidebar": "tutorialSidebar"
+    },
+    "decisions/visual-style": {
+      "id": "decisions/visual-style",
+      "title": "Design Decision: Visual Style — Monochrome Brutalist Luxury",
+      "description": "Status: Active",
+      "sidebar": "tutorialSidebar"
+    },
+    "exec-plans/tech-debt-tracker": {
+      "id": "exec-plans/tech-debt-tracker",
+      "title": "Tech Debt Tracker",
+      "description": "Last Updated: 2026-04-13",
+      "sidebar": "tutorialSidebar"
+    },
+    "features/auth/design": {
+      "id": "features/auth/design",
+      "title": "Design Decision: Authentication Strategy",
+      "description": "Status: Needs Update"
+    },
+    "features/auth/product-spec": {
+      "id": "features/auth/product-spec",
+      "title": "Feature: User Authentication",
+      "description": "Status: Completed"
+    },
+    "features/index": {
+      "id": "features/index",
+      "title": "Features Documentation",
+      "description": "This directory contains all feature documentation organized by feature area.",
+      "sidebar": "tutorialSidebar"
+    },
+    "features/outfit-builder/design": {
+      "id": "features/outfit-builder/design",
+      "title": "Design Decision: Outfit Builder Viewport Containment",
+      "description": "Status: Active"
+    },
+    "features/outfit-builder/exec-plan": {
+      "id": "features/outfit-builder/exec-plan",
+      "title": "Execution Plan: Outfit Builder",
+      "description": "Status: In Progress"
+    },
+    "features/outfit-builder/product-spec": {
+      "id": "features/outfit-builder/product-spec",
+      "title": "Feature: Outfit Builder & Try-On",
+      "description": "Status: In Progress"
+    },
+    "features/previous-looks/design": {
+      "id": "features/previous-looks/design",
+      "title": "Design Decision: Previous Looks Page Implementation",
+      "description": "Status: Draft"
+    },
+    "features/previous-looks/product-spec": {
+      "id": "features/previous-looks/product-spec",
+      "title": "Feature: Previous Looks",
+      "description": "Status: Planned"
+    },
+    "features/style-analysis/product-spec": {
+      "id": "features/style-analysis/product-spec",
+      "title": "Feature: Style Analysis",
+      "description": "Status: Planned"
+    },
+    "features/user-profile/product-spec": {
+      "id": "features/user-profile/product-spec",
+      "title": "Feature: Onboarding & User Profile",
+      "description": "Status: In Progress"
+    },
+    "features/virtual-wardrobe/exec-plan": {
+      "id": "features/virtual-wardrobe/exec-plan",
+      "title": "Execution Plan: Virtual Wardrobe",
+      "description": "Status: Complete"
+    },
+    "features/virtual-wardrobe/product-spec": {
+      "id": "features/virtual-wardrobe/product-spec",
+      "title": "Feature: Virtual Wardrobe",
+      "description": "Status: In Progress"
+    },
+    "getting-started/architecture": {
+      "id": "getting-started/architecture",
+      "title": "Architecture",
+      "description": "This document covers the system architecture, frontend structure, and development conventions.",
+      "sidebar": "tutorialSidebar"
+    },
+    "getting-started/setup": {
+      "id": "getting-started/setup",
+      "title": "Setup Guide",
+      "description": "This guide covers how to set up your development environment. We recommend using Docker for the simplest local development experience.",
+      "sidebar": "tutorialSidebar"
+    },
+    "guides/BACKEND": {
+      "id": "guides/BACKEND",
+      "title": "Backend Guide",
+      "description": "Version: 1.4.0",
+      "sidebar": "tutorialSidebar"
+    },
+    "guides/FRONTEND": {
+      "id": "guides/FRONTEND",
+      "title": "Frontend Guide",
+      "description": "Version: 1.5.0",
+      "sidebar": "tutorialSidebar"
+    },
+    "guides/supabase-setup": {
+      "id": "guides/supabase-setup",
+      "title": "Supabase Setup Guide",
+      "description": "Version: 1.1.0",
+      "sidebar": "tutorialSidebar"
+    },
+    "intro": {
+      "id": "intro",
+      "title": "Welcome to Seamless",
+      "description": "Seamless is a fashion web application where users can:",
+      "sidebar": "tutorialSidebar"
+    },
+    "project/QUALITY_SCORE": {
+      "id": "project/QUALITY_SCORE",
+      "title": "Quality Scorecard",
+      "description": "Last Updated: 2026-03-16",
+      "sidebar": "tutorialSidebar"
+    },
+    "references/api-contracts": {
+      "id": "references/api-contracts",
+      "title": "API Contracts",
+      "description": "Version: 1.0.0",
+      "sidebar": "tutorialSidebar"
+    }
+  }
+}

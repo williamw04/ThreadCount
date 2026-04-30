@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/Client",
+  "title": "Class: Client",
+  "description": "Extends: undici.Dispatcher",
+  "source": "@site/node_modules/undici/docs/docs/api/Client.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/Client",
+  "permalink": "/node_modules/undici/docs/docs/api/Client",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

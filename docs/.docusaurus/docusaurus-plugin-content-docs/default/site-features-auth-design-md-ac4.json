@@ -1,0 +1,14 @@
+{
+  "id": "features/auth/design",
+  "title": "Design Decision: Authentication Strategy",
+  "description": "Status: Needs Update",
+  "source": "@site/features/auth/design.md",
+  "sourceDirName": "features/auth",
+  "slug": "/features/auth/design",
+  "permalink": "/features/auth/design",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

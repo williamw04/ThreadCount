@@ -25,10 +25,9 @@ features/{feature-name}/
 
 ## Additional Documentation
 
-- [Class Diagram](../diagrams/uml-class-diagram-mermaid.md) - UML class diagram for implemented features
 - [API Contracts](../references/api-contracts.md) - API endpoint definitions
 - [Tech Debt](../exec-plans/tech-debt-tracker.md) - Technical debt tracking
 
 ## Architecture
 
-See [ARCHITECTURE.md](../../ARCHITECTURE.md) for system-level architecture.
+See [docs/getting-started/architecture.md](../getting-started/architecture.md) for system-level architecture.

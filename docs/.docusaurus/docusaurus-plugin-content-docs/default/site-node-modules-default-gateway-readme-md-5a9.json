@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/default-gateway/README",
+  "title": "default-gateway",
+  "description": "Obtains the machine's default gateway through exec calls to OS routing interfaces.",
+  "source": "@site/node_modules/default-gateway/README.md",
+  "sourceDirName": "node_modules/default-gateway",
+  "slug": "/node_modules/default-gateway/",
+  "permalink": "/node_modules/default-gateway/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

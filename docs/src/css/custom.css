@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --ifm-color-primary: #1a1a1a;
+  --ifm-color-primary-dark: #171717;
+  --ifm-color-primary-darker: #151515;
+  --ifm-color-primary-darkest: #121212;
+  --ifm-color-primary-light: #2b2b2b;
+  --ifm-color-primary-lighter: #2f2f2f;
+  --ifm-color-primary-lightest: #363636;
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-code-font-size: 95%;
+  --ifm-navbar-height: 60px;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #ffffff;
+  --ifm-color-primary-dark: #e6e6e6;
+  --ifm-color-primary-darker: #d9d9d9;
+  --ifm-color-primary-darkest: #cccccc;
+  --ifm-color-primary-light: #ffffff;
+  --ifm-color-primary-lighter: #ffffff;
+  --ifm-color-primary-lightest: #ffffff;
+}
+
+.navbar {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.navbar__title {
+  font-weight: 600;
+}
+
+.menu__link {
+  font-size: 0.9rem;
+}
+
+.menu__link--active {
+  font-weight: 600;
+}
+
+.admonition-heading h5 {
+  font-weight: 600;
+}
+
+.markdown h1:first-child {
+  font-weight: 700;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgb(72, 77, 91);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}

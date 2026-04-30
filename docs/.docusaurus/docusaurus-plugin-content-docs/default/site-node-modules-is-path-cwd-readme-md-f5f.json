@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/is-path-cwd/readme",
+  "title": "is-path-cwd [![Build Status](https://travis-ci.org/sindresorhus/is-path-cwd.svg?branch=master)](https://travis-ci.org/sindresorhus/is-path-cwd)",
+  "description": "Check if a path is the current working directory",
+  "source": "@site/node_modules/is-path-cwd/readme.md",
+  "sourceDirName": "node_modules/is-path-cwd",
+  "slug": "/node_modules/is-path-cwd/",
+  "permalink": "/node_modules/is-path-cwd/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/detect-port-alt/HISTORY",
+  "title": "1.1.2 / 2017-05-11",
+  "description": "* fix: should double check 0.0.0.0 and localhost (#20)",
+  "source": "@site/node_modules/detect-port-alt/HISTORY.md",
+  "sourceDirName": "node_modules/detect-port-alt",
+  "slug": "/node_modules/detect-port-alt/HISTORY",
+  "permalink": "/node_modules/detect-port-alt/HISTORY",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

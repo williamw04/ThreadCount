@@ -1,0 +1,14 @@
+{
+  "id": "features/outfit-builder/exec-plan",
+  "title": "Execution Plan: Outfit Builder",
+  "description": "Status: In Progress",
+  "source": "@site/features/outfit-builder/exec-plan.md",
+  "sourceDirName": "features/outfit-builder",
+  "slug": "/features/outfit-builder/exec-plan",
+  "permalink": "/features/outfit-builder/exec-plan",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

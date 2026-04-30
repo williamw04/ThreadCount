@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/@types/eslint-scope/README",
+  "title": "Installation",
+  "description": "npm install --save @types/eslint-scope",
+  "source": "@site/node_modules/@types/eslint-scope/README.md",
+  "sourceDirName": "node_modules/@types/eslint-scope",
+  "slug": "/node_modules/@types/eslint-scope/",
+  "permalink": "/node_modules/@types/eslint-scope/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

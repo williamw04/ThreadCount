@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/glob/README",
+  "title": "Glob",
+  "description": "Match files using the patterns the shell uses, like stars and stuff.",
+  "source": "@site/node_modules/glob/README.md",
+  "sourceDirName": "node_modules/glob",
+  "slug": "/node_modules/glob/",
+  "permalink": "/node_modules/glob/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

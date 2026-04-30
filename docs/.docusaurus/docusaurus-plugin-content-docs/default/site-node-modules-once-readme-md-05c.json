@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/once/README",
+  "title": "once",
+  "description": "Only call a function once.",
+  "source": "@site/node_modules/once/README.md",
+  "sourceDirName": "node_modules/once",
+  "slug": "/node_modules/once/",
+  "permalink": "/node_modules/once/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

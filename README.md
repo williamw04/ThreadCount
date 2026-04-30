@@ -39,8 +39,10 @@ supabase/          # DB & storage config
 
 | Guide | Description |
 |-------|-------------|
-| [ARCHITECTURE.md](ARCHITECTURE.md) | System shape, frontend domains, layer rules |
-| [docs/FRONTEND.md](docs/FRONTEND.md) | Frontend patterns, conventions, component structure |
-| [docs/BACKEND.md](docs/BACKEND.md) | Backend patterns, API endpoints, setup |
+| [docs/intro.md](docs/intro.md) | Welcome and overview |
+| [docs/getting-started/setup.md](docs/getting-started/setup.md) | Development environment setup |
+| [docs/getting-started/architecture.md](docs/getting-started/architecture.md) | System shape, frontend domains, layer rules |
+| [docs/guides/frontend.md](docs/guides/frontend.md) | Frontend patterns, conventions, component structure |
+| [docs/guides/backend.md](docs/guides/backend.md) | Backend patterns, API endpoints, setup |
 | [docs/features/](docs/features/) | Feature specifications |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to contribute |

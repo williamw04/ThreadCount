@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/PoolStats",
+  "title": "Class: PoolStats",
+  "description": "Aggregate stats for a Pool or BalancedPool.",
+  "source": "@site/node_modules/undici/docs/docs/api/PoolStats.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/PoolStats",
+  "permalink": "/node_modules/undici/docs/docs/api/PoolStats",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

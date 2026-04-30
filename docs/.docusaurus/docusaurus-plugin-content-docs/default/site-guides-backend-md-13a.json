@@ -1,0 +1,23 @@
+{
+  "id": "guides/BACKEND",
+  "title": "Backend Guide",
+  "description": "Version: 1.4.0",
+  "source": "@site/guides/BACKEND.md",
+  "sourceDirName": "guides",
+  "slug": "/guides/BACKEND",
+  "permalink": "/guides/BACKEND",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Frontend Guide",
+    "permalink": "/guides/FRONTEND"
+  },
+  "next": {
+    "title": "Supabase Setup Guide",
+    "permalink": "/guides/supabase-setup"
+  }
+}

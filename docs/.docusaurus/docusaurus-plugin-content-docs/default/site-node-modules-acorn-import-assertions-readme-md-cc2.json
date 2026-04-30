@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/acorn-import-assertions/README",
+  "title": "Support for import assertions in acorn",
+  "description": "Usage",
+  "source": "@site/node_modules/acorn-import-assertions/README.md",
+  "sourceDirName": "node_modules/acorn-import-assertions",
+  "slug": "/node_modules/acorn-import-assertions/",
+  "permalink": "/node_modules/acorn-import-assertions/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

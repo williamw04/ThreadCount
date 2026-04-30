@@ -1,0 +1,14 @@
+{
+  "id": "features/previous-looks/product-spec",
+  "title": "Feature: Previous Looks",
+  "description": "Status: Planned",
+  "source": "@site/features/previous-looks/product-spec.md",
+  "sourceDirName": "features/previous-looks",
+  "slug": "/features/previous-looks/product-spec",
+  "permalink": "/features/previous-looks/product-spec",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

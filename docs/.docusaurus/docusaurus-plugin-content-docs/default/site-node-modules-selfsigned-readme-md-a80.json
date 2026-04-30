@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/selfsigned/README",
+  "title": "README",
+  "description": "Generate a self signed x509 certificate from node.js.",
+  "source": "@site/node_modules/selfsigned/README.md",
+  "sourceDirName": "node_modules/selfsigned",
+  "slug": "/node_modules/selfsigned/",
+  "permalink": "/node_modules/selfsigned/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

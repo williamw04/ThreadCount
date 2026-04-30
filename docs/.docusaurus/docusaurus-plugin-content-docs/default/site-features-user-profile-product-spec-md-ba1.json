@@ -1,0 +1,14 @@
+{
+  "id": "features/user-profile/product-spec",
+  "title": "Feature: Onboarding & User Profile",
+  "description": "Status: In Progress",
+  "source": "@site/features/user-profile/product-spec.md",
+  "sourceDirName": "features/user-profile",
+  "slug": "/features/user-profile/product-spec",
+  "permalink": "/features/user-profile/product-spec",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

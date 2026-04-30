@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/interpret/README",
+  "title": "README",
+  "description": "NPM version Downloads Travis Build Status AppVeyor Build Status Coveralls Status Gitter chat",
+  "source": "@site/node_modules/interpret/README.md",
+  "sourceDirName": "node_modules/interpret",
+  "slug": "/node_modules/interpret/",
+  "permalink": "/node_modules/interpret/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

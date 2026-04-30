@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/Socks5ProxyAgent",
+  "title": "Class: Socks5ProxyAgent",
+  "description": "Extends: undici.Dispatcher",
+  "source": "@site/node_modules/undici/docs/docs/api/Socks5ProxyAgent.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/Socks5ProxyAgent",
+  "permalink": "/node_modules/undici/docs/docs/api/Socks5ProxyAgent",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/DiagnosticsChannel",
+  "title": "Diagnostics Channel Support",
+  "description": "Stability: Experimental.",
+  "source": "@site/node_modules/undici/docs/docs/api/DiagnosticsChannel.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/DiagnosticsChannel",
+  "permalink": "/node_modules/undici/docs/docs/api/DiagnosticsChannel",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

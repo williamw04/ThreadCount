@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/rechoir/README",
+  "title": "rechoir [![Build Status](https://secure.travis-ci.org/tkellen/js-rechoir.png)](http://travis-ci.org/tkellen/js-rechoir)",
+  "description": "Require any supported file as a node module.",
+  "source": "@site/node_modules/rechoir/README.md",
+  "sourceDirName": "node_modules/rechoir",
+  "slug": "/node_modules/rechoir/",
+  "permalink": "/node_modules/rechoir/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

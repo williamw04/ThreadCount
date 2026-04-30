@@ -1,0 +1,23 @@
+{
+  "id": "decisions/core-beliefs",
+  "title": "Core Beliefs",
+  "description": "Version: 1.0",
+  "source": "@site/decisions/core-beliefs.md",
+  "sourceDirName": "decisions",
+  "slug": "/decisions/core-beliefs",
+  "permalink": "/decisions/core-beliefs",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Technology Selection Justification",
+    "permalink": "/decisions/technology-selection"
+  },
+  "next": {
+    "title": "Design Decision: Visual Style — Monochrome Brutalist Luxury",
+    "permalink": "/decisions/visual-style"
+  }
+}

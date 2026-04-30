@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/Agent",
+  "title": "Agent",
+  "description": "Extends: undici.Dispatcher",
+  "source": "@site/node_modules/undici/docs/docs/api/Agent.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/Agent",
+  "permalink": "/node_modules/undici/docs/docs/api/Agent",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

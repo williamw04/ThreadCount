@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/ContentType",
+  "title": "MIME Type Parsing",
+  "description": "MIMEType interface",
+  "source": "@site/node_modules/undici/docs/docs/api/ContentType.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/ContentType",
+  "permalink": "/node_modules/undici/docs/docs/api/ContentType",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

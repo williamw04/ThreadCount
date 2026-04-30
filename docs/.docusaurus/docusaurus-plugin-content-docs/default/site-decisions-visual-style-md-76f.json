@@ -1,0 +1,23 @@
+{
+  "id": "decisions/visual-style",
+  "title": "Design Decision: Visual Style — Monochrome Brutalist Luxury",
+  "description": "Status: Active",
+  "source": "@site/decisions/visual-style.md",
+  "sourceDirName": "decisions",
+  "slug": "/decisions/visual-style",
+  "permalink": "/decisions/visual-style",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Core Beliefs",
+    "permalink": "/decisions/core-beliefs"
+  },
+  "next": {
+    "title": "Design Decision: Image Processing Pipeline",
+    "permalink": "/decisions/image-processing"
+  }
+}

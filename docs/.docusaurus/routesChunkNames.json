@@ -1,0 +1,162 @@
+{
+  "/__docusaurus/debug-920": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-613-f38"
+    }
+  },
+  "/__docusaurus/debug/config-dfe": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-613-f38"
+    }
+  },
+  "/__docusaurus/debug/content-203": {
+    "__comp": "__comp---theme-debug-contentba-8-ce7",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-613-f38"
+    },
+    "allContent": "allContent---docusaurus-debug-content-246-9aa"
+  },
+  "/__docusaurus/debug/globalData-bb1": {
+    "__comp": "__comp---theme-debug-global-dataede-0fa",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-613-f38"
+    }
+  },
+  "/__docusaurus/debug/metadata-280": {
+    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-613-f38"
+    }
+  },
+  "/__docusaurus/debug/registry-9f0": {
+    "__comp": "__comp---theme-debug-registry-679-501",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-613-f38"
+    }
+  },
+  "/__docusaurus/debug/routes-e50": {
+    "__comp": "__comp---theme-debug-routes-946-699",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-613-f38"
+    }
+  },
+  "/-065": {
+    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
+    "__context": {
+      "plugin": "plugin---cd-5-0cb"
+    }
+  },
+  "/-e49": {
+    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
+    "version": "version---935-fcf"
+  },
+  "/-6f1": {
+    "__comp": "__comp---theme-doc-roota-94-67a"
+  },
+  "/decisions/-611": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---decisions-4-b-9-761"
+  },
+  "/decisions/core-beliefs-567": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---decisions-core-beliefs-05-b-71c"
+  },
+  "/decisions/image-processing-4aa": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---decisions-image-processingf-86-d2c"
+  },
+  "/decisions/technology-selection-83b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---decisions-technology-selection-3-fc-7f9"
+  },
+  "/decisions/visual-style-537": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---decisions-visual-style-76-f-c6c"
+  },
+  "/exec-plans/tech-debt-tracker-36f": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---exec-plans-tech-debt-tracker-8-c-2-bce"
+  },
+  "/features/-377": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-ad-4-9ee"
+  },
+  "/features/auth/design-957": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-auth-designac-4-fac"
+  },
+  "/features/auth/product-spec-357": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-auth-product-spec-2-e-2-489"
+  },
+  "/features/outfit-builder/design-733": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-outfit-builder-designa-83-f72"
+  },
+  "/features/outfit-builder/exec-plan-0c5": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-outfit-builder-exec-planf-61-c30"
+  },
+  "/features/outfit-builder/product-spec-69a": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-outfit-builder-product-speca-11-4f5"
+  },
+  "/features/previous-looks/design-151": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-previous-looks-design-9-b-8-345"
+  },
+  "/features/previous-looks/product-spec-89b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-previous-looks-product-spec-39-f-680"
+  },
+  "/features/style-analysis/product-spec-d48": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-style-analysis-product-spece-42-c74"
+  },
+  "/features/user-profile/product-spec-5cc": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-user-profile-product-specba-1-ebd"
+  },
+  "/features/virtual-wardrobe/exec-plan-f3b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-virtual-wardrobe-exec-plan-83-c-14a"
+  },
+  "/features/virtual-wardrobe/product-spec-757": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---features-virtual-wardrobe-product-spec-6-cd-38e"
+  },
+  "/getting-started/architecture-15b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---getting-started-architecturebc-1-f09"
+  },
+  "/getting-started/setup-1ba": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---getting-started-setupf-1-f-95d"
+  },
+  "/guides/BACKEND-a24": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---guides-backend-13-a-3f8"
+  },
+  "/guides/FRONTEND-7e6": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---guides-fronten-dab-5-cfe"
+  },
+  "/guides/supabase-setup-4af": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---guides-supabase-setupd-5-e-bbe"
+  },
+  "/intro-630": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---intro-2-e-5-6c8"
+  },
+  "/project/QUALITY_SCORE-146": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---project-quality-scor-eebb-cd4"
+  },
+  "/references/api-contracts-974": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---references-api-contracts-7-ff-01e"
+  }
+}

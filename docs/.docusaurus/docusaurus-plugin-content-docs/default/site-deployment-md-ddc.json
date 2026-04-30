@@ -1,0 +1,14 @@
+{
+  "id": "DEPLOYMENT",
+  "title": "Deployment Guide",
+  "description": "Version: 1.0.0",
+  "source": "@site/DEPLOYMENT.md",
+  "sourceDirName": ".",
+  "slug": "/DEPLOYMENT",
+  "permalink": "/DEPLOYMENT",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

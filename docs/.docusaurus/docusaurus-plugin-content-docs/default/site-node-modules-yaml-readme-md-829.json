@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/yaml/README",
+  "title": "YAML <a href=\"https://www.npmjs.com/package/yaml\"><img align=\"right\" src=\"https://badge.fury.io/js/yaml.svg\" title=\"npm package\" /></a>",
+  "description": "yaml is a JavaScript parser and stringifier for YAML, a human friendly data serialization standard. It supports both parsing and stringifying data using all versions of YAML, along with all common data schemas. As a particularly distinguishing feature, yaml fully supports reading and writing comments and blank lines in YAML documents.",
+  "source": "@site/node_modules/yaml/README.md",
+  "sourceDirName": "node_modules/yaml",
+  "slug": "/node_modules/yaml/",
+  "permalink": "/node_modules/yaml/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

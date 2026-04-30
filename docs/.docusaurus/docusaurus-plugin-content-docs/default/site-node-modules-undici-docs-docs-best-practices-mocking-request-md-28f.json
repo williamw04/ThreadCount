@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/best-practices/mocking-request",
+  "title": "Mocking Request",
+  "description": "Undici has its own mocking utility. It allow us to intercept undici HTTP requests and return mocked values instead. It can be useful for testing purposes.",
+  "source": "@site/node_modules/undici/docs/docs/best-practices/mocking-request.md",
+  "sourceDirName": "node_modules/undici/docs/docs/best-practices",
+  "slug": "/node_modules/undici/docs/docs/best-practices/mocking-request",
+  "permalink": "/node_modules/undici/docs/docs/best-practices/mocking-request",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/EventSource",
+  "title": "EventSource",
+  "description": "⚠️ Warning: the EventSource API is experimental.",
+  "source": "@site/node_modules/undici/docs/docs/api/EventSource.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/EventSource",
+  "permalink": "/node_modules/undici/docs/docs/api/EventSource",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -71,7 +71,7 @@ The existing outfit endpoints are sufficient for uploaded outfits.
 - Full-width page with reasonable horizontal padding
 - Sticky filter bar at top (below header)
 - Responsive grid:
-  - Mobile (<640px): 2 columns
+  - Mobile (`<640px`): 2 columns
   - Tablet (640-1024px): 3 columns
   - Desktop (>1024px): 4 columns
 
@@ -111,7 +111,7 @@ The frontend will construct public URLs using the Supabase storage client.
 ### Why client-side filtering?
 
 For the initial implementation, client-side filtering is simpler and sufficient because:
-- Most users will have <100 looks initially
+- Most users will have `<100` looks initially
 - Two API calls are made regardless (outfits + generated-images)
 - Easy to swap to server-side filtering later if needed
 

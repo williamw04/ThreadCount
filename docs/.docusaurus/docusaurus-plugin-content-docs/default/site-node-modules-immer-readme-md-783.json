@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/immer/readme",
+  "title": "readme",
+  "description": "npm Build Status Coverage Status code style: prettier OpenCollective OpenCollective Gitpod Ready-to-Code",
+  "source": "@site/node_modules/immer/readme.md",
+  "sourceDirName": "node_modules/immer",
+  "slug": "/node_modules/immer/",
+  "permalink": "/node_modules/immer/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,14 @@
+{
+  "id": "features/style-analysis/product-spec",
+  "title": "Feature: Style Analysis",
+  "description": "Status: Planned",
+  "source": "@site/features/style-analysis/product-spec.md",
+  "sourceDirName": "features/style-analysis",
+  "slug": "/features/style-analysis/product-spec",
+  "permalink": "/features/style-analysis/product-spec",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

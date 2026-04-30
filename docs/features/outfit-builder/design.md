@@ -24,7 +24,7 @@ The outfit builder is not a normal scrolling page. Its header, canvas, saved-loo
 ## Rationale
 
 - Reusing `AppShell` preserves shared navigation and authenticated chrome without introducing a second top-level layout.
-- Route-specific shell behavior keeps the builder aligned with the architecture rule already documented in `ARCHITECTURE.md`.
+- Route-specific shell behavior keeps the builder aligned with the architecture rule already documented in `docs/getting-started/architecture.md`.
 - Shared viewport tokens make future sizing adjustments predictable and reduce hard-coded height math across components.
 
 ## Follow-Up

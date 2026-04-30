@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/p-try/readme",
+  "title": "p-try [![Build Status](https://travis-ci.org/sindresorhus/p-try.svg?branch=master)](https://travis-ci.org/sindresorhus/p-try)",
+  "description": "Start a promise chain",
+  "source": "@site/node_modules/p-try/readme.md",
+  "sourceDirName": "node_modules/p-try",
+  "slug": "/node_modules/p-try/",
+  "permalink": "/node_modules/p-try/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

@@ -1,0 +1,14 @@
+{
+  "id": "decisions/index",
+  "title": "Design Decisions",
+  "description": "This section contains architectural and design decisions with their rationale.",
+  "source": "@site/decisions/index.md",
+  "sourceDirName": "decisions",
+  "slug": "/decisions/",
+  "permalink": "/decisions/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

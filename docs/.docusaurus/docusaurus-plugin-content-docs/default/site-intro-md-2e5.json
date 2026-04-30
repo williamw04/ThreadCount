@@ -1,0 +1,19 @@
+{
+  "id": "intro",
+  "title": "Welcome to Seamless",
+  "description": "Seamless is a fashion web application where users can:",
+  "source": "@site/intro.md",
+  "sourceDirName": ".",
+  "slug": "/intro",
+  "permalink": "/intro",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "Setup Guide",
+    "permalink": "/getting-started/setup"
+  }
+}

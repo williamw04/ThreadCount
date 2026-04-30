@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/Fetch",
+  "title": "Fetch",
+  "description": "Undici exposes a fetch() method starts the process of fetching a resource from the network.",
+  "source": "@site/node_modules/undici/docs/docs/api/Fetch.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/Fetch",
+  "permalink": "/node_modules/undici/docs/docs/api/Fetch",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

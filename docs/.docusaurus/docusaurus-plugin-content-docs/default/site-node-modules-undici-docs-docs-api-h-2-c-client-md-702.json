@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/H2CClient",
+  "title": "Class: H2CClient",
+  "description": "Extends: undici.Dispatcher",
+  "source": "@site/node_modules/undici/docs/docs/api/H2CClient.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/H2CClient",
+  "permalink": "/node_modules/undici/docs/docs/api/H2CClient",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

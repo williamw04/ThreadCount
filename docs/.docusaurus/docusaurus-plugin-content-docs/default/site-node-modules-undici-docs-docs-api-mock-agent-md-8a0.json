@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/MockAgent",
+  "title": "Class: MockAgent",
+  "description": "Extends: undici.Dispatcher",
+  "source": "@site/node_modules/undici/docs/docs/api/MockAgent.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/MockAgent",
+  "permalink": "/node_modules/undici/docs/docs/api/MockAgent",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

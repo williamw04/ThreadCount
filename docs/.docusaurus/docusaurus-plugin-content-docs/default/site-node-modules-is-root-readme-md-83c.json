@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/is-root/readme",
+  "title": "is-root [![Build Status](https://travis-ci.org/sindresorhus/is-root.svg?branch=master)](https://travis-ci.org/sindresorhus/is-root)",
+  "description": "Check if the process is running as root user, for example, one started with sudo",
+  "source": "@site/node_modules/is-root/readme.md",
+  "sourceDirName": "node_modules/is-root",
+  "slug": "/node_modules/is-root/",
+  "permalink": "/node_modules/is-root/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

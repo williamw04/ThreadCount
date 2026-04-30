@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/Util",
+  "title": "Util",
+  "description": "Utility API for third-party implementations of the dispatcher API.",
+  "source": "@site/node_modules/undici/docs/docs/api/Util.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/Util",
+  "permalink": "/node_modules/undici/docs/docs/api/Util",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

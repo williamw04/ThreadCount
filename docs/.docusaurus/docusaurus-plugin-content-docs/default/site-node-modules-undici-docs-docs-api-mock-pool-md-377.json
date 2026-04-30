@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/MockPool",
+  "title": "Class: MockPool",
+  "description": "Extends: undici.Pool",
+  "source": "@site/node_modules/undici/docs/docs/api/MockPool.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/MockPool",
+  "permalink": "/node_modules/undici/docs/docs/api/MockPool",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

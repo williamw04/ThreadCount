@@ -104,7 +104,7 @@ These are currently stored in different tables:
 
 ### Frontend Architecture
 
-Following the pattern from `ARCHITECTURE.md`:
+Following the pattern from `docs/getting-started/architecture.md`:
 ```
 Types → API → Stores → Components → Pages
 ```

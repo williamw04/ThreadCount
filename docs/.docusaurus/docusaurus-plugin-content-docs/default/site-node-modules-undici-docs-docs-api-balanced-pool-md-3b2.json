@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/BalancedPool",
+  "title": "Class: BalancedPool",
+  "description": "Extends: undici.Dispatcher",
+  "source": "@site/node_modules/undici/docs/docs/api/BalancedPool.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/BalancedPool",
+  "permalink": "/node_modules/undici/docs/docs/api/BalancedPool",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

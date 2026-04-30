@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/Pool",
+  "title": "Class: Pool",
+  "description": "Extends: undici.Dispatcher",
+  "source": "@site/node_modules/undici/docs/docs/api/Pool.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/Pool",
+  "permalink": "/node_modules/undici/docs/docs/api/Pool",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

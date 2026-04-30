@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/RetryAgent",
+  "title": "Class: RetryAgent",
+  "description": "Extends: undici.Dispatcher",
+  "source": "@site/node_modules/undici/docs/docs/api/RetryAgent.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/RetryAgent",
+  "permalink": "/node_modules/undici/docs/docs/api/RetryAgent",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

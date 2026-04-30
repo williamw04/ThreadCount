@@ -23,15 +23,15 @@ Seamless is a fashion web app where users upload photos of themselves to create 
 
 ### First-Time Setup
 
-1. Read `ARCHITECTURE.md` for domain map and layer structure
-2. Review `docs/FRONTEND.md` for component patterns and conventions
-3. Review `docs/BACKEND.md` for backend patterns and setup
-4. Check `docs/design-docs/core-beliefs.md` for foundational principles
+1. Read `docs/getting-started/architecture.md` for domain map and layer structure
+2. Review `docs/guides/frontend.md` for component patterns and conventions
+3. Review `docs/guides/backend.md` for backend patterns and setup
+4. Check `docs/decisions/core-beliefs.md` for foundational principles
 
 ### Before Starting Work
 
-1. Identify the affected domain(s) from `ARCHITECTURE.md`
-2. Check `docs/QUALITY_SCORE.md` for current quality baseline
+1. Identify the affected domain(s) from `docs/getting-started/architecture.md`
+2. Check `docs/project/quality-score.md` for current quality baseline
 3. Review relevant feature specs in `docs/features/`
 4. For complex work, check `docs/exec-plans/tech-debt-tracker.md` for ongoing initiatives
 
@@ -40,16 +40,24 @@ Seamless is a fashion web app where users upload photos of themselves to create 
 | Need                            | Location                               |
 | ------------------------------- | -------------------------------------- |
 | What to build                   | `docs/features/`                       |
-| Why it's designed this way      | `docs/design-docs/`                    |
-| How the system is organized     | `ARCHITECTURE.md`                      |
-| Frontend patterns & conventions | `docs/FRONTEND.md`                     |
-| Backend patterns & conventions  | `docs/BACKEND.md`                      |
-| Quality expectations            | `docs/QUALITY_SCORE.md`                |
+| Why it's designed this way      | `docs/decisions/`                       |
+| How the system is organized     | `docs/getting-started/architecture.md` |
+| Frontend patterns & conventions | `docs/guides/frontend.md`              |
+| Backend patterns & conventions  | `docs/guides/backend.md`               |
+| Quality expectations            | `docs/project/quality-score.md`        |
 | Current work in progress        | `docs/exec-plans/tech-debt-tracker.md` |
-| Supabase & auth setup           | `docs/guides/supabase-setup.md`        |
+| Supabase & auth setup           | `docs/getting-started/setup.md`        |
 | Deployment guide                | `docs/DEPLOYMENT.md`                   |
 | Tech debt backlog               | `docs/exec-plans/tech-debt-tracker.md` |
 | Library references              | `docs/references/`                     |
+
+## Running Documentation
+
+```bash
+cd docs
+npm install
+npm run start  # Runs at http://localhost:3000
+```
 
 ## Tech Stack
 
@@ -80,7 +88,7 @@ Within each domain (`frontend/src/features/`), dependencies flow forward:
 Types → API → Stores → Components → Pages
 ```
 
-See `ARCHITECTURE.md` for full details.
+See `docs/getting-started/architecture.md` for full details.
 
 ### Code Quality
 
@@ -101,7 +109,7 @@ See `ARCHITECTURE.md` for full details.
 
 1. **Understand**: Read related product spec and design docs
 2. **Plan**: For complex tasks, check or create an execution plan
-3. **Implement**: Follow architectural constraints from `ARCHITECTURE.md`
+3. **Implement**: Follow architectural constraints from `docs/getting-started/architecture.md`
 4. **Test**: Write tests alongside code
 5. **Document**: Update relevant docs in the same PR
 

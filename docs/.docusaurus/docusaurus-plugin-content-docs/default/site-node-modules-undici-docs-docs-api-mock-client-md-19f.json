@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/undici/docs/docs/api/MockClient",
+  "title": "Class: MockClient",
+  "description": "Extends: undici.Client",
+  "source": "@site/node_modules/undici/docs/docs/api/MockClient.md",
+  "sourceDirName": "node_modules/undici/docs/docs/api",
+  "slug": "/node_modules/undici/docs/docs/api/MockClient",
+  "permalink": "/node_modules/undici/docs/docs/api/MockClient",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

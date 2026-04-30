@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/@types/eslint/README",
+  "title": "Installation",
+  "description": "npm install --save @types/eslint",
+  "source": "@site/node_modules/@types/eslint/README.md",
+  "sourceDirName": "node_modules/@types/eslint",
+  "slug": "/node_modules/@types/eslint/",
+  "permalink": "/node_modules/@types/eslint/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}

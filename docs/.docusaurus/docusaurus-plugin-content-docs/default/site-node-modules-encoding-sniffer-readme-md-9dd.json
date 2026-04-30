@@ -1,0 +1,14 @@
+{
+  "id": "node_modules/encoding-sniffer/README",
+  "title": "encoding-sniffer [![Node.js CI](https://github.com/fb55/encoding-sniffer/actions/workflows/nodejs-test.yml/badge.svg)](https://github.com/fb55/encoding-sniffer/actions/workflows/nodejs-test.yml)",
+  "description": "An implementation of the HTML encoding sniffer algo, with stream support.",
+  "source": "@site/node_modules/encoding-sniffer/README.md",
+  "sourceDirName": "node_modules/encoding-sniffer",
+  "slug": "/node_modules/encoding-sniffer/",
+  "permalink": "/node_modules/encoding-sniffer/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {}
+}
