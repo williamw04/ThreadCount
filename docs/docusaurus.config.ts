@@ -7,8 +7,8 @@ const config: Config = {
   tagline: 'Fashion AI Web Application',
   favicon: 'img/favicon.svg',
 
-  url: 'https://seamless-fashion.com',
-  baseUrl: '/',
+  url: 'https://williamw04.github.io',
+  baseUrl: '/ThreadCount/',
 
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'ignore',
