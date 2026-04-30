@@ -12,7 +12,7 @@
       {
         "type": "link",
         "label": "Welcome to Seamless",
-        "href": "/intro",
+        "href": "/ThreadCount/docs/intro",
         "docId": "intro",
         "unlisted": false
       },
@@ -24,14 +24,14 @@
           {
             "type": "link",
             "label": "Setup Guide",
-            "href": "/getting-started/setup",
+            "href": "/ThreadCount/docs/getting-started/setup",
             "docId": "getting-started/setup",
             "unlisted": false
           },
           {
             "type": "link",
             "label": "Architecture",
-            "href": "/getting-started/architecture",
+            "href": "/ThreadCount/docs/getting-started/architecture",
             "docId": "getting-started/architecture",
             "unlisted": false
           }
@@ -45,22 +45,58 @@
           {
             "type": "link",
             "label": "Frontend Guide",
-            "href": "/guides/FRONTEND",
+            "href": "/ThreadCount/docs/guides/FRONTEND",
             "docId": "guides/FRONTEND",
             "unlisted": false
           },
           {
             "type": "link",
             "label": "Backend Guide",
-            "href": "/guides/BACKEND",
+            "href": "/ThreadCount/docs/guides/BACKEND",
             "docId": "guides/BACKEND",
             "unlisted": false
           },
           {
             "type": "link",
             "label": "Supabase Setup Guide",
-            "href": "/guides/supabase-setup",
+            "href": "/ThreadCount/docs/guides/supabase-setup",
             "docId": "guides/supabase-setup",
+            "unlisted": false
+          }
+        ],
+        "collapsed": true,
+        "collapsible": true
+      },
+      {
+        "type": "category",
+        "label": "Coding Standards",
+        "items": [
+          {
+            "type": "link",
+            "label": "General Best Practices",
+            "href": "/ThreadCount/docs/guides/best-practices",
+            "docId": "guides/best-practices",
+            "unlisted": false
+          },
+          {
+            "type": "link",
+            "label": "Naming Conventions",
+            "href": "/ThreadCount/docs/guides/naming-conventions",
+            "docId": "guides/naming-conventions",
+            "unlisted": false
+          },
+          {
+            "type": "link",
+            "label": "Formatting & Style",
+            "href": "/ThreadCount/docs/guides/formatting-style",
+            "docId": "guides/formatting-style",
+            "unlisted": false
+          },
+          {
+            "type": "link",
+            "label": "TypeScript Specific Rules",
+            "href": "/ThreadCount/docs/guides/typescript",
+            "docId": "guides/typescript",
             "unlisted": false
           }
         ],
@@ -74,28 +110,28 @@
           {
             "type": "link",
             "label": "Technology Selection Justification",
-            "href": "/decisions/technology-selection",
+            "href": "/ThreadCount/docs/decisions/technology-selection",
             "docId": "decisions/technology-selection",
             "unlisted": false
           },
           {
             "type": "link",
             "label": "Core Beliefs",
-            "href": "/decisions/core-beliefs",
+            "href": "/ThreadCount/docs/decisions/core-beliefs",
             "docId": "decisions/core-beliefs",
             "unlisted": false
           },
           {
             "type": "link",
             "label": "Design Decision: Visual Style — Monochrome Brutalist Luxury",
-            "href": "/decisions/visual-style",
+            "href": "/ThreadCount/docs/decisions/visual-style",
             "docId": "decisions/visual-style",
             "unlisted": false
           },
           {
             "type": "link",
             "label": "Design Decision: Image Processing Pipeline",
-            "href": "/decisions/image-processing",
+            "href": "/ThreadCount/docs/decisions/image-processing",
             "docId": "decisions/image-processing",
             "unlisted": false
           }
@@ -110,7 +146,7 @@
           {
             "type": "link",
             "label": "Features Documentation",
-            "href": "/features/",
+            "href": "/ThreadCount/docs/features/",
             "docId": "features/index",
             "unlisted": false
           }
@@ -125,7 +161,7 @@
           {
             "type": "link",
             "label": "API Contracts",
-            "href": "/references/api-contracts",
+            "href": "/ThreadCount/docs/references/api-contracts",
             "docId": "references/api-contracts",
             "unlisted": false
           }
@@ -140,14 +176,14 @@
           {
             "type": "link",
             "label": "Quality Scorecard",
-            "href": "/project/QUALITY_SCORE",
+            "href": "/ThreadCount/docs/project/QUALITY_SCORE",
             "docId": "project/QUALITY_SCORE",
             "unlisted": false
           },
           {
             "type": "link",
             "label": "Tech Debt Tracker",
-            "href": "/exec-plans/tech-debt-tracker",
+            "href": "/ThreadCount/docs/exec-plans/tech-debt-tracker",
             "docId": "exec-plans/tech-debt-tracker",
             "unlisted": false
           }
@@ -272,10 +308,28 @@
       "description": "Version: 1.4.0",
       "sidebar": "tutorialSidebar"
     },
+    "guides/best-practices": {
+      "id": "guides/best-practices",
+      "title": "General Best Practices",
+      "description": "Version: 1.0.0",
+      "sidebar": "tutorialSidebar"
+    },
+    "guides/formatting-style": {
+      "id": "guides/formatting-style",
+      "title": "Formatting & Style",
+      "description": "Version: 1.0.0",
+      "sidebar": "tutorialSidebar"
+    },
     "guides/FRONTEND": {
       "id": "guides/FRONTEND",
       "title": "Frontend Guide",
       "description": "Version: 1.5.0",
+      "sidebar": "tutorialSidebar"
+    },
+    "guides/naming-conventions": {
+      "id": "guides/naming-conventions",
+      "title": "Naming Conventions",
+      "description": "Version: 1.0.0",
       "sidebar": "tutorialSidebar"
     },
     "guides/supabase-setup": {
@@ -283,6 +337,17 @@
       "title": "Supabase Setup Guide",
       "description": "Version: 1.1.0",
       "sidebar": "tutorialSidebar"
+    },
+    "guides/typescript": {
+      "id": "guides/typescript",
+      "title": "TypeScript Specific Rules",
+      "description": "Version: 1.0.0",
+      "sidebar": "tutorialSidebar"
+    },
+    "index": {
+      "id": "index",
+      "title": "Seamless Documentation",
+      "description": "Welcome to the Seamless project documentation."
     },
     "intro": {
       "id": "intro",

@@ -5,7 +5,7 @@
   "source": "@site/decisions/image-processing.md",
   "sourceDirName": "decisions",
   "slug": "/decisions/image-processing",
-  "permalink": "/decisions/image-processing",
+  "permalink": "/ThreadCount/docs/decisions/image-processing",
   "draft": false,
   "unlisted": false,
   "tags": [],
@@ -14,10 +14,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Design Decision: Visual Style — Monochrome Brutalist Luxury",
-    "permalink": "/decisions/visual-style"
+    "permalink": "/ThreadCount/docs/decisions/visual-style"
   },
   "next": {
     "title": "Features Documentation",
-    "permalink": "/features/"
+    "permalink": "/ThreadCount/docs/features/"
   }
 }

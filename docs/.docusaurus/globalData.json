@@ -1,131 +1,155 @@
 {
   "docusaurus-plugin-content-docs": {
     "default": {
-      "path": "/",
+      "path": "/ThreadCount/docs",
       "versions": [
         {
           "name": "current",
           "label": "Next",
           "isLast": true,
-          "path": "/",
-          "mainDocId": "intro",
+          "path": "/ThreadCount/docs",
+          "mainDocId": "index",
           "docs": [
             {
               "id": "decisions/core-beliefs",
-              "path": "/decisions/core-beliefs",
+              "path": "/ThreadCount/docs/decisions/core-beliefs",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "decisions/image-processing",
-              "path": "/decisions/image-processing",
+              "path": "/ThreadCount/docs/decisions/image-processing",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "decisions/index",
-              "path": "/decisions/"
+              "path": "/ThreadCount/docs/decisions/"
             },
             {
               "id": "decisions/technology-selection",
-              "path": "/decisions/technology-selection",
+              "path": "/ThreadCount/docs/decisions/technology-selection",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "decisions/visual-style",
-              "path": "/decisions/visual-style",
+              "path": "/ThreadCount/docs/decisions/visual-style",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "exec-plans/tech-debt-tracker",
-              "path": "/exec-plans/tech-debt-tracker",
+              "path": "/ThreadCount/docs/exec-plans/tech-debt-tracker",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "features/auth/design",
-              "path": "/features/auth/design"
+              "path": "/ThreadCount/docs/features/auth/design"
             },
             {
               "id": "features/auth/product-spec",
-              "path": "/features/auth/product-spec"
+              "path": "/ThreadCount/docs/features/auth/product-spec"
             },
             {
               "id": "features/index",
-              "path": "/features/",
+              "path": "/ThreadCount/docs/features/",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "features/outfit-builder/design",
-              "path": "/features/outfit-builder/design"
+              "path": "/ThreadCount/docs/features/outfit-builder/design"
             },
             {
               "id": "features/outfit-builder/exec-plan",
-              "path": "/features/outfit-builder/exec-plan"
+              "path": "/ThreadCount/docs/features/outfit-builder/exec-plan"
             },
             {
               "id": "features/outfit-builder/product-spec",
-              "path": "/features/outfit-builder/product-spec"
+              "path": "/ThreadCount/docs/features/outfit-builder/product-spec"
             },
             {
               "id": "features/previous-looks/design",
-              "path": "/features/previous-looks/design"
+              "path": "/ThreadCount/docs/features/previous-looks/design"
             },
             {
               "id": "features/previous-looks/product-spec",
-              "path": "/features/previous-looks/product-spec"
+              "path": "/ThreadCount/docs/features/previous-looks/product-spec"
             },
             {
               "id": "features/style-analysis/product-spec",
-              "path": "/features/style-analysis/product-spec"
+              "path": "/ThreadCount/docs/features/style-analysis/product-spec"
             },
             {
               "id": "features/user-profile/product-spec",
-              "path": "/features/user-profile/product-spec"
+              "path": "/ThreadCount/docs/features/user-profile/product-spec"
             },
             {
               "id": "features/virtual-wardrobe/exec-plan",
-              "path": "/features/virtual-wardrobe/exec-plan"
+              "path": "/ThreadCount/docs/features/virtual-wardrobe/exec-plan"
             },
             {
               "id": "features/virtual-wardrobe/product-spec",
-              "path": "/features/virtual-wardrobe/product-spec"
+              "path": "/ThreadCount/docs/features/virtual-wardrobe/product-spec"
             },
             {
               "id": "getting-started/architecture",
-              "path": "/getting-started/architecture",
+              "path": "/ThreadCount/docs/getting-started/architecture",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "getting-started/setup",
-              "path": "/getting-started/setup",
+              "path": "/ThreadCount/docs/getting-started/setup",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "guides/BACKEND",
-              "path": "/guides/BACKEND",
+              "path": "/ThreadCount/docs/guides/BACKEND",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "guides/best-practices",
+              "path": "/ThreadCount/docs/guides/best-practices",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "guides/formatting-style",
+              "path": "/ThreadCount/docs/guides/formatting-style",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "guides/FRONTEND",
-              "path": "/guides/FRONTEND",
+              "path": "/ThreadCount/docs/guides/FRONTEND",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "guides/naming-conventions",
+              "path": "/ThreadCount/docs/guides/naming-conventions",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "guides/supabase-setup",
-              "path": "/guides/supabase-setup",
+              "path": "/ThreadCount/docs/guides/supabase-setup",
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "guides/typescript",
+              "path": "/ThreadCount/docs/guides/typescript",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "index",
+              "path": "/ThreadCount/docs/"
+            },
+            {
               "id": "intro",
-              "path": "/intro",
+              "path": "/ThreadCount/docs/intro",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "project/QUALITY_SCORE",
-              "path": "/project/QUALITY_SCORE",
+              "path": "/ThreadCount/docs/project/QUALITY_SCORE",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "references/api-contracts",
-              "path": "/references/api-contracts",
+              "path": "/ThreadCount/docs/references/api-contracts",
               "sidebar": "tutorialSidebar"
             }
           ],
@@ -133,7 +157,7 @@
           "sidebars": {
             "tutorialSidebar": {
               "link": {
-                "path": "/intro",
+                "path": "/ThreadCount/docs/intro",
                 "label": "intro"
               }
             }

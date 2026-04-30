@@ -5,7 +5,7 @@
   "source": "@site/decisions/visual-style.md",
   "sourceDirName": "decisions",
   "slug": "/decisions/visual-style",
-  "permalink": "/decisions/visual-style",
+  "permalink": "/ThreadCount/docs/decisions/visual-style",
   "draft": false,
   "unlisted": false,
   "tags": [],
@@ -14,10 +14,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Core Beliefs",
-    "permalink": "/decisions/core-beliefs"
+    "permalink": "/ThreadCount/docs/decisions/core-beliefs"
   },
   "next": {
     "title": "Design Decision: Image Processing Pipeline",
-    "permalink": "/decisions/image-processing"
+    "permalink": "/ThreadCount/docs/decisions/image-processing"
   }
 }

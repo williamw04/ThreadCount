@@ -5,7 +5,7 @@
   "source": "@site/project/QUALITY_SCORE.md",
   "sourceDirName": "project",
   "slug": "/project/QUALITY_SCORE",
-  "permalink": "/project/QUALITY_SCORE",
+  "permalink": "/ThreadCount/docs/project/QUALITY_SCORE",
   "draft": false,
   "unlisted": false,
   "tags": [],
@@ -14,10 +14,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "API Contracts",
-    "permalink": "/references/api-contracts"
+    "permalink": "/ThreadCount/docs/references/api-contracts"
   },
   "next": {
     "title": "Tech Debt Tracker",
-    "permalink": "/exec-plans/tech-debt-tracker"
+    "permalink": "/ThreadCount/docs/exec-plans/tech-debt-tracker"
   }
 }

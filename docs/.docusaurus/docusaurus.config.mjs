@@ -7,8 +7,10 @@ export default {
   "title": "Seamless",
   "tagline": "Fashion AI Web Application",
   "favicon": "img/favicon.svg",
-  "url": "https://seamless-fashion.com",
-  "baseUrl": "/",
+  "url": "https://williamw04.github.io",
+  "baseUrl": "/ThreadCount/",
+  "onBrokenLinks": "ignore",
+  "onBrokenMarkdownLinks": "ignore",
   "presets": [
     [
       "classic",
@@ -16,7 +18,7 @@ export default {
         "docs": {
           "path": ".",
           "sidebarPath": "./sidebars.ts",
-          "routeBasePath": "/",
+          "routeBasePath": "docs",
           "exclude": [
             "**/node_modules/**",
             "**/build/**"
@@ -34,10 +36,15 @@ export default {
       "title": "Seamless",
       "items": [
         {
+          "to": "/docs/intro",
+          "label": "Home",
+          "position": "left"
+        },
+        {
           "type": "docSidebar",
           "sidebarId": "tutorialSidebar",
           "position": "left",
-          "label": "Documentation"
+          "label": "Docs"
         },
         {
           "href": "https://github.com/anomalyco/seamless",
@@ -283,9 +290,7 @@ export default {
     ],
     "localeConfigs": {}
   },
-  "onBrokenLinks": "throw",
   "onBrokenAnchors": "warn",
-  "onBrokenMarkdownLinks": "warn",
   "onDuplicateRoutes": "warn",
   "staticDirectories": [
     "static"

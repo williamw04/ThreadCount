@@ -5,7 +5,7 @@
   "source": "@site/references/api-contracts.md",
   "sourceDirName": "references",
   "slug": "/references/api-contracts",
-  "permalink": "/references/api-contracts",
+  "permalink": "/ThreadCount/docs/references/api-contracts",
   "draft": false,
   "unlisted": false,
   "tags": [],
@@ -14,10 +14,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Features Documentation",
-    "permalink": "/features/"
+    "permalink": "/ThreadCount/docs/features/"
   },
   "next": {
     "title": "Quality Scorecard",
-    "permalink": "/project/QUALITY_SCORE"
+    "permalink": "/ThreadCount/docs/project/QUALITY_SCORE"
   }
 }

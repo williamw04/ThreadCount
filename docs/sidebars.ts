@@ -23,6 +23,16 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: 'Coding Standards',
+      items: [
+        'guides/best-practices',
+        'guides/naming-conventions',
+        'guides/formatting-style',
+        'guides/typescript',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Decisions',
       items: [
         'decisions/technology-selection',

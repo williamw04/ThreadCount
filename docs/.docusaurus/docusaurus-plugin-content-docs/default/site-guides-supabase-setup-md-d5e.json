@@ -5,7 +5,7 @@
   "source": "@site/guides/supabase-setup.md",
   "sourceDirName": "guides",
   "slug": "/guides/supabase-setup",
-  "permalink": "/guides/supabase-setup",
+  "permalink": "/ThreadCount/docs/guides/supabase-setup",
   "draft": false,
   "unlisted": false,
   "tags": [],
@@ -14,10 +14,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Backend Guide",
-    "permalink": "/guides/BACKEND"
+    "permalink": "/ThreadCount/docs/guides/BACKEND"
   },
   "next": {
-    "title": "Technology Selection Justification",
-    "permalink": "/decisions/technology-selection"
+    "title": "General Best Practices",
+    "permalink": "/ThreadCount/docs/guides/best-practices"
   }
 }

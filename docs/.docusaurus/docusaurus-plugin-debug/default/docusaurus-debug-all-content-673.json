@@ -9,8 +9,8 @@
           "badge": false,
           "noIndex": false,
           "className": "docs-version-current",
-          "path": "/",
-          "tagsPath": "/tags",
+          "path": "/ThreadCount/docs",
+          "tagsPath": "/ThreadCount/docs/tags",
           "isLast": true,
           "routePriority": -1,
           "sidebarFilePath": "/Users/williamwu/Documents/academics/class/sdnd/sandbox/ThreadCount-dev/docs/sidebars.ts",
@@ -24,7 +24,7 @@
               "source": "@site/decisions/core-beliefs.md",
               "sourceDirName": "decisions",
               "slug": "/decisions/core-beliefs",
-              "permalink": "/decisions/core-beliefs",
+              "permalink": "/ThreadCount/docs/decisions/core-beliefs",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -33,11 +33,11 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Technology Selection Justification",
-                "permalink": "/decisions/technology-selection"
+                "permalink": "/ThreadCount/docs/decisions/technology-selection"
               },
               "next": {
                 "title": "Design Decision: Visual Style — Monochrome Brutalist Luxury",
-                "permalink": "/decisions/visual-style"
+                "permalink": "/ThreadCount/docs/decisions/visual-style"
               }
             },
             {
@@ -47,7 +47,7 @@
               "source": "@site/decisions/image-processing.md",
               "sourceDirName": "decisions",
               "slug": "/decisions/image-processing",
-              "permalink": "/decisions/image-processing",
+              "permalink": "/ThreadCount/docs/decisions/image-processing",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -56,11 +56,11 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Design Decision: Visual Style — Monochrome Brutalist Luxury",
-                "permalink": "/decisions/visual-style"
+                "permalink": "/ThreadCount/docs/decisions/visual-style"
               },
               "next": {
                 "title": "Features Documentation",
-                "permalink": "/features/"
+                "permalink": "/ThreadCount/docs/features/"
               }
             },
             {
@@ -70,7 +70,7 @@
               "source": "@site/decisions/index.md",
               "sourceDirName": "decisions",
               "slug": "/decisions/",
-              "permalink": "/decisions/",
+              "permalink": "/ThreadCount/docs/decisions/",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -84,7 +84,7 @@
               "source": "@site/decisions/technology-selection.md",
               "sourceDirName": "decisions",
               "slug": "/decisions/technology-selection",
-              "permalink": "/decisions/technology-selection",
+              "permalink": "/ThreadCount/docs/decisions/technology-selection",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -92,12 +92,12 @@
               "frontMatter": {},
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Supabase Setup Guide",
-                "permalink": "/guides/supabase-setup"
+                "title": "TypeScript Specific Rules",
+                "permalink": "/ThreadCount/docs/guides/typescript"
               },
               "next": {
                 "title": "Core Beliefs",
-                "permalink": "/decisions/core-beliefs"
+                "permalink": "/ThreadCount/docs/decisions/core-beliefs"
               }
             },
             {
@@ -107,7 +107,7 @@
               "source": "@site/decisions/visual-style.md",
               "sourceDirName": "decisions",
               "slug": "/decisions/visual-style",
-              "permalink": "/decisions/visual-style",
+              "permalink": "/ThreadCount/docs/decisions/visual-style",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -116,11 +116,11 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Core Beliefs",
-                "permalink": "/decisions/core-beliefs"
+                "permalink": "/ThreadCount/docs/decisions/core-beliefs"
               },
               "next": {
                 "title": "Design Decision: Image Processing Pipeline",
-                "permalink": "/decisions/image-processing"
+                "permalink": "/ThreadCount/docs/decisions/image-processing"
               }
             },
             {
@@ -130,7 +130,7 @@
               "source": "@site/exec-plans/tech-debt-tracker.md",
               "sourceDirName": "exec-plans",
               "slug": "/exec-plans/tech-debt-tracker",
-              "permalink": "/exec-plans/tech-debt-tracker",
+              "permalink": "/ThreadCount/docs/exec-plans/tech-debt-tracker",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -139,7 +139,7 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Quality Scorecard",
-                "permalink": "/project/QUALITY_SCORE"
+                "permalink": "/ThreadCount/docs/project/QUALITY_SCORE"
               }
             },
             {
@@ -149,7 +149,7 @@
               "source": "@site/features/auth/design.md",
               "sourceDirName": "features/auth",
               "slug": "/features/auth/design",
-              "permalink": "/features/auth/design",
+              "permalink": "/ThreadCount/docs/features/auth/design",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -163,7 +163,7 @@
               "source": "@site/features/auth/product-spec.md",
               "sourceDirName": "features/auth",
               "slug": "/features/auth/product-spec",
-              "permalink": "/features/auth/product-spec",
+              "permalink": "/ThreadCount/docs/features/auth/product-spec",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -177,7 +177,7 @@
               "source": "@site/features/index.md",
               "sourceDirName": "features",
               "slug": "/features/",
-              "permalink": "/features/",
+              "permalink": "/ThreadCount/docs/features/",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -186,11 +186,11 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Design Decision: Image Processing Pipeline",
-                "permalink": "/decisions/image-processing"
+                "permalink": "/ThreadCount/docs/decisions/image-processing"
               },
               "next": {
                 "title": "API Contracts",
-                "permalink": "/references/api-contracts"
+                "permalink": "/ThreadCount/docs/references/api-contracts"
               }
             },
             {
@@ -200,7 +200,7 @@
               "source": "@site/features/outfit-builder/design.md",
               "sourceDirName": "features/outfit-builder",
               "slug": "/features/outfit-builder/design",
-              "permalink": "/features/outfit-builder/design",
+              "permalink": "/ThreadCount/docs/features/outfit-builder/design",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -214,7 +214,7 @@
               "source": "@site/features/outfit-builder/exec-plan.md",
               "sourceDirName": "features/outfit-builder",
               "slug": "/features/outfit-builder/exec-plan",
-              "permalink": "/features/outfit-builder/exec-plan",
+              "permalink": "/ThreadCount/docs/features/outfit-builder/exec-plan",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -228,7 +228,7 @@
               "source": "@site/features/outfit-builder/product-spec.md",
               "sourceDirName": "features/outfit-builder",
               "slug": "/features/outfit-builder/product-spec",
-              "permalink": "/features/outfit-builder/product-spec",
+              "permalink": "/ThreadCount/docs/features/outfit-builder/product-spec",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -242,7 +242,7 @@
               "source": "@site/features/previous-looks/design.md",
               "sourceDirName": "features/previous-looks",
               "slug": "/features/previous-looks/design",
-              "permalink": "/features/previous-looks/design",
+              "permalink": "/ThreadCount/docs/features/previous-looks/design",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -256,7 +256,7 @@
               "source": "@site/features/previous-looks/product-spec.md",
               "sourceDirName": "features/previous-looks",
               "slug": "/features/previous-looks/product-spec",
-              "permalink": "/features/previous-looks/product-spec",
+              "permalink": "/ThreadCount/docs/features/previous-looks/product-spec",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -270,7 +270,7 @@
               "source": "@site/features/style-analysis/product-spec.md",
               "sourceDirName": "features/style-analysis",
               "slug": "/features/style-analysis/product-spec",
-              "permalink": "/features/style-analysis/product-spec",
+              "permalink": "/ThreadCount/docs/features/style-analysis/product-spec",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -284,7 +284,7 @@
               "source": "@site/features/user-profile/product-spec.md",
               "sourceDirName": "features/user-profile",
               "slug": "/features/user-profile/product-spec",
-              "permalink": "/features/user-profile/product-spec",
+              "permalink": "/ThreadCount/docs/features/user-profile/product-spec",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -298,7 +298,7 @@
               "source": "@site/features/virtual-wardrobe/exec-plan.md",
               "sourceDirName": "features/virtual-wardrobe",
               "slug": "/features/virtual-wardrobe/exec-plan",
-              "permalink": "/features/virtual-wardrobe/exec-plan",
+              "permalink": "/ThreadCount/docs/features/virtual-wardrobe/exec-plan",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -312,7 +312,7 @@
               "source": "@site/features/virtual-wardrobe/product-spec.md",
               "sourceDirName": "features/virtual-wardrobe",
               "slug": "/features/virtual-wardrobe/product-spec",
-              "permalink": "/features/virtual-wardrobe/product-spec",
+              "permalink": "/ThreadCount/docs/features/virtual-wardrobe/product-spec",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -326,7 +326,7 @@
               "source": "@site/getting-started/architecture.md",
               "sourceDirName": "getting-started",
               "slug": "/getting-started/architecture",
-              "permalink": "/getting-started/architecture",
+              "permalink": "/ThreadCount/docs/getting-started/architecture",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -335,11 +335,11 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Setup Guide",
-                "permalink": "/getting-started/setup"
+                "permalink": "/ThreadCount/docs/getting-started/setup"
               },
               "next": {
                 "title": "Frontend Guide",
-                "permalink": "/guides/FRONTEND"
+                "permalink": "/ThreadCount/docs/guides/FRONTEND"
               }
             },
             {
@@ -349,7 +349,7 @@
               "source": "@site/getting-started/setup.md",
               "sourceDirName": "getting-started",
               "slug": "/getting-started/setup",
-              "permalink": "/getting-started/setup",
+              "permalink": "/ThreadCount/docs/getting-started/setup",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -358,11 +358,11 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Welcome to Seamless",
-                "permalink": "/intro"
+                "permalink": "/ThreadCount/docs/intro"
               },
               "next": {
                 "title": "Architecture",
-                "permalink": "/getting-started/architecture"
+                "permalink": "/ThreadCount/docs/getting-started/architecture"
               }
             },
             {
@@ -372,7 +372,7 @@
               "source": "@site/guides/BACKEND.md",
               "sourceDirName": "guides",
               "slug": "/guides/BACKEND",
-              "permalink": "/guides/BACKEND",
+              "permalink": "/ThreadCount/docs/guides/BACKEND",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -381,11 +381,57 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Frontend Guide",
-                "permalink": "/guides/FRONTEND"
+                "permalink": "/ThreadCount/docs/guides/FRONTEND"
               },
               "next": {
                 "title": "Supabase Setup Guide",
-                "permalink": "/guides/supabase-setup"
+                "permalink": "/ThreadCount/docs/guides/supabase-setup"
+              }
+            },
+            {
+              "id": "guides/best-practices",
+              "title": "General Best Practices",
+              "description": "Version: 1.0.0",
+              "source": "@site/guides/best-practices.md",
+              "sourceDirName": "guides",
+              "slug": "/guides/best-practices",
+              "permalink": "/ThreadCount/docs/guides/best-practices",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Supabase Setup Guide",
+                "permalink": "/ThreadCount/docs/guides/supabase-setup"
+              },
+              "next": {
+                "title": "Naming Conventions",
+                "permalink": "/ThreadCount/docs/guides/naming-conventions"
+              }
+            },
+            {
+              "id": "guides/formatting-style",
+              "title": "Formatting & Style",
+              "description": "Version: 1.0.0",
+              "source": "@site/guides/formatting-style.md",
+              "sourceDirName": "guides",
+              "slug": "/guides/formatting-style",
+              "permalink": "/ThreadCount/docs/guides/formatting-style",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Naming Conventions",
+                "permalink": "/ThreadCount/docs/guides/naming-conventions"
+              },
+              "next": {
+                "title": "TypeScript Specific Rules",
+                "permalink": "/ThreadCount/docs/guides/typescript"
               }
             },
             {
@@ -395,7 +441,7 @@
               "source": "@site/guides/FRONTEND.md",
               "sourceDirName": "guides",
               "slug": "/guides/FRONTEND",
-              "permalink": "/guides/FRONTEND",
+              "permalink": "/ThreadCount/docs/guides/FRONTEND",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -404,11 +450,34 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Architecture",
-                "permalink": "/getting-started/architecture"
+                "permalink": "/ThreadCount/docs/getting-started/architecture"
               },
               "next": {
                 "title": "Backend Guide",
-                "permalink": "/guides/BACKEND"
+                "permalink": "/ThreadCount/docs/guides/BACKEND"
+              }
+            },
+            {
+              "id": "guides/naming-conventions",
+              "title": "Naming Conventions",
+              "description": "Version: 1.0.0",
+              "source": "@site/guides/naming-conventions.md",
+              "sourceDirName": "guides",
+              "slug": "/guides/naming-conventions",
+              "permalink": "/ThreadCount/docs/guides/naming-conventions",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "General Best Practices",
+                "permalink": "/ThreadCount/docs/guides/best-practices"
+              },
+              "next": {
+                "title": "Formatting & Style",
+                "permalink": "/ThreadCount/docs/guides/formatting-style"
               }
             },
             {
@@ -418,7 +487,7 @@
               "source": "@site/guides/supabase-setup.md",
               "sourceDirName": "guides",
               "slug": "/guides/supabase-setup",
-              "permalink": "/guides/supabase-setup",
+              "permalink": "/ThreadCount/docs/guides/supabase-setup",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -427,11 +496,51 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Backend Guide",
-                "permalink": "/guides/BACKEND"
+                "permalink": "/ThreadCount/docs/guides/BACKEND"
+              },
+              "next": {
+                "title": "General Best Practices",
+                "permalink": "/ThreadCount/docs/guides/best-practices"
+              }
+            },
+            {
+              "id": "guides/typescript",
+              "title": "TypeScript Specific Rules",
+              "description": "Version: 1.0.0",
+              "source": "@site/guides/typescript.md",
+              "sourceDirName": "guides",
+              "slug": "/guides/typescript",
+              "permalink": "/ThreadCount/docs/guides/typescript",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Formatting & Style",
+                "permalink": "/ThreadCount/docs/guides/formatting-style"
               },
               "next": {
                 "title": "Technology Selection Justification",
-                "permalink": "/decisions/technology-selection"
+                "permalink": "/ThreadCount/docs/decisions/technology-selection"
+              }
+            },
+            {
+              "id": "index",
+              "title": "Seamless Documentation",
+              "description": "Welcome to the Seamless project documentation.",
+              "source": "@site/index.md",
+              "sourceDirName": ".",
+              "slug": "/",
+              "permalink": "/ThreadCount/docs/",
+              "draft": false,
+              "unlisted": false,
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1
               }
             },
             {
@@ -441,7 +550,7 @@
               "source": "@site/intro.md",
               "sourceDirName": ".",
               "slug": "/intro",
-              "permalink": "/intro",
+              "permalink": "/ThreadCount/docs/intro",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -450,7 +559,7 @@
               "sidebar": "tutorialSidebar",
               "next": {
                 "title": "Setup Guide",
-                "permalink": "/getting-started/setup"
+                "permalink": "/ThreadCount/docs/getting-started/setup"
               }
             },
             {
@@ -460,7 +569,7 @@
               "source": "@site/project/QUALITY_SCORE.md",
               "sourceDirName": "project",
               "slug": "/project/QUALITY_SCORE",
-              "permalink": "/project/QUALITY_SCORE",
+              "permalink": "/ThreadCount/docs/project/QUALITY_SCORE",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -469,11 +578,11 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "API Contracts",
-                "permalink": "/references/api-contracts"
+                "permalink": "/ThreadCount/docs/references/api-contracts"
               },
               "next": {
                 "title": "Tech Debt Tracker",
-                "permalink": "/exec-plans/tech-debt-tracker"
+                "permalink": "/ThreadCount/docs/exec-plans/tech-debt-tracker"
               }
             },
             {
@@ -483,7 +592,7 @@
               "source": "@site/references/api-contracts.md",
               "sourceDirName": "references",
               "slug": "/references/api-contracts",
-              "permalink": "/references/api-contracts",
+              "permalink": "/ThreadCount/docs/references/api-contracts",
               "draft": false,
               "unlisted": false,
               "tags": [],
@@ -492,11 +601,11 @@
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Features Documentation",
-                "permalink": "/features/"
+                "permalink": "/ThreadCount/docs/features/"
               },
               "next": {
                 "title": "Quality Scorecard",
-                "permalink": "/project/QUALITY_SCORE"
+                "permalink": "/ThreadCount/docs/project/QUALITY_SCORE"
               }
             }
           ],
@@ -538,6 +647,30 @@
                   {
                     "type": "doc",
                     "id": "guides/supabase-setup"
+                  }
+                ],
+                "collapsed": true,
+                "collapsible": true
+              },
+              {
+                "type": "category",
+                "label": "Coding Standards",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "guides/best-practices"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/naming-conventions"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/formatting-style"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "guides/typescript"
                   }
                 ],
                 "collapsed": true,

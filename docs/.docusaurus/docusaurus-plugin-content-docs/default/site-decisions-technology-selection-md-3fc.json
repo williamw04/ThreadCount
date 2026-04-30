@@ -5,7 +5,7 @@
   "source": "@site/decisions/technology-selection.md",
   "sourceDirName": "decisions",
   "slug": "/decisions/technology-selection",
-  "permalink": "/decisions/technology-selection",
+  "permalink": "/ThreadCount/docs/decisions/technology-selection",
   "draft": false,
   "unlisted": false,
   "tags": [],
@@ -13,11 +13,11 @@
   "frontMatter": {},
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "Supabase Setup Guide",
-    "permalink": "/guides/supabase-setup"
+    "title": "TypeScript Specific Rules",
+    "permalink": "/ThreadCount/docs/guides/typescript"
   },
   "next": {
     "title": "Core Beliefs",
-    "permalink": "/decisions/core-beliefs"
+    "permalink": "/ThreadCount/docs/decisions/core-beliefs"
   }
 }

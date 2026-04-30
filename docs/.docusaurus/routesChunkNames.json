@@ -1,162 +1,139 @@
 {
-  "/__docusaurus/debug-920": {
-    "__comp": "__comp---theme-debug-config-23-a-2ff",
+  "/ThreadCount/docs-f0a": {
+    "__comp": "5e95c892",
     "__context": {
-      "plugin": "plugin---docusaurus-debug-613-f38"
+      "plugin": "cd5bf584"
     }
   },
-  "/__docusaurus/debug/config-dfe": {
-    "__comp": "__comp---theme-debug-config-23-a-2ff",
-    "__context": {
-      "plugin": "plugin---docusaurus-debug-613-f38"
-    }
+  "/ThreadCount/docs-e28": {
+    "__comp": "a7bd4aaa",
+    "version": "935f2afb"
   },
-  "/__docusaurus/debug/content-203": {
-    "__comp": "__comp---theme-debug-contentba-8-ce7",
-    "__context": {
-      "plugin": "plugin---docusaurus-debug-613-f38"
-    },
-    "allContent": "allContent---docusaurus-debug-content-246-9aa"
+  "/ThreadCount/docs-153": {
+    "__comp": "a94703ab"
   },
-  "/__docusaurus/debug/globalData-bb1": {
-    "__comp": "__comp---theme-debug-global-dataede-0fa",
-    "__context": {
-      "plugin": "plugin---docusaurus-debug-613-f38"
-    }
+  "/ThreadCount/docs/-dad": {
+    "__comp": "17896441",
+    "content": "08238c6d"
   },
-  "/__docusaurus/debug/metadata-280": {
-    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
-    "__context": {
-      "plugin": "plugin---docusaurus-debug-613-f38"
-    }
+  "/ThreadCount/docs/decisions/-041": {
+    "__comp": "17896441",
+    "content": "4b96e7bd"
   },
-  "/__docusaurus/debug/registry-9f0": {
-    "__comp": "__comp---theme-debug-registry-679-501",
-    "__context": {
-      "plugin": "plugin---docusaurus-debug-613-f38"
-    }
+  "/ThreadCount/docs/decisions/core-beliefs-db0": {
+    "__comp": "17896441",
+    "content": "05b8d57f"
   },
-  "/__docusaurus/debug/routes-e50": {
-    "__comp": "__comp---theme-debug-routes-946-699",
-    "__context": {
-      "plugin": "plugin---docusaurus-debug-613-f38"
-    }
+  "/ThreadCount/docs/decisions/image-processing-ea6": {
+    "__comp": "17896441",
+    "content": "f862fe8c"
   },
-  "/-065": {
-    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
-    "__context": {
-      "plugin": "plugin---cd-5-0cb"
-    }
+  "/ThreadCount/docs/decisions/technology-selection-0cc": {
+    "__comp": "17896441",
+    "content": "3fccbfa0"
   },
-  "/-e49": {
-    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
-    "version": "version---935-fcf"
+  "/ThreadCount/docs/decisions/visual-style-314": {
+    "__comp": "17896441",
+    "content": "76f32a2b"
   },
-  "/-6f1": {
-    "__comp": "__comp---theme-doc-roota-94-67a"
+  "/ThreadCount/docs/exec-plans/tech-debt-tracker-ca7": {
+    "__comp": "17896441",
+    "content": "8c254f4b"
   },
-  "/decisions/-611": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---decisions-4-b-9-761"
+  "/ThreadCount/docs/features/-a28": {
+    "__comp": "17896441",
+    "content": "ad407f29"
   },
-  "/decisions/core-beliefs-567": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---decisions-core-beliefs-05-b-71c"
+  "/ThreadCount/docs/features/auth/design-12a": {
+    "__comp": "17896441",
+    "content": "ac4bbb2e"
   },
-  "/decisions/image-processing-4aa": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---decisions-image-processingf-86-d2c"
+  "/ThreadCount/docs/features/auth/product-spec-b3b": {
+    "__comp": "17896441",
+    "content": "2e2e3c9a"
   },
-  "/decisions/technology-selection-83b": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---decisions-technology-selection-3-fc-7f9"
+  "/ThreadCount/docs/features/outfit-builder/design-fd8": {
+    "__comp": "17896441",
+    "content": "a836f93f"
   },
-  "/decisions/visual-style-537": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---decisions-visual-style-76-f-c6c"
+  "/ThreadCount/docs/features/outfit-builder/exec-plan-961": {
+    "__comp": "17896441",
+    "content": "f613a516"
   },
-  "/exec-plans/tech-debt-tracker-36f": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---exec-plans-tech-debt-tracker-8-c-2-bce"
+  "/ThreadCount/docs/features/outfit-builder/product-spec-9df": {
+    "__comp": "17896441",
+    "content": "a119dcef"
   },
-  "/features/-377": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---features-ad-4-9ee"
+  "/ThreadCount/docs/features/previous-looks/design-a20": {
+    "__comp": "17896441",
+    "content": "9b8e7490"
   },
-  "/features/auth/design-957": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---features-auth-designac-4-fac"
+  "/ThreadCount/docs/features/previous-looks/product-spec-321": {
+    "__comp": "17896441",
+    "content": "39f2ba07"
   },
-  "/features/auth/product-spec-357": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---features-auth-product-spec-2-e-2-489"
+  "/ThreadCount/docs/features/style-analysis/product-spec-0a7": {
+    "__comp": "17896441",
+    "content": "e428e030"
   },
-  "/features/outfit-builder/design-733": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---features-outfit-builder-designa-83-f72"
+  "/ThreadCount/docs/features/user-profile/product-spec-d34": {
+    "__comp": "17896441",
+    "content": "ba1705c2"
   },
-  "/features/outfit-builder/exec-plan-0c5": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---features-outfit-builder-exec-planf-61-c30"
+  "/ThreadCount/docs/features/virtual-wardrobe/exec-plan-f8d": {
+    "__comp": "17896441",
+    "content": "83c17e7e"
   },
-  "/features/outfit-builder/product-spec-69a": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---features-outfit-builder-product-speca-11-4f5"
+  "/ThreadCount/docs/features/virtual-wardrobe/product-spec-c24": {
+    "__comp": "17896441",
+    "content": "6cdb5847"
   },
-  "/features/previous-looks/design-151": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---features-previous-looks-design-9-b-8-345"
+  "/ThreadCount/docs/getting-started/architecture-2c5": {
+    "__comp": "17896441",
+    "content": "bc17bda5"
   },
-  "/features/previous-looks/product-spec-89b": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---features-previous-looks-product-spec-39-f-680"
+  "/ThreadCount/docs/getting-started/setup-4ac": {
+    "__comp": "17896441",
+    "content": "f1fa3e7e"
   },
-  "/features/style-analysis/product-spec-d48": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---features-style-analysis-product-spece-42-c74"
+  "/ThreadCount/docs/guides/BACKEND-226": {
+    "__comp": "17896441",
+    "content": "13a4ad3f"
   },
-  "/features/user-profile/product-spec-5cc": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---features-user-profile-product-specba-1-ebd"
+  "/ThreadCount/docs/guides/best-practices-02a": {
+    "__comp": "17896441",
+    "content": "279f2661"
   },
-  "/features/virtual-wardrobe/exec-plan-f3b": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---features-virtual-wardrobe-exec-plan-83-c-14a"
+  "/ThreadCount/docs/guides/formatting-style-925": {
+    "__comp": "17896441",
+    "content": "a6652ea1"
   },
-  "/features/virtual-wardrobe/product-spec-757": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---features-virtual-wardrobe-product-spec-6-cd-38e"
+  "/ThreadCount/docs/guides/FRONTEND-bb3": {
+    "__comp": "17896441",
+    "content": "ab57168c"
   },
-  "/getting-started/architecture-15b": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---getting-started-architecturebc-1-f09"
+  "/ThreadCount/docs/guides/naming-conventions-52e": {
+    "__comp": "17896441",
+    "content": "fa7486fe"
   },
-  "/getting-started/setup-1ba": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---getting-started-setupf-1-f-95d"
+  "/ThreadCount/docs/guides/supabase-setup-626": {
+    "__comp": "17896441",
+    "content": "d5e3c8e8"
   },
-  "/guides/BACKEND-a24": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---guides-backend-13-a-3f8"
+  "/ThreadCount/docs/guides/typescript-a39": {
+    "__comp": "17896441",
+    "content": "d19b5a8f"
   },
-  "/guides/FRONTEND-7e6": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---guides-fronten-dab-5-cfe"
+  "/ThreadCount/docs/intro-55a": {
+    "__comp": "17896441",
+    "content": "2e5b4b03"
   },
-  "/guides/supabase-setup-4af": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---guides-supabase-setupd-5-e-bbe"
+  "/ThreadCount/docs/project/QUALITY_SCORE-f6e": {
+    "__comp": "17896441",
+    "content": "ebb281f7"
   },
-  "/intro-630": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---intro-2-e-5-6c8"
-  },
-  "/project/QUALITY_SCORE-146": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---project-quality-scor-eebb-cd4"
-  },
-  "/references/api-contracts-974": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---references-api-contracts-7-ff-01e"
+  "/ThreadCount/docs/references/api-contracts-58c": {
+    "__comp": "17896441",
+    "content": "7ffa3fbb"
   }
 }

@@ -3,193 +3,187 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 
 export default [
   {
-    path: '/__docusaurus/debug',
-    component: ComponentCreator('/__docusaurus/debug', '920'),
-    exact: true
-  },
-  {
-    path: '/__docusaurus/debug/config',
-    component: ComponentCreator('/__docusaurus/debug/config', 'dfe'),
-    exact: true
-  },
-  {
-    path: '/__docusaurus/debug/content',
-    component: ComponentCreator('/__docusaurus/debug/content', '203'),
-    exact: true
-  },
-  {
-    path: '/__docusaurus/debug/globalData',
-    component: ComponentCreator('/__docusaurus/debug/globalData', 'bb1'),
-    exact: true
-  },
-  {
-    path: '/__docusaurus/debug/metadata',
-    component: ComponentCreator('/__docusaurus/debug/metadata', '280'),
-    exact: true
-  },
-  {
-    path: '/__docusaurus/debug/registry',
-    component: ComponentCreator('/__docusaurus/debug/registry', '9f0'),
-    exact: true
-  },
-  {
-    path: '/__docusaurus/debug/routes',
-    component: ComponentCreator('/__docusaurus/debug/routes', 'e50'),
-    exact: true
-  },
-  {
-    path: '/',
-    component: ComponentCreator('/', '065'),
+    path: '/ThreadCount/docs',
+    component: ComponentCreator('/ThreadCount/docs', 'f0a'),
     routes: [
       {
-        path: '/',
-        component: ComponentCreator('/', 'e49'),
+        path: '/ThreadCount/docs',
+        component: ComponentCreator('/ThreadCount/docs', 'e28'),
         routes: [
           {
-            path: '/',
-            component: ComponentCreator('/', '6f1'),
+            path: '/ThreadCount/docs',
+            component: ComponentCreator('/ThreadCount/docs', '153'),
             routes: [
               {
-                path: '/decisions/',
-                component: ComponentCreator('/decisions/', '611'),
+                path: '/ThreadCount/docs/',
+                component: ComponentCreator('/ThreadCount/docs/', 'dad'),
                 exact: true
               },
               {
-                path: '/decisions/core-beliefs',
-                component: ComponentCreator('/decisions/core-beliefs', '567'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/decisions/image-processing',
-                component: ComponentCreator('/decisions/image-processing', '4aa'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/decisions/technology-selection',
-                component: ComponentCreator('/decisions/technology-selection', '83b'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/decisions/visual-style',
-                component: ComponentCreator('/decisions/visual-style', '537'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/exec-plans/tech-debt-tracker',
-                component: ComponentCreator('/exec-plans/tech-debt-tracker', '36f'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/features/',
-                component: ComponentCreator('/features/', '377'),
-                exact: true,
-                sidebar: "tutorialSidebar"
-              },
-              {
-                path: '/features/auth/design',
-                component: ComponentCreator('/features/auth/design', '957'),
+                path: '/ThreadCount/docs/decisions/',
+                component: ComponentCreator('/ThreadCount/docs/decisions/', '041'),
                 exact: true
               },
               {
-                path: '/features/auth/product-spec',
-                component: ComponentCreator('/features/auth/product-spec', '357'),
-                exact: true
-              },
-              {
-                path: '/features/outfit-builder/design',
-                component: ComponentCreator('/features/outfit-builder/design', '733'),
-                exact: true
-              },
-              {
-                path: '/features/outfit-builder/exec-plan',
-                component: ComponentCreator('/features/outfit-builder/exec-plan', '0c5'),
-                exact: true
-              },
-              {
-                path: '/features/outfit-builder/product-spec',
-                component: ComponentCreator('/features/outfit-builder/product-spec', '69a'),
-                exact: true
-              },
-              {
-                path: '/features/previous-looks/design',
-                component: ComponentCreator('/features/previous-looks/design', '151'),
-                exact: true
-              },
-              {
-                path: '/features/previous-looks/product-spec',
-                component: ComponentCreator('/features/previous-looks/product-spec', '89b'),
-                exact: true
-              },
-              {
-                path: '/features/style-analysis/product-spec',
-                component: ComponentCreator('/features/style-analysis/product-spec', 'd48'),
-                exact: true
-              },
-              {
-                path: '/features/user-profile/product-spec',
-                component: ComponentCreator('/features/user-profile/product-spec', '5cc'),
-                exact: true
-              },
-              {
-                path: '/features/virtual-wardrobe/exec-plan',
-                component: ComponentCreator('/features/virtual-wardrobe/exec-plan', 'f3b'),
-                exact: true
-              },
-              {
-                path: '/features/virtual-wardrobe/product-spec',
-                component: ComponentCreator('/features/virtual-wardrobe/product-spec', '757'),
-                exact: true
-              },
-              {
-                path: '/getting-started/architecture',
-                component: ComponentCreator('/getting-started/architecture', '15b'),
+                path: '/ThreadCount/docs/decisions/core-beliefs',
+                component: ComponentCreator('/ThreadCount/docs/decisions/core-beliefs', 'db0'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/getting-started/setup',
-                component: ComponentCreator('/getting-started/setup', '1ba'),
+                path: '/ThreadCount/docs/decisions/image-processing',
+                component: ComponentCreator('/ThreadCount/docs/decisions/image-processing', 'ea6'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/guides/BACKEND',
-                component: ComponentCreator('/guides/BACKEND', 'a24'),
+                path: '/ThreadCount/docs/decisions/technology-selection',
+                component: ComponentCreator('/ThreadCount/docs/decisions/technology-selection', '0cc'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/guides/FRONTEND',
-                component: ComponentCreator('/guides/FRONTEND', '7e6'),
+                path: '/ThreadCount/docs/decisions/visual-style',
+                component: ComponentCreator('/ThreadCount/docs/decisions/visual-style', '314'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/guides/supabase-setup',
-                component: ComponentCreator('/guides/supabase-setup', '4af'),
+                path: '/ThreadCount/docs/exec-plans/tech-debt-tracker',
+                component: ComponentCreator('/ThreadCount/docs/exec-plans/tech-debt-tracker', 'ca7'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/intro',
-                component: ComponentCreator('/intro', '630'),
+                path: '/ThreadCount/docs/features/',
+                component: ComponentCreator('/ThreadCount/docs/features/', 'a28'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/project/QUALITY_SCORE',
-                component: ComponentCreator('/project/QUALITY_SCORE', '146'),
+                path: '/ThreadCount/docs/features/auth/design',
+                component: ComponentCreator('/ThreadCount/docs/features/auth/design', '12a'),
+                exact: true
+              },
+              {
+                path: '/ThreadCount/docs/features/auth/product-spec',
+                component: ComponentCreator('/ThreadCount/docs/features/auth/product-spec', 'b3b'),
+                exact: true
+              },
+              {
+                path: '/ThreadCount/docs/features/outfit-builder/design',
+                component: ComponentCreator('/ThreadCount/docs/features/outfit-builder/design', 'fd8'),
+                exact: true
+              },
+              {
+                path: '/ThreadCount/docs/features/outfit-builder/exec-plan',
+                component: ComponentCreator('/ThreadCount/docs/features/outfit-builder/exec-plan', '961'),
+                exact: true
+              },
+              {
+                path: '/ThreadCount/docs/features/outfit-builder/product-spec',
+                component: ComponentCreator('/ThreadCount/docs/features/outfit-builder/product-spec', '9df'),
+                exact: true
+              },
+              {
+                path: '/ThreadCount/docs/features/previous-looks/design',
+                component: ComponentCreator('/ThreadCount/docs/features/previous-looks/design', 'a20'),
+                exact: true
+              },
+              {
+                path: '/ThreadCount/docs/features/previous-looks/product-spec',
+                component: ComponentCreator('/ThreadCount/docs/features/previous-looks/product-spec', '321'),
+                exact: true
+              },
+              {
+                path: '/ThreadCount/docs/features/style-analysis/product-spec',
+                component: ComponentCreator('/ThreadCount/docs/features/style-analysis/product-spec', '0a7'),
+                exact: true
+              },
+              {
+                path: '/ThreadCount/docs/features/user-profile/product-spec',
+                component: ComponentCreator('/ThreadCount/docs/features/user-profile/product-spec', 'd34'),
+                exact: true
+              },
+              {
+                path: '/ThreadCount/docs/features/virtual-wardrobe/exec-plan',
+                component: ComponentCreator('/ThreadCount/docs/features/virtual-wardrobe/exec-plan', 'f8d'),
+                exact: true
+              },
+              {
+                path: '/ThreadCount/docs/features/virtual-wardrobe/product-spec',
+                component: ComponentCreator('/ThreadCount/docs/features/virtual-wardrobe/product-spec', 'c24'),
+                exact: true
+              },
+              {
+                path: '/ThreadCount/docs/getting-started/architecture',
+                component: ComponentCreator('/ThreadCount/docs/getting-started/architecture', '2c5'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/references/api-contracts',
-                component: ComponentCreator('/references/api-contracts', '974'),
+                path: '/ThreadCount/docs/getting-started/setup',
+                component: ComponentCreator('/ThreadCount/docs/getting-started/setup', '4ac'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/ThreadCount/docs/guides/BACKEND',
+                component: ComponentCreator('/ThreadCount/docs/guides/BACKEND', '226'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/ThreadCount/docs/guides/best-practices',
+                component: ComponentCreator('/ThreadCount/docs/guides/best-practices', '02a'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/ThreadCount/docs/guides/formatting-style',
+                component: ComponentCreator('/ThreadCount/docs/guides/formatting-style', '925'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/ThreadCount/docs/guides/FRONTEND',
+                component: ComponentCreator('/ThreadCount/docs/guides/FRONTEND', 'bb3'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/ThreadCount/docs/guides/naming-conventions',
+                component: ComponentCreator('/ThreadCount/docs/guides/naming-conventions', '52e'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/ThreadCount/docs/guides/supabase-setup',
+                component: ComponentCreator('/ThreadCount/docs/guides/supabase-setup', '626'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/ThreadCount/docs/guides/typescript',
+                component: ComponentCreator('/ThreadCount/docs/guides/typescript', 'a39'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/ThreadCount/docs/intro',
+                component: ComponentCreator('/ThreadCount/docs/intro', '55a'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/ThreadCount/docs/project/QUALITY_SCORE',
+                component: ComponentCreator('/ThreadCount/docs/project/QUALITY_SCORE', 'f6e'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/ThreadCount/docs/references/api-contracts',
+                component: ComponentCreator('/ThreadCount/docs/references/api-contracts', '58c'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               }
