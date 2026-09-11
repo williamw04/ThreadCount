@@ -1,11 +1,12 @@
+import logging
+import traceback
+
+import httpx
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
+
 from app.services.fal_client import FalClient
 from app.supabase_client import get_supabase
-import httpx
-import traceback
-import logging
-from typing import Any, Dict, List
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -16,7 +17,7 @@ router = APIRouter()
 # Detailed prompt for generating neutral fashion model avatars
 # Optimized for virtual try-on: clean background, form-fitting neutral clothing
 # Preserves user's body proportions and facial features for realistic try-on results
-AVATAR_PROMPT = """Role: You are a professional fashion photography and virtual try-on image generator. Objective: Given a photo of a person, generate a high-quality, neutral modeling image that serves as a reusable canvas for future product visualization (e.g., clothing, accessories). The output must prioritize realism, accurate body proportions, and clean separation between the model and clothing regions. Instructions: Generate a full-body fashion model photo based on the person in the input image. Preserve: Body shape and proportions Skin tone Facial structure (neutral expression) Hair shape and volume (simple, unobstructive styling) Do not stylize the face or body beyond realistic enhancement (no beauty exaggeration). Pose & Composition: Neutral, balanced stance (e.g., slight contrapposto or straight-on). Arms relaxed and positioned to avoid covering torso or hips. Legs visible and unobstructed. Camera angle: eye-level or slightly above. Framing: full body, centered, with margin around the subject. Clothing (Temporary / Placeholder): Dress the model in simple, form-fitting, neutral garments: Solid color (e.g., beige, light gray, muted pink, soft black) No logos, text, patterns, or branding Clothing should clearly define: Torso Waist Hips Legs Avoid excessive layering, accessories, or textures. Clothing must be easy to replace digitally (clean edges, no occlusion). Footwear: Minimal, neutral shoes or barefoot. No dramatic heels or complex straps unless unavoidable. Lighting & Environment: Studio lighting: soft, even, shadow-controlled. Background: plain, light neutral (white, off-white, or light gray). No props, no furniture, no background elements. Image Quality: Ultra-high resolution Sharp focus Realistic skin texture Accurate fabric drape No motion blur, no artistic effects Constraints (Important): No exaggerated fashion poses No dramatic expressions No stylization (editorial, fantasy, cinematic, anime, etc.) No cropping of limbs No body distortion No sexualiz... (line truncated to 2000 chars)
+AVATAR_PROMPT = """Role: You are a professional fashion photography and virtual try-on image generator. Objective: Given a photo of a person, generate a high-quality, neutral modeling image that serves as a reusable canvas for future product visualization (e.g., clothing, accessories). The output must prioritize realism, accurate body proportions, and clean separation between the model and clothing regions. Instructions: Generate a full-body fashion model photo based on the person in the input image. Preserve: Body shape and proportions Skin tone Facial structure (neutral expression) Hair shape and volume (simple, unobstructive styling) Do not stylize the face or body beyond realistic enhancement (no beauty exaggeration). Pose & Composition: Neutral, balanced stance (e.g., slight contrapposto or straight-on). Arms relaxed and positioned to avoid covering torso or hips. Legs visible and unobstructed. Camera angle: eye-level or slightly above. Framing: full body, centered, with margin around the subject. Clothing (Temporary / Placeholder): Dress the model in simple, form-fitting, neutral garments: Solid color (e.g., beige, light gray, muted pink, soft black) No logos, text, patterns, or branding Clothing should clearly define: Torso Waist Hips Legs Avoid excessive layering, accessories, or textures. Clothing must be easy to replace digitally (clean edges, no occlusion). Footwear: Minimal, neutral shoes or barefoot. No dramatic heels or complex straps unless unavoidable. Lighting & Environment: Studio lighting: soft, even, shadow-controlled. Background: plain, light neutral (white, off-white, or light gray). No props, no furniture, no background elements. Image Quality: Ultra-high resolution Sharp focus Realistic skin texture Accurate fabric drape No motion blur, no artistic effects Constraints (Important): No exaggerated fashion poses No dramatic expressions No stylization (editorial, fantasy, cinematic, anime, etc.) No cropping of limbs No body distortion No sexualized posing Final Output Goal: A clean, realistic, full-body model image that functions as a neutral base canvas for future virtual try-on rendering, where tops, bottoms, dresses, shoes, and accessories can be swapped without re-posing or re-lighting the subject."""
 
 
 class GenerateAvatarRequest(BaseModel):
@@ -75,8 +76,7 @@ async def generate_avatar(request: GenerateAvatarRequest):
         # Get public URL of original photo
         # Strip "avatars/" prefix if present to get storage path
         photo_path = str(original_photo_path)
-        if photo_path.startswith("avatars/"):
-            photo_path = photo_path[8:]
+        photo_path = photo_path.removeprefix("avatars/")
 
         url_resp = supabase.storage.from_("avatars").get_public_url(photo_path)
         # Handle different response types from get_public_url
@@ -135,7 +135,7 @@ async def generate_avatar(request: GenerateAvatarRequest):
                 supabase.table("avatars").update({"model_status": "failed"}).eq(
                     "id", avatar_id
                 ).execute()
-            except:
+            except Exception:
                 pass
 
         raise HTTPException(status_code=500, detail=str(e))

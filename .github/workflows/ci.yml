@@ -43,8 +43,8 @@ jobs:
         run: npm run lint
       - name: Format check
         run: npm run format:check
-      - name: Test
-        run: npm run test:run
+      - name: Test (with coverage floor)
+        run: npm run test:coverage
       - name: Build
         run: npm run build
 
@@ -65,7 +65,11 @@ jobs:
           cache-dependency-path: backend/requirements.txt
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Test
+      - name: Lint
+        run: ruff check .
+      - name: Format check
+        run: ruff format --check .
+      - name: Test (with coverage floor)
         run: pytest
 
   docs:

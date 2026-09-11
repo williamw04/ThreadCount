@@ -1,11 +1,12 @@
-from fastapi import APIRouter, HTTPException, UploadFile, File, Form
-from pydantic import BaseModel
-from app.services.fal_client import FalClient
-from app.supabase_client import get_supabase
-import httpx
 import logging
 import uuid
-from typing import Optional
+
+import httpx
+from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+from pydantic import BaseModel
+
+from app.services.fal_client import FalClient
+from app.supabase_client import get_supabase
 
 logger = logging.getLogger(__name__)
 

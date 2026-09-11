@@ -1,11 +1,13 @@
-from fastapi import APIRouter, HTTPException, Form, UploadFile, File
-from pydantic import BaseModel
-from typing import List, Optional
-from app.supabase_client import get_supabase
-from app.services.thumbnail_generator import ThumbnailGenerator
 import logging
 import uuid
 from datetime import datetime
+from typing import List, Optional
+
+from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+from pydantic import BaseModel
+
+from app.services.thumbnail_generator import ThumbnailGenerator
+from app.supabase_client import get_supabase
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

@@ -1,28 +1,30 @@
 name: Deploy non-production
 
+# Runs only after the CI workflow succeeds on a push to develop or feature/**.
 on:
-  push:
-    branches:
-      - develop
-      - 'feature/**'
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
 
 permissions:
   contents: read
 
 concurrency:
-  group: deploy-${{ github.ref }}
+  group: deploy-${{ github.event.workflow_run.head_branch }}
   cancel-in-progress: true
 
 jobs:
   frontend-preview:
     name: Deploy frontend preview
-    if: startsWith(github.ref, 'refs/heads/feature/')
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && startsWith(github.event.workflow_run.head_branch, 'feature/')
     runs-on: ubuntu-latest
     environment:
       name: preview
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -42,13 +44,15 @@ jobs:
 
   staging:
     name: Deploy staging
-    if: github.ref == 'refs/heads/develop'
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'develop'
     runs-on: ubuntu-latest
     environment:
       name: staging
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
