@@ -45,3 +45,6 @@ coverage/
 .pytest_cache/
 .coverage
 *.cover
+
+# Claude Code worktrees (one per agent)
+.claude/worktrees/
