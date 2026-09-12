@@ -1,0 +1,2 @@
+cd frontend && npm run typecheck && npm run test:run && cd ..
+cd backend; PY=.venv/bin/python; [ -x "$PY" ] || PY=python3; $PY -m pytest -q

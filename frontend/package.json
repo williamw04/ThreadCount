@@ -16,7 +16,7 @@
     "test:coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
     "lint-staged": "lint-staged",
-    "prepare": "husky"
+    "prepare": "cd .. && husky"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
