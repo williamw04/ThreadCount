@@ -32,4 +32,4 @@ Run `/pr-review-toolkit:review-pr` (parallel). Then `/security-review`. Then `/c
 When the branch is clean, commit, then run `.claude/hooks/mark-reviewed.sh`. This records the reviewed HEAD; `guard-bash.sh` refuses `git push` for any commit without it, so any commit after the review needs the review rerun and the marker rewritten.
 
 ## 5. Ship
-Use `superpowers:finishing-a-development-branch`. Open the PR against `develop` with the template. CI, the ruleset, and the Claude review action take it from there. `main` is only ever reached through a merged PR; `.claude/hooks/guard-bash.sh` blocks the shortcuts.
+Use `superpowers:finishing-a-development-branch`. Open the PR against `develop` with the template. CI, the ruleset, and the Gemini review action take it from there. `main` is only ever reached through a merged PR; `.claude/hooks/guard-bash.sh` blocks the shortcuts.
