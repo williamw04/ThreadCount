@@ -20,10 +20,18 @@ jobs:
     if: github.actor != 'dependabot[bot]' && !github.event.pull_request.draft
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      # Skip cleanly until the ANTHROPIC_API_KEY secret exists: gh secret set ANTHROPIC_API_KEY
+      - id: key
+        run: |
+          present=${{ secrets.ANTHROPIC_API_KEY != '' }}
+          echo "present=$present" >> "$GITHUB_OUTPUT"
+          [ "$present" = true ] || echo "::notice::ANTHROPIC_API_KEY not set; skipping Claude review"
+      - if: steps.key.outputs.present == 'true'
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: anthropics/claude-code-action@v1
+      - if: steps.key.outputs.present == 'true'
+        uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           plugin_marketplaces: "https://github.com/anthropics/claude-code.git"
