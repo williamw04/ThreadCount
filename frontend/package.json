@@ -22,7 +22,8 @@
     "*.{ts,tsx}": [
       "eslint --fix",
       "prettier --write"
-    ]
+    ],
+    "*.{js,json,css,md}": "prettier --write"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.95.3",

@@ -29,12 +29,21 @@ export default tseslint.config(
     ['store', ['components', 'pages']],
     ['components/**', ['pages']],
   ].map(([layer, later]) => ({
-    files: [`src/features/*/${layer}.ts`, `src/features/*/${layer}.tsx`, `src/features/*/${layer}/**`],
+    files: [
+      `src/features/*/${layer}.ts`,
+      `src/features/*/${layer}.tsx`,
+      `src/features/*/${layer}/**`,
+    ],
     ignores: ['**/*.test.*'],
     rules: {
       'no-restricted-imports': [
         'error',
-        { patterns: later.map((l) => ({ group: [`**/${l}`, `**/${l}/**`], message: `${layer} must not import from ${l}` })) },
+        {
+          patterns: later.map((l) => ({
+            group: [`**/${l}`, `**/${l}/**`],
+            message: `${layer} must not import from ${l}`,
+          })),
+        },
       ],
     },
   })),
