@@ -29,5 +29,7 @@ For UI changes, open the feature with the Playwright MCP tools and attach a scre
 ## 4. Validate
 Run `/pr-review-toolkit:review-pr` (parallel). Then `/security-review`. Then `/code-review` for confidence-scored findings. Fix findings and rerun stage 3. At most two rounds; after that, list the open findings in the PR for a human. Run `pr-review-toolkit:code-simplifier` once clean.
 
+When the branch is clean, commit, then run `.claude/hooks/mark-reviewed.sh`. This records the reviewed HEAD; `guard-bash.sh` refuses `git push` for any commit without it, so any commit after the review needs the review rerun and the marker rewritten.
+
 ## 5. Ship
 Use `superpowers:finishing-a-development-branch`. Open the PR against `develop` with the template. CI, the ruleset, and the Claude review action take it from there. `main` is only ever reached through a merged PR; `.claude/hooks/guard-bash.sh` blocks the shortcuts.
