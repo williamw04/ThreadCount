@@ -91,7 +91,8 @@ export function LookDetailModal({ look, onClose, onDelete }: LookDetailModalProp
               </span>
 
               <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                {(look.type === 'saved' && look.name) || (look.type === 'saved' ? 'Saved Outfit' : 'AI Render')}
+                {(look.type === 'saved' && look.name) ||
+                  (look.type === 'saved' ? 'Saved Outfit' : 'AI Render')}
               </h2>
 
               <p className="text-gray-500 text-sm mb-4">{formattedDate}</p>

@@ -19,7 +19,33 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       'no-console': 'warn',
+      'max-lines': ['error', { max: 300, skipBlankLines: true, skipComments: true }],
     },
   },
+  // Layer rule from AGENTS.md: Types -> API -> Stores -> Components -> Pages, forward only.
+  ...[
+    ['types', ['api', 'store', 'components', 'pages']],
+    ['api', ['store', 'components', 'pages']],
+    ['store', ['components', 'pages']],
+    ['components/**', ['pages']],
+  ].map(([layer, later]) => ({
+    files: [
+      `src/features/*/${layer}.ts`,
+      `src/features/*/${layer}.tsx`,
+      `src/features/*/${layer}/**`,
+    ],
+    ignores: ['**/*.test.*'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: later.map((l) => ({
+            group: [`**/${l}`, `**/${l}/**`],
+            message: `${layer} must not import from ${l}`,
+          })),
+        },
+      ],
+    },
+  })),
   eslintConfigPrettier,
 );

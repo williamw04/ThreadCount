@@ -1,8 +1,10 @@
-import google.generativeai as genai
-from app.config import get_settings
-import logging
 import base64
-from typing import Dict, List, Any
+import logging
+from typing import Any, Dict, List
+
+import google.generativeai as genai
+
+from app.config import get_settings
 
 logger = logging.getLogger(__name__)
 

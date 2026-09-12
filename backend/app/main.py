@@ -1,15 +1,17 @@
 import os
+
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+
 from app.api.routes import (
-    avatar,
-    wardrobe,
-    image_processing,
     ai,
+    avatar,
+    generated_images,
+    image_processing,
     outfits,
     try_on,
-    generated_images,
+    wardrobe,
 )
 
 app = FastAPI(title="Seamless API")

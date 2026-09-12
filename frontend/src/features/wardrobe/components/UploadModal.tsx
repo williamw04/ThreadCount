@@ -1,3 +1,4 @@
+/* eslint-disable max-lines -- ponytail: pre-existing 377 lines, split when next touched */
 import { useState, useRef, useEffect } from 'react';
 import { clsx } from 'clsx';
 import { Button } from '@/shared/ui/Button';

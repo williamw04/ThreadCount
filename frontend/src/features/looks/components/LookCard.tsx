@@ -45,7 +45,8 @@ export function LookCard({ look, onClick }: LookCardProps) {
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
         <div className="absolute bottom-0 left-0 right-0 p-3">
           <p className="text-white font-medium truncate">
-            {(look.type === 'saved' && look.name) || (look.type === 'saved' ? 'Saved Outfit' : 'AI Render')}
+            {(look.type === 'saved' && look.name) ||
+              (look.type === 'saved' ? 'Saved Outfit' : 'AI Render')}
           </p>
           <p className="text-white/70 text-sm">{formattedDate}</p>
         </div>

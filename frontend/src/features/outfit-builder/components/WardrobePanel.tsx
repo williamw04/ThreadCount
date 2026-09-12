@@ -1,3 +1,4 @@
+/* eslint-disable max-lines -- ponytail: pre-existing 492 lines, split when next touched */
 import { useMemo, useState } from 'react';
 import { ArrowLeft, Check, RefreshCcw, Sparkles } from 'lucide-react';
 import { useOutfitBuilderStore } from '../store';
