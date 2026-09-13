@@ -12,10 +12,13 @@ if echo "$cmd" | grep -qE -- '--no-verify|git\s+push\b[^|;&]*(--force|\s-f\b|(^|
   exit 2
 fi
 
-# Agents never merge. A human reviewer does the final review and merges.
-# Covers gh pr merge, gh alias (could alias a merge), REST and GraphQL merges via gh api, and curl to the API.
-if echo "$cmd" | grep -qE 'gh\s+pr\s+merge\b|gh\s+alias\b|gh\s+api\b[^|;&]*(/merges?\b|graphql)|api\.github\.com[^|;&]*/merges?\b'; then
-  echo "blocked by .claude/hooks/guard-bash.sh: agents do not merge PRs or enable auto-merge. Leave the PR for a human reviewer." >&2
+# No direct merges (docs/decisions/merge-policy.md). Merging is GitHub auto-merge on a develop PR
+# or a human's click on a main PR. `gh pr merge --auto` only arms auto-merge, which the rulesets
+# govern, so it is allowed. Blocked: gh pr merge without --auto, gh alias (could alias a merge),
+# REST and GraphQL merges via gh api, and curl to the API.
+merge_cmd=$(echo "$cmd" | tr ';|&' '\n' | grep -E 'gh\s+pr\s+merge\b' | grep -vE -- '--auto\b')   # one segment per command
+if [ -n "$merge_cmd" ] || echo "$cmd" | grep -qE 'gh\s+alias\b|gh\s+api\b[^|;&]*(/merges?\b|graphql)|api\.github\.com[^|;&]*/merges?\b'; then
+  echo "blocked by .claude/hooks/guard-bash.sh: no direct merges. Use auto-merge on a develop PR (gh pr merge --auto --squash, or the set_auto_merge tool); a human merges main PRs. See docs/decisions/merge-policy.md." >&2
   exit 2
 fi
 

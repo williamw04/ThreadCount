@@ -16,16 +16,14 @@ blocked 'npm test && git push origin main'; blocked 'eval "git push origin main"
 blocked 'if true; then git push --force; fi'
 blocked $'cat <<EOF1\nbody\nEOF1\ngit push origin main'; blocked $'cat <<< "hi"\ngit push --force'   # no stripping to fool
 blocked 'git push origin develop'; blocked 'git push -u origin HEAD:develop'
-blocked 'gh pr merge 12 --merge'; blocked 'gh pr merge --auto --squash'; blocked 'gh api -X PUT repos/o/r/pulls/12/merge'
+blocked 'gh pr merge 12 --merge'; blocked 'gh pr merge 12'; blocked 'gh api -X PUT repos/o/r/pulls/12/merge'
 blocked 'PR=12; gh api -X PUT "repos/o/r/pulls/${PR}/merge"'; blocked 'gh api graphql -f query=mutation{mergePullRequest}'
 blocked 'gh alias set m "pr merge"'; blocked 'curl -X PUT https://api.github.com/repos/o/r/pulls/12/merge'
 blocked 'gh api repos/o/r/merges -f base=develop -f head=feature/x'
+blocked 'gh pr merge 12 --auto --squash && gh pr merge 13 --squash'   # a direct merge hiding behind an --auto one
+allowed 'gh pr merge 12 --auto --squash'; allowed 'gh pr merge --auto --squash --delete-branch 12'   # arms auto-merge only
 allowed 'gh pr view 12'; allowed 'gh pr checks 12'; allowed 'gh pr create --base develop'; allowed 'gh api repos/o/r/pulls/12/files'
 allowed 'git merge origin/develop'; allowed 'git log --merges'; allowed 'git push origin feature/develop-x'
-
-# deny-auto-merge.sh must block, and must be wired to the set_auto_merge tool in settings.json.
-"$root/.claude/hooks/deny-auto-merge.sh" </dev/null 2>/dev/null; [ $? -eq 2 ] || { echo "FAIL deny-auto-merge.sh should exit 2"; exit 1; }
-jq -e '.hooks.PreToolUse[] | select(.matcher=="mcp__ccd_pr__set_auto_merge") | .hooks[0].command | test("deny-auto-merge.sh")' "$root/.claude/settings.json" >/dev/null || { echo "FAIL deny-auto-merge.sh not wired in settings.json"; exit 1; }
 allowed 'git commit -m "main menu"'; allowed 'npm run build'; allowed 'git log main..HEAD'
 allowed 'git push -u origin feature/x'; allowed 'git push origin feature/main-menu'
 # Known false positive, by design (fail closed): prose that spells out a forbidden command.
