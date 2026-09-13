@@ -13,7 +13,8 @@ if echo "$cmd" | grep -qE -- '--no-verify|git\s+push\b[^|;&]*(--force|\s-f\b|(^|
 fi
 
 # Agents never merge. A human reviewer does the final review and merges.
-if echo "$cmd" | grep -qE 'gh\s+pr\s+merge\b|gh\s+api\b[^|;&]*/pulls/[0-9]+/merge\b'; then
+# Covers gh pr merge, gh alias (could alias a merge), REST and GraphQL merges via gh api, and curl to the API.
+if echo "$cmd" | grep -qE 'gh\s+pr\s+merge\b|gh\s+alias\b|gh\s+api\b[^|;&]*(/merges?\b|graphql)|api\.github\.com[^|;&]*/merges?\b'; then
   echo "blocked by .claude/hooks/guard-bash.sh: agents do not merge PRs or enable auto-merge. Leave the PR for a human reviewer." >&2
   exit 2
 fi
