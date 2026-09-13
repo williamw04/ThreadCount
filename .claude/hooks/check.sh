@@ -15,6 +15,9 @@ blocked 'git push origin "main"'; blocked "git push origin 'main'"; blocked 'git
 blocked 'npm test && git push origin main'; blocked 'eval "git push origin main"'; blocked "sh -c 'git push --force'"
 blocked 'if true; then git push --force; fi'
 blocked $'cat <<EOF1\nbody\nEOF1\ngit push origin main'; blocked $'cat <<< "hi"\ngit push --force'   # no stripping to fool
+blocked 'git push origin develop'; blocked 'git push -u origin HEAD:develop'
+blocked 'gh pr merge 12 --merge'; blocked 'gh pr merge --auto --squash'; blocked 'gh api -X PUT repos/o/r/pulls/12/merge'
+allowed 'gh pr view 12'; allowed 'gh pr checks 12'; allowed 'gh pr create --base develop'
 allowed 'git commit -m "main menu"'; allowed 'npm run build'; allowed 'git log main..HEAD'
 allowed 'git push -u origin feature/x'; allowed 'git push origin feature/main-menu'
 # Known false positive, by design (fail closed): prose that spells out a forbidden command.

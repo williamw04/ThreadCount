@@ -7,8 +7,14 @@
 # ponytail: false positives cost one retry, false negatives cost a bypass. Keep it dumb.
 cmd=$(jq -r '.tool_input.command // empty')
 
-if echo "$cmd" | grep -qE -- '--no-verify|git\s+push\b[^|;&]*(--force|\s-f\b|(^|[[:space:]:/+"'"'"'])main([[:space:]"'"'"';)+:]|$))|rm\s+-rf\s+/(\s|$)'; then
-  echo "blocked by .claude/hooks/guard-bash.sh: no --no-verify, force pushes, pushes to main, or rm -rf /. Open a PR instead. If this only appears in text (commit message, grep), reword it." >&2
+if echo "$cmd" | grep -qE -- '--no-verify|git\s+push\b[^|;&]*(--force|\s-f\b|(^|[[:space:]:/+"'"'"'])(main|develop)([[:space:]"'"'"';)+:]|$))|rm\s+-rf\s+/(\s|$)'; then
+  echo "blocked by .claude/hooks/guard-bash.sh: no --no-verify, force pushes, pushes to main or develop, or rm -rf /. Open a PR instead. If this only appears in text (commit message, grep), reword it." >&2
+  exit 2
+fi
+
+# Agents never merge. A human reviewer does the final review and merges.
+if echo "$cmd" | grep -qE 'gh\s+pr\s+merge\b|gh\s+api\b[^|;&]*/pulls/[0-9]+/merge\b'; then
+  echo "blocked by .claude/hooks/guard-bash.sh: agents do not merge PRs or enable auto-merge. Leave the PR for a human reviewer." >&2
   exit 2
 fi
 

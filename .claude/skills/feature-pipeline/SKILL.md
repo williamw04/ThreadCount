@@ -14,7 +14,7 @@ Use `superpowers:brainstorming`. Output: a spec in `docs/features/<feature>/` wi
 Use `superpowers:writing-plans`, then `superpowers:using-git-worktrees`. Branch name `feature/<name>` from `develop`.
 
 ## 2. Build
-Use `superpowers:subagent-driven-development` with `superpowers:test-driven-development`. The first task is always the browser e2e test that demos the feature end to end, written from the spec's acceptance criteria; it fails until the feature is done and is the feature's acceptance test in the PR. Fresh implementer per task. `.claude/hooks/format.sh` formats every edit; `security-guidance` warns on sensitive edits. After each task, `superpowers:requesting-code-review`.
+Use `superpowers:subagent-driven-development` with `superpowers:test-driven-development`. Fresh implementer per task. Browser e2e tests are not written yet: they come after the Cloudflare move and the UI redesign (see `docs/decisions/cloudflare-architecture.md`, Testing). Once that suite exists, the first task of every feature becomes its browser demo test, written from the spec's acceptance criteria. `.claude/hooks/format.sh` formats every edit; `security-guidance` warns on sensitive edits. After each task, `superpowers:requesting-code-review`.
 
 ## 3. Self-check
 Use `superpowers:verification-before-completion`. The full local gate, all must pass:
@@ -32,4 +32,6 @@ Run `/pr-review-toolkit:review-pr` (parallel). Then `/security-review`. Then `/c
 When the branch is clean, commit, then run `.claude/hooks/mark-reviewed.sh`. This records the reviewed HEAD; `guard-bash.sh` refuses `git push` for any commit without it, so any commit after the review needs the review rerun and the marker rewritten.
 
 ## 5. Ship
-Use `superpowers:finishing-a-development-branch`. Open the PR against `develop` with the template, then enable auto-fix and GitHub auto-merge (squash) on it with the app's `mcp__ccd_pr__set_monitor` and `mcp__ccd_pr__set_auto_merge` tools. CI, the ruleset, and the Gemini review action take it from there: the PR merges itself once required checks pass and every review thread is resolved. `main` is only ever reached through a merged PR; `.claude/hooks/guard-bash.sh` blocks the shortcuts.
+Use `superpowers:finishing-a-development-branch`. Open the PR against `develop` with the template, then enable auto-fix on it with the app's `mcp__ccd_pr__set_monitor` tool so CI failures, conflicts, and review comments come back to this session. CI, the ruleset, and the Gemini review action take it from there.
+
+Agents never merge. Do not enable auto-merge, do not run `gh pr merge`, do not merge through the API. A human reviewer does the final review and merges. `.claude/hooks/guard-bash.sh` and the `mcp__ccd_pr__set_auto_merge` hook block the shortcuts, as they block pushes to `main` and `develop` outside a PR.
