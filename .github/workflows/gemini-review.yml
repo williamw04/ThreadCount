@@ -28,26 +28,32 @@ jobs:
           [ "$present" = true ] || echo "::notice::GEMINI_API_KEY not set; skipping Gemini review"
       - if: steps.key.outputs.present == 'true'
         uses: actions/checkout@v4
-      # ponytail: gh runs outside the model. Inside Gemini's shell tool it had no token and the model fell back to flailing with git.
+        with:
+          fetch-depth: 0
+      # Mirrors google-github-actions/run-gemini-cli/examples/workflows/pr-review: the code-review
+      # extension reads the PR and posts inline review threads through the GitHub MCP server.
       - if: steps.key.outputs.present == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr diff ${{ github.event.pull_request.number }} > pr.diff
-      - id: gemini
-        if: steps.key.outputs.present == 'true'
         uses: google-github-actions/run-gemini-cli@v0.1.22
         env:
           GEMINI_CLI_TRUST_WORKSPACE: "true"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
-          prompt: |
-            Review the pull request diff in the file pr.diff. Read other files in the repo only when a hunk is not enough on its own.
-            Report only bugs, security issues, and behaviour regressions you are confident about, at most 5, each with file:line and a one-line fix. If there are none, say so in one line.
-            Reply with the review in markdown and nothing else.
-          settings: '{"maxSessionTurns": 10, "coreTools": ["read_file"]}'
-      - if: steps.key.outputs.present == 'true' && steps.gemini.outputs.summary != ''
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BODY: ${{ steps.gemini.outputs.summary }}
-        run: |
-          printf '## Gemini review\n\n%s\n' "$BODY" | gh pr comment ${{ github.event.pull_request.number }} --body-file -
+          gemini_debug: true
+          github_pr_number: ${{ github.event.pull_request.number }}
+          extensions: '["https://github.com/gemini-cli-extensions/code-review"]'
+          prompt: /pr-code-review
+          settings: |-
+            {
+              "model": { "maxSessionTurns": 25 },
+              "mcpServers": {
+                "github": {
+                  "command": "docker",
+                  "args": ["run", "-i", "--rm", "-e", "GITHUB_PERSONAL_ACCESS_TOKEN", "ghcr.io/github/github-mcp-server:v0.27.0"],
+                  "includeTools": ["add_comment_to_pending_review", "pull_request_read", "pull_request_review_write"],
+                  "env": { "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}" }
+                }
+              },
+              "tools": { "core": [] }
+            }
