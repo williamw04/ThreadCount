@@ -49,4 +49,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BODY: ${{ steps.gemini.outputs.summary }}
-        run: gh pr comment ${{ github.event.pull_request.number }} --body "$BODY"
+        run: |
+          printf '## Gemini review\n\n%s\n' "$BODY" | gh pr comment ${{ github.event.pull_request.number }} --body-file -
