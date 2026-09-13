@@ -7,8 +7,18 @@
 # ponytail: false positives cost one retry, false negatives cost a bypass. Keep it dumb.
 cmd=$(jq -r '.tool_input.command // empty')
 
-if echo "$cmd" | grep -qE -- '--no-verify|git\s+push\b[^|;&]*(--force|\s-f\b|(^|[[:space:]:/+"'"'"'])main([[:space:]"'"'"';)+:]|$))|rm\s+-rf\s+/(\s|$)'; then
-  echo "blocked by .claude/hooks/guard-bash.sh: no --no-verify, force pushes, pushes to main, or rm -rf /. Open a PR instead. If this only appears in text (commit message, grep), reword it." >&2
+if echo "$cmd" | grep -qE -- '--no-verify|git\s+push\b[^|;&]*(--force|\s-f\b|(^|[[:space:]:/+"'"'"'])(main|develop)([[:space:]"'"'"';)+:]|$))|rm\s+-rf\s+/(\s|$)'; then
+  echo "blocked by .claude/hooks/guard-bash.sh: no --no-verify, force pushes, pushes to main or develop, or rm -rf /. Open a PR instead. If this only appears in text (commit message, grep), reword it." >&2
+  exit 2
+fi
+
+# No direct merges (docs/decisions/merge-policy.md). Merging is GitHub auto-merge on a develop PR
+# or a human's click on a main PR. `gh pr merge --auto` only arms auto-merge, which the rulesets
+# govern, so it is allowed. Blocked: gh pr merge without --auto, gh alias (could alias a merge),
+# REST and GraphQL merges via gh api, and curl to the API.
+merge_cmd=$(echo "$cmd" | tr ';|&' '\n' | grep -E 'gh\s+pr\s+merge\b' | grep -vE -- '--auto\b')   # one segment per command
+if [ -n "$merge_cmd" ] || echo "$cmd" | grep -qE 'gh\s+alias\b|gh\s+api\b[^|;&]*(/merges?\b|graphql)|api\.github\.com[^|;&]*/merges?\b'; then
+  echo "blocked by .claude/hooks/guard-bash.sh: no direct merges. Use auto-merge on a develop PR (gh pr merge --auto --squash, or the set_auto_merge tool); a human merges main PRs. See docs/decisions/merge-policy.md." >&2
   exit 2
 fi
 
