@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { clsx } from 'clsx';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
@@ -34,16 +34,7 @@ export function UploadOutfitModal({ isOpen, onClose, onUploadSuccess }: UploadOu
   const [name, setName] = useState('');
   const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (!isOpen) {
-      setPreview(null);
-      setSelectedFile(null);
-      setIsUploading(false);
-      setName('');
-      setError(null);
-    }
-  }, [isOpen]);
+  // The parent mounts this modal only while open, so state resets on close by unmounting.
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

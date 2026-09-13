@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { WardrobeModalFrame } from './WardrobeModalFrame';
@@ -37,23 +37,12 @@ export function EditOutfitModal({
   onClose,
   onUpdateSuccess,
 }: EditOutfitModalProps) {
-  const [name, setName] = useState('');
+  // The parent mounts this modal keyed by outfit id only while open, so state
+  // starts fresh per outfit and per opening; no sync effects needed.
+  const [name, setName] = useState(outfit?.name ?? '');
   const [isLoading, setIsLoading] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (outfit) {
-      setName(outfit.name || '');
-    }
-  }, [outfit]);
-
-  useEffect(() => {
-    if (!isOpen) {
-      setShowDeleteConfirm(false);
-      setError(null);
-    }
-  }, [isOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
