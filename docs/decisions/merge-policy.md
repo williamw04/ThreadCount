@@ -18,7 +18,7 @@ Agents work autonomously end to end, but nothing reaches `main` without a human'
 ## GitHub rulesets
 
 - **protect develop**: PR required, the three CI checks required (Frontend checks, Backend checks, Documentation build), all review threads resolved, zero approvals.
-- **protect main**: the same, plus one approving review.
+- **protect main**: the same. The intended rule is one approving review, but every agent session acts under the maintainer's GitHub account, so every agent PR is authored by the maintainer, and GitHub does not let an author approve their own PR. With one human account the approval requirement would block every PR into `main`. Until agents get their own GitHub identity, required approvals stay at zero and the human step is the maintainer clicking merge; the hooks below keep agents from doing it. Raise it to one when agents have a separate identity or a second human joins.
 
 ## What that means for an agent
 
