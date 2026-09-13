@@ -1,3 +1,4 @@
+/* eslint-disable max-lines -- ponytail: pre-existing 375 lines, split when next touched */
 import { type KeyboardEvent, useCallback, useEffect, useState } from 'react';
 import { useWardrobeStore } from '../store';
 import { CATEGORY_LABELS, type Category, type WardrobeItem, type Season } from '../types';

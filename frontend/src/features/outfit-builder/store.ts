@@ -1,3 +1,4 @@
+/* eslint-disable max-lines -- ponytail: pre-existing 516 lines, split when next touched */
 /**
  * Outfit builder store — manages the canvas composition state, saved outfits,
  * and AI try-on generation.

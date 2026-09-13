@@ -1,8 +1,10 @@
-from fastapi import APIRouter, HTTPException, UploadFile, File
-from pydantic import BaseModel
-from app.services.gemini_client import GeminiClient
 import logging
 from typing import List
+
+from fastapi import APIRouter, File, HTTPException, UploadFile
+from pydantic import BaseModel
+
+from app.services.gemini_client import GeminiClient
 
 logger = logging.getLogger(__name__)
 

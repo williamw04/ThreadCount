@@ -1,6 +1,8 @@
-import fal_client
-import os
 import logging
+import os
+
+import fal_client
+
 from app.config import get_settings
 
 logger = logging.getLogger(__name__)

@@ -24,5 +24,10 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/test-setup.ts'],
     css: true,
+    coverage: {
+      include: ['src/**'],
+      // ponytail: floors are today's coverage, not the 80/70 targets in AGENTS.md. Raise as tests land.
+      thresholds: { lines: 11, statements: 11, functions: 14, branches: 12 },
+    },
   },
 });

@@ -1,12 +1,14 @@
+import logging
+import traceback
+import uuid
+from typing import List, Optional
+
+import httpx
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from typing import List, Optional
+
 from app.services.fal_client import FalClient
 from app.supabase_client import get_supabase
-import httpx
-import traceback
-import logging
-import uuid
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -143,7 +145,7 @@ async def generate_try_on(request: TryOnRequest):
         )
         enhanced_prompt = f"{TRY_ON_PROMPT}\n\nClothing items to wear:\n{clothing_list}"
 
-        logger.info(f"Calling fal.ai for try-on generation...")
+        logger.info("Calling fal.ai for try-on generation...")
         fal_client = FalClient()
 
         generated = fal_client.generate_image(all_image_urls, enhanced_prompt)

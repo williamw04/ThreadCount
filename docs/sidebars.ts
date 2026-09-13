@@ -36,6 +36,7 @@ const sidebars: SidebarsConfig = {
       label: 'Decisions',
       items: [
         'decisions/technology-selection',
+        'decisions/cloudflare-architecture',
         'decisions/core-beliefs',
         'decisions/visual-style',
         'decisions/image-processing',
