@@ -18,6 +18,7 @@ jobs:
   review:
     if: github.actor != 'dependabot[bot]' && !github.event.pull_request.draft
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       # Skip cleanly until the GEMINI_API_KEY secret exists: gh secret set GEMINI_API_KEY
       - id: key
@@ -35,23 +36,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
-          extensions: '["https://github.com/gemini-cli-extensions/code-review"]'
-          prompt: /pr-code-review
+          gemini_debug: true
+          # ponytail: plain gh calls instead of the code-review extension + docker GitHub MCP server, which hung the runner.
+          prompt: |
+            Review pull request #${{ github.event.pull_request.number }} in ${{ github.repository }}.
+            Run `gh pr diff ${{ github.event.pull_request.number }}` to get the diff. Read surrounding files with cat only when the hunk is not enough.
+            Report only bugs, security issues, and behaviour regressions you are confident about, at most 5, each with file:line and a one-line fix. If there are none, say so in one line.
+            Post the result as a single comment with `gh pr comment ${{ github.event.pull_request.number }} --body-file review.md` and stop.
           settings: |-
             {
               "maxSessionTurns": 25,
               "coreTools": [
-                "run_shell_command(gh pr view)",
                 "run_shell_command(gh pr diff)",
+                "run_shell_command(gh pr comment)",
                 "run_shell_command(cat)",
-                "run_shell_command(grep)"
-              ],
-              "mcpServers": {
-                "github": {
-                  "command": "docker",
-                  "args": ["run", "-i", "--rm", "-e", "GITHUB_PERSONAL_ACCESS_TOKEN", "ghcr.io/github/github-mcp-server:v0.27.0"],
-                  "includeTools": ["add_comment_to_pending_review", "pull_request_read", "pull_request_review_write"],
-                  "env": { "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}" }
-                }
-              }
+                "run_shell_command(grep)",
+                "write_file"
+              ]
             }
