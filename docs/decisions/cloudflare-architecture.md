@@ -177,15 +177,28 @@ The shared package is the contract. Both clients import request and response typ
 - **Shared**: round-trip tests for every schema.
 - **Web**: existing vitest suite, updated to the new client.
 - **Mobile**: vitest for stores, React Native Testing Library for screens, the iOS simulator for smoke checks.
-- **CI**: an API job joins the existing frontend, backend, and docs jobs. The backend job is removed with `backend/`. Coverage floors carry over and ratchet up.
+- **Browser**: Playwright, Chromium only, in `apps/web/e2e/`. One smoke test at first: sign in, dashboard, wardrobe, outfit builder, start a generation, see the result. It runs against a preview Worker with the real API and real staging data, with only fal.ai stubbed by the environment flag. This is the acceptance run for every feature. It is built in sub-project 2, once there is a preview Worker to run against; before that the rule would be unrunnable.
+- **Acceptance rule**: once the browser suite exists, stage 0 of the feature pipeline gains one line. A feature spec is not approved until it names the browser test that proves it, and that test exists and passes against a preview before the PR merges.
+- **CI**: an API job joins the existing frontend, backend, and docs jobs, and a browser job follows in sub-project 2. The backend job is removed with `backend/`. Coverage floors carry over and ratchet up.
 
 ---
 
-## Deployment
+## Environments and Deployment
 
-- **API**: `wrangler deploy` from GitHub Actions. `develop` deploys to a staging Worker environment with its own D1 and R2; `main` deploys to production. Migrations are applied by the same job before the deploy.
-- **Web and docs**: Cloudflare Pages projects, built from the same workflow.
-- **Secrets**: `FAL_KEY`, `GOOGLE_API_KEY`, `RESEND_API_KEY`, `BETTER_AUTH_SECRET`, and the OAuth client secrets are set with `wrangler secret` and live only in Cloudflare. The repo holds one GitHub secret, `CLOUDFLARE_API_TOKEN`.
+Two data tiers, many deployments. Production has its own D1 database and R2 bucket. Staging has its own. Every preview deployment binds to the staging data, so all development branches share one database, the same trade-off Vercel previews make.
+
+| Environment | Trigger | API | Web and docs | Data | fal.ai |
+|---|---|---|---|---|---|
+| Preview | push to `feature/**` or `fix/**`, after CI is green | One Worker per branch, named from the branch slug | Pages preview deployment, automatic per branch | Staging D1 and R2 | Stubbed by default |
+| Staging | push to `develop`, after CI is green | `api-staging` Worker | Pages branch deployment | Staging D1 and R2 | Real |
+| Production | merge to `main` | `api` Worker | Pages production | Production D1 and R2 | Real |
+
+- **Preview lifecycle**: a workflow on the branch-delete event runs `wrangler delete` for that branch's Worker, so previews do not accumulate.
+- **Migrations**: the deploy job applies pending migrations before deploying, for every environment including previews. Because previews share the staging database, migrations must be additive: add columns and tables, never drop or rename in the same change that stops using them. Destructive changes wait until no deployed branch references the column. Review enforces this rule.
+- **fal.ai stub**: a Worker environment flag. When set, the fal.ai client returns a fixed image after a short delay instead of calling out, and the webhook path runs for real. Previews set it by default so CI runs and demos do not spend generation credits. Any preview can be redeployed with it off.
+- **Webhooks**: the fal.ai webhook URL is derived from the Worker's own hostname, so a job completes against whichever deployment started it.
+- **Mobile**: the app reads its API host from an environment value at build time, so a development build can target any of the three.
+- **Secrets**: `FAL_KEY`, `GOOGLE_API_KEY`, `RESEND_API_KEY`, `BETTER_AUTH_SECRET`, and the OAuth client secrets are set per environment with `wrangler secret` and live only in Cloudflare. Previews use the staging secrets. The repo holds one GitHub secret, `CLOUDFLARE_API_TOKEN`.
 - **Local**: `wrangler dev` with local D1 and R2, and Expo pointed at it over the local network.
 
 ---
@@ -195,7 +208,7 @@ The shared package is the contract. Both clients import request and response typ
 Each gets its own implementation plan and goes through the feature pipeline.
 
 1. **Monorepo and shared contract.** Move `frontend/` to `apps/web`, create `packages/shared`, extract the Zod schemas, define the API contract as Hono route types with no implementation. No behavior change. Everything after depends on it.
-2. **API on Cloudflare.** Build `apps/api`, port the 19 routes, implement auth, uploads, and the job pipeline, switch the web app to the new client, delete `backend/`, turn off Render, Supabase, and Vercel.
+2. **API on Cloudflare.** Build `apps/api`, port the 19 routes, implement auth, uploads, and the job pipeline with the fal.ai stub flag, set up the three environments including per-branch preview Workers and their cleanup, add the Playwright smoke test and the stage 0 acceptance rule, switch the web app to the new client, delete `backend/`, turn off Render, Supabase, and Vercel.
 3. **Mobile app.** Build `apps/mobile` on the shared contract: sign-in, avatar onboarding, wardrobe, outfit builder, looks.
 
 Style analysis and the other unbuilt features from the original product brief follow as ordinary features.
