@@ -14,7 +14,7 @@ Use `superpowers:brainstorming`. Output: a spec in `docs/features/<feature>/` wi
 Use `superpowers:writing-plans`, then `superpowers:using-git-worktrees`. Branch name `feature/<name>` from `develop`.
 
 ## 2. Build
-Use `superpowers:subagent-driven-development` with `superpowers:test-driven-development`. Fresh implementer per task. `.claude/hooks/format.sh` formats every edit; `security-guidance` warns on sensitive edits. After each task, `superpowers:requesting-code-review`.
+Use `superpowers:subagent-driven-development` with `superpowers:test-driven-development`. The first task is always the browser e2e test that demos the feature end to end, written from the spec's acceptance criteria; it fails until the feature is done and is the feature's acceptance test in the PR. Fresh implementer per task. `.claude/hooks/format.sh` formats every edit; `security-guidance` warns on sensitive edits. After each task, `superpowers:requesting-code-review`.
 
 ## 3. Self-check
 Use `superpowers:verification-before-completion`. The full local gate, all must pass:
