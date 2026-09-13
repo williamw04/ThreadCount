@@ -27,7 +27,7 @@ jobs:
           echo "present=$present" >> "$GITHUB_OUTPUT"
           [ "$present" = true ] || echo "::notice::GEMINI_API_KEY not set; skipping Gemini review"
       - if: steps.key.outputs.present == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
       # Mirrors google-github-actions/run-gemini-cli/examples/workflows/pr-review: the code-review
