@@ -38,6 +38,9 @@ jobs:
           GEMINI_CLI_TRUST_WORKSPACE: "true"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # The /pr-code-review command reads these; without them the model goes looking with `env` and `git`.
+          REPOSITORY: ${{ github.repository }}
+          PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
           gemini_debug: true
