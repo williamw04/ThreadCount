@@ -62,7 +62,6 @@ export function WardrobePage() {
   const [showColorFilter, setShowColorFilter] = useState(false);
   const [showSeasonFilter, setShowSeasonFilter] = useState(false);
   const [uploadedOutfits, setUploadedOutfits] = useState<UploadedOutfit[]>([]);
-  // Derived, not stored: the spinner shows until the first fetch settles, and never without a user.
   const [hasLoadedOutfits, setHasLoadedOutfits] = useState(false);
   const isLoadingOutfits = !hasLoadedOutfits && !!user;
 
