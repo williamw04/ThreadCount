@@ -1,5 +1,7 @@
 # API Contracts
 
+> **This document describes the current FastAPI backend, which is being replaced.** The contract for the new API lives in code at `packages/shared/src/contract.ts` and its entity schemas at `packages/shared/src/schemas.ts`. See `docs/decisions/cloudflare-architecture.md`. Until sub-project 2 ships, the web app still calls the endpoints below.
+
 **Version:** 1.0.0
 **Base URL:** `{VITE_API_URL || http://localhost:8000}`
 
