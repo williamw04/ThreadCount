@@ -5,10 +5,10 @@ updates:
     schedule: { interval: weekly }
     target-branch: develop
   - package-ecosystem: npm
-    directory: /frontend
+    directory: /
     schedule: { interval: weekly }
     target-branch: develop
-    groups: { frontend: { patterns: ["*"] } }
+    groups: { workspaces: { patterns: ["*"] } }
     ignore:
       # typescript-eslint does not support TypeScript 7 yet; drop this when it does.
       - dependency-name: typescript

@@ -2,7 +2,7 @@
 
 **Status**: In Progress
 **Priority**: P0
-**Domain**: Wardrobe (`frontend/src/features/wardrobe/`)
+**Domain**: Wardrobe (`apps/web/src/features/wardrobe/`)
 **Last Updated**: 2026-04-15
 
 ## User Story

@@ -127,7 +127,7 @@ For the initial implementation, client-side filtering is simpler and sufficient 
 The feature is planned but not yet implemented. Key files to create:
 
 ```
-frontend/src/features/looks/
+apps/web/src/features/looks/
 ├── types/
 │   └── looks.ts
 ├── api/

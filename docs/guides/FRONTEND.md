@@ -22,10 +22,10 @@ See [Getting Started](../getting-started/setup.md) for detailed setup instructio
 
 ## Frontend Shape
 
-- App shell starts in `frontend/src/App.tsx` and renders `AppRoutes`.
-- Route config lives in `frontend/src/routes/index.tsx`.
-- Shared primitives live in `frontend/src/shared/`.
-- Domain code lives in `frontend/src/features/`.
+- App shell starts in `apps/web/src/App.tsx` and renders `AppRoutes`.
+- Route config lives in `apps/web/src/routes/index.tsx`.
+- Shared primitives live in `apps/web/src/shared/`.
+- Domain code lives in `apps/web/src/features/`.
 
 ## Implemented Feature Domains
 
@@ -55,7 +55,7 @@ Rules:
 - Prefer named exports.
 - Keep files under 300 lines.
 - Parse API responses with zod at the boundary.
-- Shared UI belongs in `frontend/src/shared/ui/`.
+- Shared UI belongs in `apps/web/src/shared/ui/`.
 - Do not import another feature's components directly; share types or shared primitives instead.
 
 ## Routing
@@ -64,18 +64,18 @@ Rules:
 
 | Route | Access | Source |
 | --- | --- | --- |
-| `/` | Redirects to `/login` | `frontend/src/routes/index.tsx` |
+| `/` | Redirects to `/login` | `apps/web/src/routes/index.tsx` |
 | `/login` | Public | `auth` |
 | `/signup` | Public | `auth` |
 | `/onboarding` | Protected | `onboarding` |
 | `/dashboard` | Protected | `dashboard` |
 | `/wardrobe` | Protected | `wardrobe` |
 | `/outfit-builder` | Protected | `outfit-builder` |
-| `*` | Redirects to `/login` | `frontend/src/routes/index.tsx` |
+| `*` | Redirects to `/login` | `apps/web/src/routes/index.tsx` |
 
 ### Planned routes
 
-These are referenced as placeholders in `frontend/src/routes/index.tsx` but are not implemented:
+These are referenced as placeholders in `apps/web/src/routes/index.tsx` but are not implemented:
 
 - `/outfits`
 - `/previous-looks`
@@ -86,11 +86,11 @@ These are referenced as placeholders in `frontend/src/routes/index.tsx` but are 
 
 - Public routes render directly.
 - Protected routes are wrapped by `ProtectedRoute`.
-- Auth initialization runs once from `frontend/src/App.tsx` via `useAuthStore().initialize()`.
+- Auth initialization runs once from `apps/web/src/App.tsx` via `useAuthStore().initialize()`.
 
 ## API Pattern
 
-- Use shared clients from `frontend/src/shared/api/`.
+- Use shared clients from `apps/web/src/shared/api/`.
 - Include the Supabase session token when calling backend endpoints that require auth.
 - Return parsed, typed data from feature API modules.
 
@@ -100,7 +100,7 @@ These are referenced as placeholders in `frontend/src/routes/index.tsx` but are 
 - Current documentation direction is monochrome brutalist luxury inspired by Gentle Monster.
 - Favor sharp borders, hard-edged panels, restrained color, and garment-first composition.
 - Desktop-only support begins at `1024px`; do not add mobile drawers or hamburger navigation patterns.
-- Use the shared viewport tokens in `frontend/src/styles/globals.css`: `--page-px`, `--header-h`, `--controls-h`, and `--canvas-h`.
+- Use the shared viewport tokens in `apps/web/src/styles/globals.css`: `--page-px`, `--header-h`, `--controls-h`, and `--canvas-h`.
 - The outfit builder is a locked viewport shell. Keep body scroll disabled while active, keep the controls row fixed to `--controls-h`, and allow only internal side-panel scrolling.
 
 ## Testing

@@ -2,7 +2,7 @@
 
 **Status**: Planned
 **Priority**: P1
-**Domain**: Looks (`frontend/src/features/looks/`)
+**Domain**: Looks (`apps/web/src/features/looks/`)
 **Last Updated**: 2026-04-17
 
 ## User Story

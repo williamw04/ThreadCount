@@ -1,5 +1,5 @@
 {
-  "name": "seamless-frontend",
+  "name": "@seamless/web",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -14,9 +14,7 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "typecheck": "tsc --noEmit",
-    "lint-staged": "lint-staged",
-    "prepare": "cd .. && husky"
+    "typecheck": "tsc --noEmit"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -51,7 +49,6 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.6",
-    "husky": "^9.1.7",
     "jsdom": "^30.0.1",
     "lint-staged": "^17.5.1",
     "prettier": "^3.9.6",
