@@ -172,7 +172,7 @@ In both jobs, change every `cache-dependency-path: frontend/package-lock.json` t
         run: npm ci
 ```
 
-and change every other `working-directory: frontend` to `working-directory: apps/web`.
+The Vercel deploy steps (`npx vercel deploy`) must run from the repo root, with no `working-directory` set, because the Vercel CLI uploads its working directory: pointing it at `apps/web` uploads a directory with no lockfile and a workspace-only `@seamless/shared` dependency, and the deploy fails.
 
 Manual prerequisite, outside the repo: in the Vercel project settings, set Root Directory to `apps/web`. Until that is done, preview deploys fail at the Vercel step; CI is unaffected. Vercel is replaced in sub-project 2.
 

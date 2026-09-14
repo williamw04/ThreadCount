@@ -83,7 +83,7 @@
 **Status**: ✅ Implemented
 - Complete layer structure: types, api, store, components, pages
 - Viewport-locked builder shell is implemented across `AppShell`, `OutfitBuilderPage`, and shared viewport CSS tokens
-- Tests: broad store coverage in `frontend/src/features/outfit-builder/store.test.ts`
+- Tests: broad store coverage in `apps/web/src/features/outfit-builder/store.test.ts`
 - Missing: `AppShell` builder-mode tests, `OutfitBuilderPage` integration tests, and viewport containment validation for `100dvh` overflow regressions
 - Next steps: add `AppShell` tests for builder route behavior, add builder page tests for shell structure and controls, then add viewport validation checks for header/canvas/controls containment
 
@@ -225,7 +225,7 @@
 
 To run coverage reports:
 ```bash
-cd frontend
+cd apps/web
 npm run test:coverage
 ```
 

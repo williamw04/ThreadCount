@@ -1,2 +1,2 @@
-cd frontend && npm run typecheck && npm run test:run && cd ..
+npm run typecheck -w apps/web && npm run test:run -w apps/web && npm test -w packages/shared
 cd backend; PY=.venv/bin/python; [ -x "$PY" ] || PY=python3; $PY -m pytest -q

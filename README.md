@@ -6,7 +6,7 @@ Fashion web app where users upload photos to create avatars, build virtual wardr
 
 ```bash
 # Frontend
-cd frontend && npm install && npm run dev
+cd apps/web && npm install && npm run dev
 
 # Backend
 cd backend
@@ -29,7 +29,7 @@ uvicorn app.main:app --reload
 ## Project Structure
 
 ```
-frontend/          # React SPA
+apps/web/          # React SPA
 backend/           # FastAPI service
 docs/              # Feature specs, design docs, guides
 supabase/          # DB & storage config

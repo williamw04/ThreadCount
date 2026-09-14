@@ -62,7 +62,7 @@ npm run start  # Runs at http://localhost:3000
 
 ## Tech Stack
 
-### Frontend (`frontend/`)
+### Frontend (`apps/web/`)
 
 - React 19 + TypeScript
 - Vite 7 + SWC
@@ -83,7 +83,7 @@ npm run start  # Runs at http://localhost:3000
 
 ### Architectural Layers (Frontend)
 
-Within each domain (`frontend/src/features/`), dependencies flow forward:
+Within each domain (`apps/web/src/features/`), dependencies flow forward:
 
 ```
 Types → API → Stores → Components → Pages

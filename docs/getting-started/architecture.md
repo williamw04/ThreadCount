@@ -6,7 +6,7 @@ This document covers the system architecture, frontend structure, and developmen
 
 Seamless is a full-stack fashion application in one repository.
 
-- `frontend/`: React SPA for auth, onboarding, dashboard, wardrobe, and outfit building.
+- `apps/web/`: React SPA for auth, onboarding, dashboard, wardrobe, and outfit building.
 - `backend/`: FastAPI service for business logic and integrations.
 - `supabase/`: database, auth, and storage configuration.
 
@@ -21,7 +21,7 @@ React frontend <-> FastAPI backend <-> Supabase
 ## Frontend Structure
 
 ```
-frontend/src/
+apps/web/src/
 |- features/    # feature domains
 |- shared/      # reusable ui and api utilities
 |- routes/      # router definition
@@ -62,7 +62,7 @@ Types -> API -> Stores -> Components -> Pages
 ### Constraints
 
 - Dependencies move forward only
-- Shared code belongs in `frontend/src/shared/`
+- Shared code belongs in `apps/web/src/shared/`
 - Cross-feature reuse through shared primitives or types, not direct imports
 
 ## Current Route Map
@@ -118,6 +118,19 @@ Types -> API -> Stores -> Components -> Pages
 | fal-client | AI image generation |
 | Google GenerativeAI | AI image analysis |
 | Pydantic | Data validation |
+
+## Repository Layout
+
+npm workspaces. Install once at the root with `npm ci`; run a package's scripts with `npm run <script> -w <package>`.
+
+| Path | Package | Purpose |
+|---|---|---|
+| `apps/web` | `@seamless/web` | React web app (moved from `frontend/`) |
+| `packages/shared` | `@seamless/shared` | Enums, entity schemas, and the typed API contract shared by every client and the API |
+| `backend` | Python, not a workspace | FastAPI backend, replaced in the Cloudflare migration |
+| `docs` | own lockfile, not a workspace | This Docusaurus site |
+
+`packages/shared` exports TypeScript source; there is no build step. Vite, Vitest, and tsc resolve it through the package `exports` field.
 
 ## See Also
 
