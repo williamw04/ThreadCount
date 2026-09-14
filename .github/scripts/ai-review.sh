@@ -15,22 +15,32 @@ trap 'rm -rf "$work"' EXIT
 
 # 1. Gather the PR.
 gh pr view "$PR" --json title,body,files --jq '"# \(.title)\n\n\(.body // "")"' > "$work/meta.md"
-gh pr view "$PR" --json files --jq '.files[].path' > "$work/files.txt"
+# Paginated: gh pr view --json files stops at 100.
+gh api "repos/$REPO/pulls/$PR/files" --paginate --jq '.[].filename' > "$work/files.txt"
 gh pr diff "$PR" > "$work/diff.patch"
 
 # 2. Linters on the changed files that exist on disk. Output is context, never a failure.
 files=(); while IFS= read -r f; do files+=("$f"); done < "$work/files.txt"
-ts=(); py=()
+py=(); : > "$work/ts.tsv"
 for f in "${files[@]}"; do
   [ -f "$f" ] || continue
   case "$f" in
-    frontend/*.ts|frontend/*.tsx) ts+=("${f#frontend/}") ;;
+    *.ts|*.tsx)
+      # eslint runs from the nearest package with its own eslint config, so each workspace's rules apply.
+      d=$(dirname "$f")
+      while [ "$d" != "." ] && [ ! -f "$d/eslint.config.js" ] && [ ! -f "$d/eslint.config.mjs" ]; do d=$(dirname "$d"); done
+      [ "$d" = "." ] || printf '%s\t%s\n' "$d" "${f#"$d"/}" >> "$work/ts.tsv" ;;
     backend/*.py) py+=("$f") ;;
   esac
 done
 {
-  if [ ${#ts[@]} -gt 0 ] && [ -d frontend/node_modules ]; then
-    echo "## eslint"; (cd frontend && npx eslint "${ts[@]}" 2>&1) || true
+  if [ -s "$work/ts.tsv" ] && { [ -d node_modules ] || [ -d frontend/node_modules ]; }; then
+    echo "## eslint"
+    cut -f1 "$work/ts.tsv" | sort -u | while IFS= read -r d; do
+      rel=$(awk -F'\t' -v d="$d" '$1 == d { print $2 }' "$work/ts.tsv")
+      # shellcheck disable=SC2086
+      (cd "$d" && npx eslint $rel 2>&1) || true
+    done
   fi
   if [ ${#py[@]} -gt 0 ] && command -v ruff >/dev/null; then
     echo "## ruff"; ruff check --output-format concise "${py[@]}" 2>&1 || true
@@ -68,7 +78,7 @@ jq -n --arg model "$MODEL" --arg system "$system" \
 
 if [ "${DRY_RUN:-}" = 1 ]; then
   echo "payload bytes: $(wc -c < "$work/payload.json"); files: ${#files[@]}; lint lines: $(wc -l < "$work/lint.txt")"
-  jq -r '.messages[1].content' "$work/payload.json" | head -40
+  cat "$work/lint.txt"
   exit 0
 fi
 
