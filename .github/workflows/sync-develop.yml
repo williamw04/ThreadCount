@@ -1,0 +1,44 @@
+name: Sync develop with main
+
+# After anything lands on main (a promotion, a CI change, a Dependabot bump), open a
+# merge-commit PR from main into develop so feature branches cut from develop carry it.
+# Needs the SYNC_TOKEN secret: a fine-grained PAT with contents and pull-requests write.
+# PRs opened with the default GITHUB_TOKEN do not trigger CI, so the required checks
+# would never run on them. Skips with a notice until the secret exists.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: sync-develop
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - id: key
+        run: |
+          present=${{ secrets.SYNC_TOKEN != '' }}
+          echo "present=$present" >> "$GITHUB_OUTPUT"
+          [ "$present" = true ] || echo "::notice::SYNC_TOKEN not set; skipping develop sync. Open the main -> develop PR by hand."
+      - if: steps.key.outputs.present == 'true'
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - if: steps.key.outputs.present == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_TOKEN }}
+        run: |
+          behind=$(git rev-list --count origin/develop..origin/main)
+          if [ "$behind" = 0 ]; then echo "develop is up to date"; exit 0; fi
+          existing=$(gh pr list --base develop --head main --state open --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then echo "sync PR #$existing already open"; exit 0; fi
+          url=$(gh pr create --base develop --head main \
+            --title "chore: sync develop with main" \
+            --body "Automated: brings develop up to main ($behind commits). Merge commit, not squash, so history stays shared.")
+          gh pr merge "$url" --auto --merge
