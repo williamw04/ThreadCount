@@ -3,9 +3,11 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule: { interval: weekly }
+    target-branch: develop
   - package-ecosystem: npm
     directory: /frontend
     schedule: { interval: weekly }
+    target-branch: develop
     groups: { frontend: { patterns: ["*"] } }
     ignore:
       # typescript-eslint does not support TypeScript 7 yet; drop this when it does.
@@ -14,8 +16,10 @@ updates:
   - package-ecosystem: npm
     directory: /docs
     schedule: { interval: weekly }
+    target-branch: develop
     groups: { docs: { patterns: ["*"] } }
   - package-ecosystem: pip
     directory: /backend
     schedule: { interval: weekly }
+    target-branch: develop
     groups: { backend: { patterns: ["*"] } }
