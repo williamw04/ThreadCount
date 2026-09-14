@@ -1,0 +1,47 @@
+name: AI review
+
+# Advisory: one model call per PR, findings posted as an inline review. Not a required check.
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: ai-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    if: github.actor != 'dependabot[bot]' && !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # Skip cleanly until the MUSE_API_KEY secret exists: gh secret set MUSE_API_KEY
+      - id: key
+        run: |
+          present=${{ secrets.MUSE_API_KEY != '' }}
+          echo "present=$present" >> "$GITHUB_OUTPUT"
+          [ "$present" = true ] || echo "::notice::MUSE_API_KEY not set; skipping AI review"
+      - if: steps.key.outputs.present == 'true'
+        uses: actions/checkout@v4
+      - if: steps.key.outputs.present == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - if: steps.key.outputs.present == 'true'
+        working-directory: frontend
+        run: npm ci
+      - if: steps.key.outputs.present == 'true'
+        run: pip install --quiet ruff
+      - if: steps.key.outputs.present == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MUSE_API_KEY: ${{ secrets.MUSE_API_KEY }}
+          PR: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: .github/scripts/ai-review.sh
