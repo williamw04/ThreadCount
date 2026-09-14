@@ -62,8 +62,9 @@ export function WardrobePage() {
   const [showColorFilter, setShowColorFilter] = useState(false);
   const [showSeasonFilter, setShowSeasonFilter] = useState(false);
   const [uploadedOutfits, setUploadedOutfits] = useState<UploadedOutfit[]>([]);
-  // Starts true only when there is a user to fetch for, so the early return below never strands the spinner.
-  const [isLoadingOutfits, setIsLoadingOutfits] = useState(!!user);
+  // Derived, not stored: the spinner shows until the first fetch settles, and never without a user.
+  const [hasLoadedOutfits, setHasLoadedOutfits] = useState(false);
+  const isLoadingOutfits = !hasLoadedOutfits && !!user;
 
   /**
    * Fetches user-uploaded outfit photos directly from Supabase.
@@ -87,7 +88,7 @@ export function WardrobePage() {
         setUploadedOutfits(data || []);
       })
       .catch((err: unknown) => console.error('Failed to fetch uploaded outfits:', err))
-      .finally(() => setIsLoadingOutfits(false));
+      .finally(() => setHasLoadedOutfits(true));
   }, [user]);
 
   useEffect(() => {
