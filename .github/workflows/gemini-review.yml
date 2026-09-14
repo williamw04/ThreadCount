@@ -43,13 +43,15 @@ jobs:
           PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
-          gemini_debug: true
+          # Debug streaming overflowed the 1MB step summary; full stdout/stderr go to a run artifact instead.
+          gemini_debug: false
+          upload_artifacts: true
           github_pr_number: ${{ github.event.pull_request.number }}
           extensions: '["https://github.com/gemini-cli-extensions/code-review"]'
           prompt: /pr-code-review
           settings: |-
             {
-              "model": { "maxSessionTurns": 25 },
+              "model": { "maxSessionTurns": 60 },
               "mcpServers": {
                 "github": {
                   "command": "docker",
