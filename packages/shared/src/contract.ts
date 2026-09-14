@@ -12,7 +12,10 @@ import {
  * The API contract. Each route names its method, path, and the Zod schemas for
  * params, query, body, and response. The Worker validates requests against these
  * and the clients type their calls from them. The fal.ai webhook is not here: it
- * is called by fal.ai, not by a client.
+ * is called by fal.ai, not by a client. `auth/*` is not here either: Better Auth
+ * serves those routes directly, and both clients call them through Better Auth's
+ * own client packages, so no Zod route entry here would model anything a client
+ * calls through this contract.
  */
 
 const Id = z.uuid();
