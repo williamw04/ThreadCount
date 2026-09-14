@@ -172,9 +172,7 @@ In both jobs, change every `cache-dependency-path: frontend/package-lock.json` t
         run: npm ci
 ```
 
-The Vercel deploy steps (`npx vercel deploy`) must run from the repo root, with no `working-directory` set, because the Vercel CLI uploads its working directory: pointing it at `apps/web` uploads a directory with no lockfile and a workspace-only `@seamless/shared` dependency, and the deploy fails.
-
-Manual prerequisite, outside the repo: in the Vercel project settings, set Root Directory to `apps/web`. Until that is done, preview deploys fail at the Vercel step; CI is unaffected. Vercel is replaced in sub-project 2.
+Superseded after execution: Vercel was dropped entirely on 2026-09-14 (the project is not using it), so `deploy.yml` now contains only the Render staging step and the frontend deploys nowhere until sub-project 2 adds Cloudflare Pages. The original step 7 changed the Vercel steps' paths; that text is gone with the steps.
 
 - [ ] **Step 8: Update .github/dependabot.yml**
 
