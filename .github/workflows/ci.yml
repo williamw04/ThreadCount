@@ -38,6 +38,9 @@ jobs:
       - name: Install dependencies
         working-directory: .
         run: npm ci
+      - name: Shared package checks
+        working-directory: packages/shared
+        run: npm run typecheck && npm run lint && npm run format:check && npm test
       - name: Type check
         run: npm run typecheck
       - name: Lint

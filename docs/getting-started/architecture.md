@@ -119,6 +119,19 @@ Types -> API -> Stores -> Components -> Pages
 | Google GenerativeAI | AI image analysis |
 | Pydantic | Data validation |
 
+## Repository Layout
+
+npm workspaces. Install once at the root with `npm ci`; run a package's scripts with `npm run <script> -w <package>`.
+
+| Path | Package | Purpose |
+|---|---|---|
+| `apps/web` | `@seamless/web` | React web app (moved from `frontend/`) |
+| `packages/shared` | `@seamless/shared` | Enums, entity schemas, and the typed API contract shared by every client and the API |
+| `backend` | Python, not a workspace | FastAPI backend, replaced in the Cloudflare migration |
+| `docs` | own lockfile, not a workspace | This Docusaurus site |
+
+`packages/shared` exports TypeScript source; there is no build step. Vite, Vitest, and tsc resolve it through the package `exports` field.
+
 ## See Also
 
 - [Setup Guide](./setup.md)
