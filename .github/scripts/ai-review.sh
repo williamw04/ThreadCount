@@ -73,9 +73,12 @@ if [ "${DRY_RUN:-}" = 1 ]; then
 fi
 
 : "${MUSE_API_KEY:?}"
-curl --fail-with-body --silent --show-error --max-time 300 "$API_URL" \
+if ! curl --fail-with-body --silent --show-error --max-time 300 "$API_URL" \
   -H "Authorization: Bearer $MUSE_API_KEY" -H "Content-Type: application/json" \
-  --data-binary @"$work/payload.json" > "$work/response.json"
+  --data-binary @"$work/payload.json" > "$work/response.json"; then
+  echo "::error::model API call failed: $(head -c 600 "$work/response.json" | tr '\n' ' ')"
+  exit 1
+fi
 # Log the reply shape without its text so a bad run is diagnosable from the job log.
 jq -c 'del(.choices[]?.message.content) | {model, finish_reason: .choices[0]?.finish_reason, usage, keys: (.choices[0]?.message // {} | keys)}' "$work/response.json" || true
 # Content may be a string or an array of parts; strip a ```json fence if the model added one.
