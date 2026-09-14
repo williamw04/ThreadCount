@@ -85,7 +85,7 @@ jq -c 'del(.choices[]?.message.content) | {model, finish_reason: .choices[0]?.fi
 jq -r '.choices[0].message.content
        | if type == "array" then map(if type == "object" then .text // "" elif type == "string" then . else "" end) | join("")
          elif type == "object" then .text // "" elif type == "string" then . else "" end
-       | sub("^\\s*```(json)?\\s*"; "") | sub("\\s*```\\s*$"; "")' "$work/response.json" > "$work/content.txt"
+       | sub("^\\s*```(json)?\\s*"; "") | sub("\\s*```\\s*$"; "")' "$work/response.json" > "$work/content.txt" || : > "$work/content.txt"
 
 # 5. Post. Bad JSON from the model is posted verbatim, never a red check.
 if ! jq -e '.findings | type == "array"' "$work/content.txt" >/dev/null 2>&1; then
