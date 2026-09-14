@@ -52,7 +52,7 @@ for f in "${files[@]}"; do
 done
 
 # 4. One model call, JSON out.
-system='You are a senior reviewer for a React 19 + TypeScript frontend and a FastAPI backend. Review the pull request for bugs, security issues, behaviour regressions and broken contracts between the diff and the surrounding code. Linter output is provided; do not repeat what it already says unless it hides a deeper bug. Report only findings you are confident about, at most 8, most severe first. Every finding must point at a line that appears in the diff as an added or context line. Reply with JSON only: {"summary": string, "findings": [{"path": string, "line": integer, "severity": "high"|"medium"|"low", "body": string}]}. If there is nothing worth raising, return an empty findings array and say so in summary.'
+system='You are a senior reviewer for a React 19 + TypeScript frontend and a FastAPI backend. Review the pull request for bugs, security issues, behaviour regressions and broken contracts between the diff and the surrounding code. Linter output is provided; do not repeat what it already says unless it hides a deeper bug. Report only findings you are confident about, at most 8, most severe first. Every finding must point at a line that appears in the diff as an added or context line. When the fix is a replacement of one to three consecutive lines starting at that line, include it as "suggestion": the exact replacement text for those lines with original indentation, and "end_line": the last line replaced (omit for a single line). Never include a suggestion for anything larger; describe it in body instead. Reply with JSON only: {"summary": string, "findings": [{"path": string, "line": integer, "end_line"?: integer, "severity": "high"|"medium"|"low", "body": string, "suggestion"?: string}]}. If there is nothing worth raising, return an empty findings array and say so in summary.'
 jq -n --arg model "$MODEL" --arg system "$system" \
   --rawfile meta "$work/meta.md" --rawfile lint "$work/lint.txt" --rawfile diff "$work/diff.patch" --rawfile src "$work/sources.md" '
   {
@@ -92,7 +92,10 @@ jq --slurpfile changed <(jq -R . "$work/files.txt" | jq -s .) '
       event: "COMMENT",
       body: ("## AI review (" + env.MODEL + ")\n\n" + .summary),
       comments: [ .findings[] | select(.path as $p | $paths | index($p))
-                  | { path, line, side: "RIGHT", body: ("**" + (.severity | ascii_upcase) + "** " + .body) } ]
+                  | { path, side: "RIGHT",
+                      body: ("**" + (.severity | ascii_upcase) + "** " + .body
+                             + (if (.suggestion // "") != "" then "\n\n```suggestion\n" + .suggestion + "\n```" else "" end)) }
+                    + (if (.end_line // .line) > .line then { start_line: .line, start_side: "RIGHT", line: .end_line } else { line } end) ]
     }' "$work/content.txt" > "$work/review.json"
 
 if gh api "repos/$REPO/pulls/$PR/reviews" --input "$work/review.json" --jq '.id' > /dev/null 2> "$work/post.err"; then
