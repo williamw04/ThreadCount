@@ -6,7 +6,7 @@ set -euo pipefail
 
 : "${PR:?}" "${REPO:?}"
 API_URL="${MUSE_API_URL:-https://api.meta.ai/v1/chat/completions}"
-MODEL="${MUSE_MODEL:-muse-spark-1.3-contributor}"
+export MODEL="${MUSE_MODEL:-muse-spark-1.3-contributor}" # exported: the review jq reads env.MODEL
 MAX_FILE_BYTES=200000
 MAX_CONTEXT_BYTES=1500000 # ~400k tokens, well inside the 1M window
 
@@ -57,8 +57,8 @@ jq -n --arg model "$MODEL" --arg system "$system" \
   --rawfile meta "$work/meta.md" --rawfile lint "$work/lint.txt" --rawfile diff "$work/diff.patch" --rawfile src "$work/sources.md" '
   {
     model: $model,
-    reasoning_effort: "medium",
-    max_completion_tokens: 4000,
+    reasoning_effort: "low",
+    max_completion_tokens: 16000,
     response_format: { type: "json_object" },
     messages: [
       { role: "system", content: $system },
@@ -73,15 +73,28 @@ if [ "${DRY_RUN:-}" = 1 ]; then
 fi
 
 : "${MUSE_API_KEY:?}"
-curl --fail-with-body --silent --show-error --max-time 300 "$API_URL" \
+if ! curl --fail-with-body --silent --show-error --max-time 300 "$API_URL" \
   -H "Authorization: Bearer $MUSE_API_KEY" -H "Content-Type: application/json" \
-  --data-binary @"$work/payload.json" > "$work/response.json"
-jq -r '.choices[0].message.content' "$work/response.json" > "$work/content.txt"
+  --data-binary @"$work/payload.json" > "$work/response.json"; then
+  echo "::error::model API call failed: $(head -c 600 "$work/response.json" | tr '\n' ' ')"
+  exit 1
+fi
+# Log the reply shape without its text so a bad run is diagnosable from the job log.
+jq -c 'del(.choices[]?.message.content) | {model, finish_reason: .choices[0]?.finish_reason, usage, keys: (.choices[0]?.message // {} | keys)}' "$work/response.json" || true
+# Content may be a string or an array of parts; strip a ```json fence if the model added one.
+jq -r '.choices[0].message.content
+       | if type == "array" then map(if type == "object" then .text // "" elif type == "string" then . else "" end) | join("")
+         elif type == "object" then .text // "" elif type == "string" then . else "" end
+       | sub("^\\s*```(json)?\\s*"; "") | sub("\\s*```\\s*$"; "")' "$work/response.json" > "$work/content.txt" || : > "$work/content.txt"
 
 # 5. Post. Bad JSON from the model is posted verbatim, never a red check.
 if ! jq -e '.findings | type == "array"' "$work/content.txt" >/dev/null 2>&1; then
-  printf '## AI review\n\n%s\n' "$(cat "$work/content.txt")" | gh pr comment "$PR" --body-file -
-  echo "::warning::model reply was not the expected JSON; posted as a plain comment"
+  if [ -n "$(tr -d '[:space:]' < "$work/content.txt")" ]; then
+    printf '## AI review\n\n%s\n' "$(cat "$work/content.txt")" | gh pr comment "$PR" --body-file -
+    echo "::warning::model reply was not the expected JSON; posted as a plain comment"
+  else
+    echo "::warning::model returned no content ($(jq -c '{finish_reason: .choices[0]?.finish_reason, usage}' "$work/response.json")); nothing posted"
+  fi
   exit 0
 fi
 
