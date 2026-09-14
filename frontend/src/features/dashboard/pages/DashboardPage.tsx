@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/features/auth/store';
 import { Button } from '@/shared/ui/Button';
@@ -36,17 +36,20 @@ export function DashboardPage() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // useCallback so the effect and regenerate button share the same fetch logic
-  // without triggering redundant requests.
-  const loadAvatar = useCallback(async () => {
-    if (!user) return;
-    const data = await getAvatar(user.id);
-    setAvatar(data);
-  }, [user]);
-
   useEffect(() => {
-    loadAvatar();
-  }, [loadAvatar]);
+    if (!user) return;
+    let active = true;
+    getAvatar(user.id)
+      .then((data) => {
+        if (active) setAvatar(data);
+      })
+      .catch((err: unknown) => {
+        if (active) setError(err instanceof Error ? err.message : 'Failed to load avatar');
+      });
+    return () => {
+      active = false;
+    };
+  }, [user]);
 
   // Re-triggers the fal.ai processing pipeline via the backend, then refreshes avatar data.
   // Used when the user wants a cleaner canvas or after re-uploading a source image.
@@ -55,8 +58,7 @@ export function DashboardPage() {
     setIsGenerating(true);
     setError(null);
     try {
-      await processAvatar(user.id);
-      await loadAvatar();
+      setAvatar(await processAvatar(user.id));
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to generate avatar');
     } finally {

@@ -62,31 +62,32 @@ export function WardrobePage() {
   const [showColorFilter, setShowColorFilter] = useState(false);
   const [showSeasonFilter, setShowSeasonFilter] = useState(false);
   const [uploadedOutfits, setUploadedOutfits] = useState<UploadedOutfit[]>([]);
-  const [isLoadingOutfits, setIsLoadingOutfits] = useState(false);
+  const [hasLoadedOutfits, setHasLoadedOutfits] = useState(false);
+  const isLoadingOutfits = !hasLoadedOutfits && !!user;
 
   /**
    * Fetches user-uploaded outfit photos directly from Supabase.
    * Filters for `item_ids = '{}'` to distinguish uploaded photos from
    * composed outfits (which have populated `item_ids` arrays).
-   * Results are ordered by most recent first.
+   * Results are ordered by most recent first. Only the first load shows the
+   * spinner; refetches after upload or edit swap the list in place.
    */
-  const fetchUploadedOutfits = useCallback(async () => {
+  const fetchUploadedOutfits = useCallback(() => {
     if (!user) return;
-    setIsLoadingOutfits(true);
-    try {
-      const { data, error: err } = await supabase
-        .from('outfits')
-        .select('*')
-        .eq('user_id', user.id)
-        .eq('item_ids', '{}')
-        .order('created_at', { ascending: false });
-      if (err) throw err;
-      setUploadedOutfits(data || []);
-    } catch (err) {
-      console.error('Failed to fetch uploaded outfits:', err);
-    } finally {
-      setIsLoadingOutfits(false);
-    }
+    const query = supabase
+      .from('outfits')
+      .select('*')
+      .eq('user_id', user.id)
+      .eq('item_ids', '{}')
+      .order('created_at', { ascending: false });
+    // The builder is only PromiseLike (then, no catch/finally); Promise.resolve upgrades it.
+    Promise.resolve(query)
+      .then(({ data, error: err }) => {
+        if (err) throw err;
+        setUploadedOutfits(data || []);
+      })
+      .catch((err: unknown) => console.error('Failed to fetch uploaded outfits:', err))
+      .finally(() => setHasLoadedOutfits(true));
   }, [user]);
 
   useEffect(() => {
@@ -355,22 +356,28 @@ export function WardrobePage() {
       </div>
 
       <UploadModal isOpen={isUploadModalOpen} onClose={() => setIsUploadModalOpen(false)} />
-      <UploadOutfitModal
-        isOpen={isUploadOutfitModalOpen}
-        onClose={() => setIsUploadOutfitModalOpen(false)}
-        onUploadSuccess={fetchUploadedOutfits}
-      />
+      {/* Mounted only while open so their form state resets on close without effects. */}
+      {isUploadOutfitModalOpen && (
+        <UploadOutfitModal
+          isOpen
+          onClose={() => setIsUploadOutfitModalOpen(false)}
+          onUploadSuccess={fetchUploadedOutfits}
+        />
+      )}
       <EditItemModal
         isOpen={!!editingItem}
         item={editingItem}
         onClose={() => setEditingItem(null)}
       />
-      <EditOutfitModal
-        isOpen={!!editingOutfit}
-        outfit={editingOutfit}
-        onClose={() => setEditingOutfit(null)}
-        onUpdateSuccess={fetchUploadedOutfits}
-      />
+      {editingOutfit && (
+        <EditOutfitModal
+          key={editingOutfit.id}
+          isOpen
+          outfit={editingOutfit}
+          onClose={() => setEditingOutfit(null)}
+          onUpdateSuccess={fetchUploadedOutfits}
+        />
+      )}
     </div>
   );
 }
