@@ -6,7 +6,7 @@ set -euo pipefail
 
 : "${PR:?}" "${REPO:?}"
 API_URL="${MUSE_API_URL:-https://api.meta.ai/v1/chat/completions}"
-MODEL="${MUSE_MODEL:-muse-spark-1.3-contributor}"
+export MODEL="${MUSE_MODEL:-muse-spark-1.3-contributor}" # exported: the review jq reads env.MODEL
 MAX_FILE_BYTES=200000
 MAX_CONTEXT_BYTES=1500000 # ~400k tokens, well inside the 1M window
 
@@ -80,7 +80,8 @@ curl --fail-with-body --silent --show-error --max-time 300 "$API_URL" \
 jq -c 'del(.choices[]?.message.content) | {model, finish_reason: .choices[0]?.finish_reason, usage, keys: (.choices[0]?.message // {} | keys)}' "$work/response.json" || true
 # Content may be a string or an array of parts; strip a ```json fence if the model added one.
 jq -r '.choices[0].message.content
-       | if type == "array" then map(.text // "") | join("") else (. // "") end
+       | if type == "array" then map(if type == "object" then .text // "" elif type == "string" then . else "" end) | join("")
+         elif type == "object" then .text // "" elif type == "string" then . else "" end
        | sub("^\\s*```(json)?\\s*"; "") | sub("\\s*```\\s*$"; "")' "$work/response.json" > "$work/content.txt"
 
 # 5. Post. Bad JSON from the model is posted verbatim, never a red check.
