@@ -28,16 +28,26 @@ fi
 #     `cd ... git <verb>` are refused, because the gate judges the hook's cwd, not the command's;
 #  b) in a root checkout (git-dir equals git-common-dir): git verbs that change branch or tree
 #     state, and file writes via redirect, sed -i, tee, mv, cp, rm, touch, mkdir, are refused.
-verbs='commit|checkout|switch|merge|rebase|reset|stash|cherry-pick|pull|revert|restore|clean|am|apply|branch'
-if echo "$cmd" | grep -qE "\bgit\s+(-C\b|--git-dir|--work-tree)|\bcd\s[^|;&]*[;&|]+\s*[^|;&]*\bgit\b[^|;&]*\b($verbs)\b"; then
-  echo "blocked by .claude/hooks/guard-bash.sh: git must run in the current worktree; no -C, --git-dir, --work-tree, or cd-then-git." >&2
+# The Bash write check in (b) is best-effort by nature (a python one-liner can write a file);
+# guard-edit.sh on Edit|Write is the real gate. False positives in a root checkout are fine:
+# the answer to every one of them is "enter a worktree".
+verbs='commit|checkout|switch|merge|rebase|reset|stash|cherry-pick|pull|revert|restore|clean|am|apply'
+# git, optional global options (with or without a value), then a mutating subcommand in subcommand
+# position. Keeps `git log --grep=commit` and `git worktree add feature-restore` out of the match.
+gitmut="\bgit([[:space:]]+-[^[:space:]]+([[:space:]]+[^-[:space:]][^[:space:]]*)?)*[[:space:]]+(($verbs)\b|branch[[:space:]]+(-[dDmMf]|--delete|--move|--force))"
+flat=$(echo "$cmd" | tr '\n' ';')
+if echo "$flat" | grep -qE "\bgit[[:space:]]+(-C[[:space:]]+|--git-dir[= ]|--work-tree[= ])[^|;&]*\b($verbs)\b" \
+   || echo "$flat" | grep -qE "\b(cd|pushd)[[:space:]]+(/|~|[^[:space:]]*\.\.)[^;&|]*[;&|].*$gitmut"; then
+  echo "blocked by .claude/hooks/guard-bash.sh: git must run in the current worktree; no -C, --git-dir, --work-tree, or cd to an absolute path then git. A relative cd inside the worktree is fine." >&2
   exit 2
 fi
 if git rev-parse --git-dir >/dev/null 2>&1; then
   gitdir=$(cd "$(git rev-parse --git-dir)" && pwd -P); common=$(cd "$(git rev-parse --git-common-dir)" && pwd -P)
   if [ "$gitdir" = "$common" ]; then
-    writes=$(echo "$cmd" | sed -E 's#[0-9]?>{1,2}[[:space:]]*(&[0-9]|/dev/[a-z]+|/tmp/[^[:space:]]+|/private/tmp/[^[:space:]]+)##g')   # drop harmless redirects (BSD sed: no \s)
-    if echo "$cmd" | grep -qE "\bgit\b[^|;&]*\b($verbs)\b" || echo "$writes" | grep -qE '>|\b(sed\s+-i|tee|mv|cp|rm|touch|mkdir)\b'; then
+    # drop harmless redirects: &N, /dev/*, /tmp/* and /private/tmp/* without traversal (BSD sed: no \s)
+    writes=$(echo "$flat" | sed -E 's#[0-9]?>{1,2}[[:space:]]*(&[0-9]|/dev/[a-z]+|/tmp/[^[:space:]./][^[:space:]]*|/private/tmp/[^[:space:]./][^[:space:]]*)##g')
+    if echo "$flat" | grep -qE "$gitmut" \
+       || echo "$writes" | grep -qE '>|\b(sed[[:space:]]+-i|perl[[:space:]]+-i|tee|mv|cp|rm|touch|mkdir|dd|install|ln|truncate|patch)\b|\b(python3?[[:space:]]+-c|node[[:space:]]+(-e|--eval))\b'; then
       echo "blocked by .claude/hooks/guard-bash.sh: this is the shared root checkout. Enter a worktree first (EnterWorktree, or git worktree add .claude/worktrees/<name>) and work there." >&2
       exit 2
     fi

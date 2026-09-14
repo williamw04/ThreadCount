@@ -50,7 +50,8 @@ Stage 1 of the feature pipeline pushes the branch and opens a draft PR before an
 
 ## Enforcement
 
-- `.claude/hooks/guard-edit.sh` and the worktree gate in `guard-bash.sh` refuse file edits and branch-changing git commands in the shared root checkout. Every session works in its own worktree under `.claude/worktrees/`.
+- `.claude/hooks/guard-edit.sh` refuses Edit and Write in the shared root checkout; this is the real worktree gate. The worktree gate in `guard-bash.sh` refuses branch-changing git commands there, git aimed at another tree (`-C`, `--git-dir`, `cd` to an absolute path then git) from anywhere, and the common Bash ways of writing files. The Bash write check is best-effort by nature: a Python one-liner can write a file, and the check does not try to be complete. Every session works in its own worktree under `.claude/worktrees/`.
+- The `Ruleset drift` job runs with the read-only default token on purpose. It executes a script from the PR branch, so any write-scoped secret there could be exfiltrated by a feature branch.
 
 - `.claude/hooks/guard-bash.sh` blocks direct pushes to `main` and `develop`, force pushes, hook bypasses, and every direct merge path (`gh pr merge` without `--auto`, `gh api` merges, GraphQL merges, `curl` to the merge endpoints). `gh pr merge --auto` is allowed because it only arms GitHub auto-merge, which the rulesets govern.
 - `.claude/hooks/check.sh` is the self-test for those rules.

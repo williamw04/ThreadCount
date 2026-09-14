@@ -99,8 +99,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Compare live rulesets to .github/rulesets/*.json
-        # SYNC_TOKEN (a PAT) also sees bypass_actors; the default token cannot, and the
-        # script says so. Fork PRs have no secrets and fall back to the default token.
+        # Read-only default token on purpose: this job runs a script from the PR branch, so a
+        # PAT here could be exfiltrated by any feature branch. The default token cannot see
+        # bypass_actors; the script compares without them and says so. Run
+        # `.github/rulesets/apply.sh check` locally with an admin token to cover them.
         env:
-          GH_TOKEN: ${{ secrets.SYNC_TOKEN || github.token }}
+          GH_TOKEN: ${{ github.token }}
         run: .github/rulesets/apply.sh check
