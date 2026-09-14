@@ -1,0 +1,49 @@
+name: Deploy non-production
+
+# Runs only after the CI workflow succeeds on a push. Never on pull_request events, never on red CI.
+# feature/** deploys a per-branch preview; develop deploys staging. Production deploys from main are a
+# separate workflow with a separate environment and separate secrets.
+# Secrets are scoped per GitHub Environment (preview, staging, production). Put required reviewers on
+# `staging` if a human should approve staging deploys. Replace the deploy steps with your hosting provider's.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.event.workflow_run.head_branch }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    name: Deploy preview
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && startsWith(github.event.workflow_run.head_branch, 'feature/')
+    runs-on: ubuntu-latest
+    environment:
+      name: preview
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+      - name: Deploy preview
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+        run: echo "replace with your preview deploy command"
+
+  staging:
+    name: Deploy staging
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'develop'
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+      - name: Deploy staging
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+        run: echo "replace with your staging deploy command"

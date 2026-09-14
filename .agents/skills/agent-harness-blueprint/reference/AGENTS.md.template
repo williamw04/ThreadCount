@@ -1,0 +1,5 @@
+Feature work follows the `feature-pipeline` skill. Merge rules are in `docs/decisions/merge-policy.md`: `main` is production and only a human merges into it; `develop` is staging and agents self-merge into it by arming the platform's auto-merge. The command guard blocks hook bypasses, force pushes, direct pushes to `main` or `develop`, every direct merge path, and pushes of commits that carry no review marker.
+
+After opening a PR, enable PR watch on it so CI failures, conflicts, and review comments come back to this session. For a PR into `develop`, also arm auto-merge (squash). Never on a PR into `main`. Never merge another session's PR, and never resolve a review thread you did not address.
+
+Other agents work in this repo at the same time. Work in a git worktree on a `feature/<name>` branch cut from `develop`, never in the root checkout, and never touch another agent's branch or PR.

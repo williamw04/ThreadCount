@@ -1,0 +1,23 @@
+name: Dependabot auto-merge
+
+# Dependabot PRs target the staging branch. Action bumps and non-major package bumps arm auto-merge and
+# merge themselves once the required checks pass. Anything containing a major waits for a human.
+on:
+  pull_request:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  automerge:
+    if: github.actor == 'dependabot[bot]' && github.base_ref == 'develop'
+    runs-on: ubuntu-latest
+    steps:
+      - id: meta
+        uses: dependabot/fetch-metadata@v2
+      - if: steps.meta.outputs.package-ecosystem == 'github_actions' || steps.meta.outputs.update-type != 'version-update:semver-major'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ github.event.pull_request.html_url }}
+        run: gh pr merge --auto --squash "$PR"
