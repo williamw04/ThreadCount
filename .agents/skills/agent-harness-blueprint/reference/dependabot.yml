@@ -1,0 +1,18 @@
+# Dependency bumps target the staging branch and are grouped per package so one PR carries a week's
+# worth of bumps. dependabot-automerge.yml arms auto-merge for the low-risk ones.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: weekly }
+    target-branch: develop
+  - package-ecosystem: npm
+    directory: /frontend
+    schedule: { interval: weekly }
+    target-branch: develop
+    groups: { frontend: { patterns: ["*"] } }
+  - package-ecosystem: pip
+    directory: /backend
+    schedule: { interval: weekly }
+    target-branch: develop
+    groups: { backend: { patterns: ["*"] } }

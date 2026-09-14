@@ -50,6 +50,7 @@ Seamless is a fashion web app where users upload photos of themselves to create 
 | Deployment guide                | `docs/DEPLOYMENT.md`                   |
 | Tech debt backlog               | `docs/exec-plans/tech-debt-tracker.md` |
 | Library references              | `docs/references/`                     |
+| Agent workflow blueprint (portable) | `.agents/skills/agent-harness-blueprint/` |
 
 ## Running Documentation
 
