@@ -38,8 +38,7 @@ jobs:
           if [ "$behind" = 0 ]; then echo "develop is up to date"; exit 0; fi
           existing=$(gh pr list --base develop --head main --state open --json number --jq '.[0].number')
           if [ -n "$existing" ]; then echo "sync PR #$existing already open"; exit 0; fi
-          gh pr create --base develop --head main \
+          url=$(gh pr create --base develop --head main \
             --title "chore: sync develop with main" \
-            --body "Automated: brings develop up to main ($behind commits). Merge commit, not squash, so history stays shared."
-          num=$(gh pr list --base develop --head main --state open --json number --jq '.[0].number')
-          gh pr merge "$num" --auto --merge
+            --body "Automated: brings develop up to main ($behind commits). Merge commit, not squash, so history stays shared.")
+          gh pr merge "$url" --auto --merge

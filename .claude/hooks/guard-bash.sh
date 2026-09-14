@@ -22,13 +22,25 @@ if [ -n "$merge_cmd" ] || echo "$cmd" | grep -qE 'gh\s+alias\b|gh\s+api\b[^|;&]*
   exit 2
 fi
 
-# Worktree gate: commands that change branch state are refused in the shared root checkout.
-# Other sessions use it; each session works in its own worktree (docs/decisions/merge-policy.md).
-if echo "$cmd" | grep -qE 'git\s+(commit|checkout|switch|merge|rebase|reset|stash|cherry-pick)\b' && git rev-parse --git-dir >/dev/null 2>&1; then
+# Worktree gate (docs/decisions/merge-policy.md). Other sessions use the shared root checkout;
+# each session works in its own worktree. Two parts, both fail closed:
+#  a) from any cwd: git commands that point at another tree (-C, --git-dir, --work-tree) and
+#     `cd ... git <verb>` are refused, because the gate judges the hook's cwd, not the command's;
+#  b) in a root checkout (git-dir equals git-common-dir): git verbs that change branch or tree
+#     state, and file writes via redirect, sed -i, tee, mv, cp, rm, touch, mkdir, are refused.
+verbs='commit|checkout|switch|merge|rebase|reset|stash|cherry-pick|pull|revert|restore|clean|am|apply|branch'
+if echo "$cmd" | grep -qE "\bgit\s+(-C\b|--git-dir|--work-tree)|\bcd\s[^|;&]*[;&|]+\s*[^|;&]*\bgit\b[^|;&]*\b($verbs)\b"; then
+  echo "blocked by .claude/hooks/guard-bash.sh: git must run in the current worktree; no -C, --git-dir, --work-tree, or cd-then-git." >&2
+  exit 2
+fi
+if git rev-parse --git-dir >/dev/null 2>&1; then
   gitdir=$(cd "$(git rev-parse --git-dir)" && pwd -P); common=$(cd "$(git rev-parse --git-common-dir)" && pwd -P)
   if [ "$gitdir" = "$common" ]; then
-    echo "blocked by .claude/hooks/guard-bash.sh: this is the shared root checkout. Enter a worktree first (EnterWorktree, or git worktree add .claude/worktrees/<name>) and work there." >&2
-    exit 2
+    writes=$(echo "$cmd" | sed -E 's#[0-9]?>{1,2}[[:space:]]*(&[0-9]|/dev/[a-z]+|/tmp/[^[:space:]]+|/private/tmp/[^[:space:]]+)##g')   # drop harmless redirects (BSD sed: no \s)
+    if echo "$cmd" | grep -qE "\bgit\b[^|;&]*\b($verbs)\b" || echo "$writes" | grep -qE '>|\b(sed\s+-i|tee|mv|cp|rm|touch|mkdir)\b'; then
+      echo "blocked by .claude/hooks/guard-bash.sh: this is the shared root checkout. Enter a worktree first (EnterWorktree, or git worktree add .claude/worktrees/<name>) and work there." >&2
+      exit 2
+    fi
   fi
 fi
 

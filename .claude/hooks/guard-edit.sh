@@ -4,7 +4,8 @@
 # (docs/decisions/merge-policy.md). Files outside any git repo are left alone.
 input=$(cat)
 f=$(echo "$input" | jq -r '.tool_input.file_path // empty'); [ -n "$f" ] || exit 0
-dir=$(dirname "$f"); [ -d "$dir" ] || dir=$(dirname "$dir")
+dir=$(dirname "$f")
+while [ ! -d "$dir" ] && [ "$dir" != / ]; do dir=$(dirname "$dir"); done   # Write creates parents; climb to one that exists
 cd "$dir" 2>/dev/null || exit 0
 git rev-parse --git-dir >/dev/null 2>&1 || exit 0          # not a git repo: allow
 gitdir=$(cd "$(git rev-parse --git-dir)" && pwd -P)
