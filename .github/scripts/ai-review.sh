@@ -20,6 +20,7 @@ gh api "repos/$REPO/pulls/$PR/files" --paginate --jq '.[].filename' > "$work/fil
 gh pr diff "$PR" > "$work/diff.patch"
 
 # 2. Linters on the changed files that exist on disk. Output is context, never a failure.
+has_eslint_config() { for c in "$1"/eslint.config.*; do [ -e "$c" ] && return 0; done; return 1; }
 files=(); while IFS= read -r f; do files+=("$f"); done < "$work/files.txt"
 py=(); : > "$work/ts.tsv"
 for f in "${files[@]}"; do
@@ -28,8 +29,11 @@ for f in "${files[@]}"; do
     *.ts|*.tsx)
       # eslint runs from the nearest package with its own eslint config, so each workspace's rules apply.
       d=$(dirname "$f")
-      while [ "$d" != "." ] && [ ! -f "$d/eslint.config.js" ] && [ ! -f "$d/eslint.config.mjs" ]; do d=$(dirname "$d"); done
-      [ "$d" = "." ] || printf '%s\t%s\n' "$d" "${f#"$d"/}" >> "$work/ts.tsv" ;;
+      while ! has_eslint_config "$d" && [ "$d" != "." ]; do d=$(dirname "$d"); done
+      if has_eslint_config "$d"; then
+        [ "$d" = "." ] && rel="$f" || rel="${f#"$d"/}"
+        printf '%s\t%s\n' "$d" "$rel" >> "$work/ts.tsv"
+      fi ;;
     backend/*.py) py+=("$f") ;;
   esac
 done
