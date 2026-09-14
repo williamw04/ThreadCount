@@ -1,22 +1,17 @@
 # Deployment model
 
-Seamless uses branch-based non-production deployments:
+Seamless uses branch-based non-production deployments. Frontend hosting is being moved to Cloudflare Pages and the backend to Cloudflare Workers in the migration described in `decisions/cloudflare-architecture.md`; the table below is the state in between.
 
 | Branch | Environment | Deployment |
 | --- | --- | --- |
-| `feature/**` | Preview | Frontend preview on Vercel |
-| `develop` | Staging | Frontend preview on Vercel and backend staging on Render |
+| `feature/**` | Preview | None until the Cloudflare migration adds per-branch preview Workers and Pages previews |
+| `develop` | Staging | Backend staging on Render (`.github/workflows/deploy.yml`, after CI succeeds) |
 | `main` | Production | Production deployment managed separately from this non-production workflow |
 
-Every pull request to `main` or `develop` must pass the `Frontend checks`, `Backend checks`, and `Documentation build` jobs before it can be merged.
+Every pull request to `main` or `develop` must pass the `Frontend checks`, `Backend checks`, and `Documentation build` jobs before it can be merged. See `decisions/merge-policy.md` for who merges where.
 
 ## Required GitHub configuration
 
-Create these GitHub Environments:
+Create the `staging` GitHub Environment with `RENDER_STAGING_DEPLOY_HOOK`. Configure required reviewers on `staging` so a staging deployment is approved before it runs. Keep production credentials in a separate `production` environment and do not reuse staging secrets.
 
-- `preview`: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID`
-- `staging`: the same Vercel secrets plus `RENDER_STAGING_DEPLOY_HOOK`
-
-Configure required reviewers on `staging` so a staging deployment is approved before it runs. Keep production credentials in a separate `production` environment and do not reuse staging secrets.
-
-The `main` and `develop` branches should be protected with pull requests required, one approval required, stale approvals dismissed after new commits, conversations resolved, and the three CI jobs above required.
+The `main` and `develop` rulesets live in `.github/rulesets/` and are checked for drift by CI.
