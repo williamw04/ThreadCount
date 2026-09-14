@@ -62,7 +62,8 @@ export function WardrobePage() {
   const [showColorFilter, setShowColorFilter] = useState(false);
   const [showSeasonFilter, setShowSeasonFilter] = useState(false);
   const [uploadedOutfits, setUploadedOutfits] = useState<UploadedOutfit[]>([]);
-  const [isLoadingOutfits, setIsLoadingOutfits] = useState(true);
+  const [hasLoadedOutfits, setHasLoadedOutfits] = useState(false);
+  const isLoadingOutfits = !hasLoadedOutfits && !!user;
 
   /**
    * Fetches user-uploaded outfit photos directly from Supabase.
@@ -79,13 +80,14 @@ export function WardrobePage() {
       .eq('user_id', user.id)
       .eq('item_ids', '{}')
       .order('created_at', { ascending: false });
+    // The builder is only PromiseLike (then, no catch/finally); Promise.resolve upgrades it.
     Promise.resolve(query)
       .then(({ data, error: err }) => {
         if (err) throw err;
         setUploadedOutfits(data || []);
       })
       .catch((err: unknown) => console.error('Failed to fetch uploaded outfits:', err))
-      .finally(() => setIsLoadingOutfits(false));
+      .finally(() => setHasLoadedOutfits(true));
   }, [user]);
 
   useEffect(() => {
