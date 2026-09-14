@@ -36,7 +36,21 @@ CI proves the code runs and its tests pass. It cannot prove the feature matches 
 
 The desktop app has no global default. Each session flips the switch on the PR it opened. Closing the session ends the watch, so if you take over a PR, bind to it and flip the switch again.
 
+## Rulesets as code
+
+The two rulesets live in `.github/rulesets/main.json` and `.github/rulesets/develop.json`. They are the source of truth: change a rule by editing the JSON in a PR, merging, then running `.github/rulesets/apply.sh apply` (needs repo admin). The `Ruleset drift` CI job runs `apply.sh check` on every PR and fails when the live rulesets differ from the files, so an untracked change in the GitHub UI shows up on the next PR.
+
+## Keeping develop current
+
+Every push to `main` runs `.github/workflows/sync-develop.yml`, which opens a merge-commit PR from `main` into `develop` with auto-merge on. It needs the `SYNC_TOKEN` secret, a fine-grained PAT with contents and pull-requests write, because PRs opened with the default Actions token do not trigger CI. Until the secret exists the workflow skips with a notice and the sync PR is opened by hand.
+
+## Claiming work
+
+Stage 1 of the feature pipeline pushes the branch and opens a draft PR before any code is written, listing the directories the work will touch. The PR list is the board: overlapping claims are coordinated before either side continues.
+
 ## Enforcement
+
+- `.claude/hooks/guard-edit.sh` and the worktree gate in `guard-bash.sh` refuse file edits and branch-changing git commands in the shared root checkout. Every session works in its own worktree under `.claude/worktrees/`.
 
 - `.claude/hooks/guard-bash.sh` blocks direct pushes to `main` and `develop`, force pushes, hook bypasses, and every direct merge path (`gh pr merge` without `--auto`, `gh api` merges, GraphQL merges, `curl` to the merge endpoints). `gh pr merge --auto` is allowed because it only arms GitHub auto-merge, which the rulesets govern.
 - `.claude/hooks/check.sh` is the self-test for those rules.

@@ -36,4 +36,15 @@ git rev-parse HEAD > "$marker"; allowed 'git push -u origin feature/x'  # review
 # Worktree/other-repo: the gate must judge the repo the push runs in, not CLAUDE_PROJECT_DIR.
 git -C "$tmp" init -q && git -C "$tmp" -c user.email=t@t -c user.name=t commit -q --allow-empty -m x
 (cd "$tmp" && CLAUDE_PROJECT_DIR="$root" blocked 'git push origin feature/x')
+
+# Worktree gate: branch-changing git commands and file edits are refused in a root checkout,
+# allowed in a worktree of it. $tmp is a root checkout; $tmp/wt is a worktree of it.
+git -C "$tmp" worktree add -q "$tmp/wt" -b wt-test
+(cd "$tmp" && blocked 'git commit -m x'); (cd "$tmp" && blocked 'git checkout -b y'); (cd "$tmp" && allowed 'git status')
+(cd "$tmp/wt" && allowed 'git commit -m x'); (cd "$tmp/wt" && allowed 'git checkout -b y')
+edit() { jq -n --arg f "$1" '{tool_input:{file_path:$f}}' | "$root/.claude/hooks/guard-edit.sh" 2>/dev/null; }
+edit "$tmp/a.txt";    [ $? -eq 2 ] || { echo "FAIL edit in root checkout should block"; exit 1; }
+edit "$tmp/wt/a.txt"; [ $? -eq 0 ] || { echo "FAIL edit in worktree should pass"; exit 1; }
+edit "/tmp/not-a-repo-$$.txt"; [ $? -eq 0 ] || { echo "FAIL edit outside a repo should pass"; exit 1; }
+jq -e '.hooks.PreToolUse[] | select(.matcher=="Edit|Write") | .hooks[0].command | test("guard-edit.sh")' "$root/.claude/settings.json" >/dev/null || { echo "FAIL guard-edit.sh not wired in settings.json"; exit 1; }
 echo "guard-bash.sh OK"

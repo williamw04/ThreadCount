@@ -22,6 +22,16 @@ if [ -n "$merge_cmd" ] || echo "$cmd" | grep -qE 'gh\s+alias\b|gh\s+api\b[^|;&]*
   exit 2
 fi
 
+# Worktree gate: commands that change branch state are refused in the shared root checkout.
+# Other sessions use it; each session works in its own worktree (docs/decisions/merge-policy.md).
+if echo "$cmd" | grep -qE 'git\s+(commit|checkout|switch|merge|rebase|reset|stash|cherry-pick)\b' && git rev-parse --git-dir >/dev/null 2>&1; then
+  gitdir=$(cd "$(git rev-parse --git-dir)" && pwd -P); common=$(cd "$(git rev-parse --git-common-dir)" && pwd -P)
+  if [ "$gitdir" = "$common" ]; then
+    echo "blocked by .claude/hooks/guard-bash.sh: this is the shared root checkout. Enter a worktree first (EnterWorktree, or git worktree add .claude/worktrees/<name>) and work there." >&2
+    exit 2
+  fi
+fi
+
 # Push gate: HEAD must carry a review marker written by .claude/hooks/mark-reviewed.sh
 # (stage 4 of the feature-pipeline skill). Any new commit invalidates it. Evaluated in the
 # current directory so worktrees check their own HEAD and their own marker.
