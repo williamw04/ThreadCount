@@ -62,7 +62,8 @@ export function WardrobePage() {
   const [showColorFilter, setShowColorFilter] = useState(false);
   const [showSeasonFilter, setShowSeasonFilter] = useState(false);
   const [uploadedOutfits, setUploadedOutfits] = useState<UploadedOutfit[]>([]);
-  const [isLoadingOutfits, setIsLoadingOutfits] = useState(true);
+  // Starts true only when there is a user to fetch for, so the early return below never strands the spinner.
+  const [isLoadingOutfits, setIsLoadingOutfits] = useState(!!user);
 
   /**
    * Fetches user-uploaded outfit photos directly from Supabase.
@@ -79,6 +80,7 @@ export function WardrobePage() {
       .eq('user_id', user.id)
       .eq('item_ids', '{}')
       .order('created_at', { ascending: false });
+    // The builder is only PromiseLike (then, no catch/finally); Promise.resolve upgrades it.
     Promise.resolve(query)
       .then(({ data, error: err }) => {
         if (err) throw err;

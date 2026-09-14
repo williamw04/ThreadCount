@@ -38,7 +38,17 @@ export function DashboardPage() {
 
   useEffect(() => {
     if (!user) return;
-    getAvatar(user.id).then(setAvatar);
+    let active = true;
+    getAvatar(user.id)
+      .then((data) => {
+        if (active) setAvatar(data);
+      })
+      .catch((err: unknown) => {
+        if (active) setError(err instanceof Error ? err.message : 'Failed to load avatar');
+      });
+    return () => {
+      active = false;
+    };
   }, [user]);
 
   // Re-triggers the fal.ai processing pipeline via the backend, then refreshes avatar data.
@@ -48,8 +58,7 @@ export function DashboardPage() {
     setIsGenerating(true);
     setError(null);
     try {
-      await processAvatar(user.id);
-      setAvatar(await getAvatar(user.id));
+      setAvatar(await processAvatar(user.id));
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to generate avatar');
     } finally {
