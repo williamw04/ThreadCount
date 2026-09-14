@@ -19,6 +19,10 @@ export type Season = (typeof SEASONS)[number];
 export const JOB_STATUSES = ['pending', 'processing', 'ready', 'failed'] as const;
 export type JobStatus = (typeof JOB_STATUSES)[number];
 
+/** Lifecycle of a wardrobe item's background-removal job / a generated image's render job. */
+export const ITEM_STATUSES = ['processing', 'ready', 'failed'] as const;
+export type ItemStatus = (typeof ITEM_STATUSES)[number];
+
 /** Color names the analysis endpoint returns. The web color filter maps these to hex. */
 export const COMMON_COLORS = [
   'black',

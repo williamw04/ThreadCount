@@ -44,20 +44,28 @@ export const CreateAvatarRequest = z.object({ originalKey: z.string().min(1) });
 export const ListWardrobeItemsQuery = z.object({
   category: z.enum(CATEGORIES).optional(),
   search: z.string().optional(),
+  // Wire form: repeated query params (?colors=a&colors=b), which the Worker
+  // parses into arrays before validation.
   colors: z.array(z.string()).optional(),
   seasons: z.array(z.enum(SEASONS)).optional(),
 });
-export const CreateWardrobeItemRequest = z.object({
+const WardrobeItemFields = z.object({
   name: z.string().min(1),
   category: z.enum(CATEGORIES),
   imageKey: z.string().min(1),
+  labels: z.array(z.string()),
+  colors: z.array(z.string()),
+  seasons: z.array(z.enum(SEASONS)),
+});
+export const CreateWardrobeItemRequest = WardrobeItemFields.extend({
   labels: z.array(z.string()).default([]),
   colors: z.array(z.string()).default([]),
   seasons: z.array(z.enum(SEASONS)).default([]),
 });
-export const UpdateWardrobeItemRequest = CreateWardrobeItemRequest.omit({
-  imageKey: true,
-}).partial();
+// .partial() does not remove .default(), so this is derived from the
+// default-free WardrobeItemFields, not from CreateWardrobeItemRequest --
+// otherwise a partial update would resurrect omitted array fields as [].
+export const UpdateWardrobeItemRequest = WardrobeItemFields.omit({ imageKey: true }).partial();
 
 export const AnalyzeWardrobeImageRequest = z.object({ imageKey: z.string().min(1) });
 export const AnalyzeWardrobeImageResponse = z.object({
@@ -68,12 +76,17 @@ export const AnalyzeWardrobeImageResponse = z.object({
   labels: z.array(z.string()),
 });
 
-export const CreateOutfitRequest = z.object({
+const OutfitFields = z.object({
   name: z.string().optional(),
-  itemIds: z.array(Id).default([]),
+  itemIds: z.array(Id),
   thumbnailKey: z.string().min(1).optional(),
 });
-export const UpdateOutfitRequest = CreateOutfitRequest.partial();
+export const CreateOutfitRequest = OutfitFields.extend({
+  itemIds: z.array(Id).default([]),
+});
+// Same reasoning as UpdateWardrobeItemRequest: derived from the default-free
+// OutfitFields so a partial update doesn't reset itemIds to [].
+export const UpdateOutfitRequest = OutfitFields.partial();
 
 export const CreateGeneratedImageRequest = z.union([
   z.object({ outfitId: Id }),
@@ -91,147 +104,139 @@ export interface RouteDef {
   response: z.ZodType;
 }
 
-// Generic inference from an object literal only picks up the keys actually
-// written, so a route that omits `params`/`query`/`body` has no such key on
-// its inferred type at all. WithDefaults backfills those to `undefined` at
-// the type level (no runtime change) so `Object.entries(contract)` yields a
-// union where every member has every key, as the tests rely on.
-type WithDefaults<R extends RouteDef> = Omit<R, 'params' | 'query' | 'body'> & {
-  params: R['params'] extends z.ZodType ? R['params'] : undefined;
-  query: R['query'] extends z.ZodType ? R['query'] : undefined;
-  body: R['body'] extends z.ZodType ? R['body'] : undefined;
-};
-
-const route = <R extends RouteDef>(r: R): WithDefaults<R> => r as WithDefaults<R>;
-
 export const contract = {
-  me: route({ method: 'GET', path: '/api/me', response: UserSchema }),
-  updateMe: route({ method: 'PATCH', path: '/api/me', body: PatchMeRequest, response: UserSchema }),
+  me: { method: 'GET', path: '/api/me', response: UserSchema },
+  updateMe: { method: 'PATCH', path: '/api/me', body: PatchMeRequest, response: UserSchema },
 
-  presignUpload: route({
+  presignUpload: {
     method: 'POST',
     path: '/api/uploads/presign',
     body: PresignUploadRequest,
     response: PresignUploadResponse,
-  }),
+  },
 
-  listAvatars: route({ method: 'GET', path: '/api/avatars', response: z.array(AvatarSchema) }),
-  createAvatar: route({
+  listAvatars: { method: 'GET', path: '/api/avatars', response: z.array(AvatarSchema) },
+  createAvatar: {
     method: 'POST',
     path: '/api/avatars',
     body: CreateAvatarRequest,
     response: AvatarSchema,
-  }),
-  getAvatar: route({
+  },
+  getAvatar: {
     method: 'GET',
     path: '/api/avatars/:id',
     params: IdParams,
     response: AvatarSchema,
-  }),
-  generateAvatar: route({
+  },
+  generateAvatar: {
     method: 'POST',
     path: '/api/avatars/:id/generate',
     params: IdParams,
     response: AvatarSchema,
-  }),
-  deleteAvatar: route({
+  },
+  deleteAvatar: {
     method: 'DELETE',
     path: '/api/avatars/:id',
     params: IdParams,
     response: NoContent,
-  }),
+  },
 
-  listWardrobeItems: route({
+  listWardrobeItems: {
     method: 'GET',
     path: '/api/wardrobe/items',
     query: ListWardrobeItemsQuery,
     response: z.array(WardrobeItemSchema),
-  }),
-  createWardrobeItem: route({
+  },
+  createWardrobeItem: {
     method: 'POST',
     path: '/api/wardrobe/items',
     body: CreateWardrobeItemRequest,
     response: WardrobeItemSchema,
-  }),
-  getWardrobeItem: route({
+  },
+  getWardrobeItem: {
     method: 'GET',
     path: '/api/wardrobe/items/:id',
     params: IdParams,
     response: WardrobeItemSchema,
-  }),
-  updateWardrobeItem: route({
+  },
+  updateWardrobeItem: {
     method: 'PATCH',
     path: '/api/wardrobe/items/:id',
     params: IdParams,
     body: UpdateWardrobeItemRequest,
     response: WardrobeItemSchema,
-  }),
-  deleteWardrobeItem: route({
+  },
+  deleteWardrobeItem: {
     method: 'DELETE',
     path: '/api/wardrobe/items/:id',
     params: IdParams,
     response: NoContent,
-  }),
-  analyzeWardrobeImage: route({
+  },
+  analyzeWardrobeImage: {
     method: 'POST',
     path: '/api/wardrobe/analyze',
     body: AnalyzeWardrobeImageRequest,
     response: AnalyzeWardrobeImageResponse,
-  }),
+  },
 
-  listOutfits: route({ method: 'GET', path: '/api/outfits', response: z.array(OutfitSchema) }),
-  createOutfit: route({
+  listOutfits: { method: 'GET', path: '/api/outfits', response: z.array(OutfitSchema) },
+  createOutfit: {
     method: 'POST',
     path: '/api/outfits',
     body: CreateOutfitRequest,
     response: OutfitSchema,
-  }),
-  getOutfit: route({
+  },
+  getOutfit: {
     method: 'GET',
     path: '/api/outfits/:id',
     params: IdParams,
     response: OutfitSchema,
-  }),
-  updateOutfit: route({
+  },
+  updateOutfit: {
     method: 'PATCH',
     path: '/api/outfits/:id',
     params: IdParams,
     body: UpdateOutfitRequest,
     response: OutfitSchema,
-  }),
-  deleteOutfit: route({
+  },
+  deleteOutfit: {
     method: 'DELETE',
     path: '/api/outfits/:id',
     params: IdParams,
     response: NoContent,
-  }),
+  },
 
-  listGeneratedImages: route({
+  listGeneratedImages: {
     method: 'GET',
     path: '/api/generated-images',
     response: z.array(GeneratedImageSchema),
-  }),
-  createGeneratedImage: route({
+  },
+  createGeneratedImage: {
     method: 'POST',
     path: '/api/generated-images',
     body: CreateGeneratedImageRequest,
     response: GeneratedImageSchema,
-  }),
-  getGeneratedImage: route({
+  },
+  getGeneratedImage: {
     method: 'GET',
     path: '/api/generated-images/:id',
     params: IdParams,
     response: GeneratedImageSchema,
-  }),
-  deleteGeneratedImage: route({
+  },
+  deleteGeneratedImage: {
     method: 'DELETE',
     path: '/api/generated-images/:id',
     params: IdParams,
     response: NoContent,
-  }),
+  },
 } as const satisfies Record<string, RouteDef>;
 
 export type RouteName = keyof typeof contract;
-type InferOrNever<T> = T extends z.ZodType ? z.infer<T> : never;
-export type RequestBodyOf<N extends RouteName> = InferOrNever<(typeof contract)[N]['body']>;
+// z.input (not z.infer/output): a request body schema's defaulted fields are
+// optional to the caller, and a route with no body resolves to undefined
+// rather than never, so a generic request helper can still be called.
+type InputOrUndefined<T> = T extends z.ZodType ? z.input<T> : undefined;
+export type RequestBodyOf<N extends RouteName> = InputOrUndefined<
+  (typeof contract)[N] extends { body: infer B } ? B : undefined
+>;
 export type ResponseOf<N extends RouteName> = z.infer<(typeof contract)[N]['response']>;

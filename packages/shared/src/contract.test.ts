@@ -1,12 +1,15 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, expectTypeOf, it } from 'vitest';
+import type { RequestBodyOf, RouteDef } from './contract';
 import {
   contract,
   CreateGeneratedImageRequest,
   CreateWardrobeItemRequest,
   PresignUploadRequest,
+  UpdateOutfitRequest,
+  UpdateWardrobeItemRequest,
 } from './contract';
 
-const routes = Object.entries(contract);
+const routes = Object.entries(contract) as [string, RouteDef][];
 
 describe('route table', () => {
   it('has unique method plus path pairs', () => {
@@ -29,35 +32,35 @@ describe('route table', () => {
     }
   });
 
-  it('covers every resource in the spec', () => {
-    const names = Object.keys(contract);
-    for (const expected of [
-      'me',
-      'updateMe',
-      'presignUpload',
-      'listAvatars',
-      'createAvatar',
-      'getAvatar',
-      'generateAvatar',
-      'deleteAvatar',
-      'listWardrobeItems',
-      'createWardrobeItem',
-      'getWardrobeItem',
-      'updateWardrobeItem',
-      'deleteWardrobeItem',
-      'analyzeWardrobeImage',
-      'listOutfits',
-      'createOutfit',
-      'getOutfit',
-      'updateOutfit',
-      'deleteOutfit',
-      'listGeneratedImages',
-      'createGeneratedImage',
-      'getGeneratedImage',
-      'deleteGeneratedImage',
-    ]) {
-      expect(names, expected).toContain(expected);
-    }
+  it('pins every route to its exact method and path', () => {
+    const EXPECTED = {
+      me: 'GET /api/me',
+      updateMe: 'PATCH /api/me',
+      presignUpload: 'POST /api/uploads/presign',
+      listAvatars: 'GET /api/avatars',
+      createAvatar: 'POST /api/avatars',
+      getAvatar: 'GET /api/avatars/:id',
+      generateAvatar: 'POST /api/avatars/:id/generate',
+      deleteAvatar: 'DELETE /api/avatars/:id',
+      listWardrobeItems: 'GET /api/wardrobe/items',
+      createWardrobeItem: 'POST /api/wardrobe/items',
+      getWardrobeItem: 'GET /api/wardrobe/items/:id',
+      updateWardrobeItem: 'PATCH /api/wardrobe/items/:id',
+      deleteWardrobeItem: 'DELETE /api/wardrobe/items/:id',
+      analyzeWardrobeImage: 'POST /api/wardrobe/analyze',
+      listOutfits: 'GET /api/outfits',
+      createOutfit: 'POST /api/outfits',
+      getOutfit: 'GET /api/outfits/:id',
+      updateOutfit: 'PATCH /api/outfits/:id',
+      deleteOutfit: 'DELETE /api/outfits/:id',
+      listGeneratedImages: 'GET /api/generated-images',
+      createGeneratedImage: 'POST /api/generated-images',
+      getGeneratedImage: 'GET /api/generated-images/:id',
+      deleteGeneratedImage: 'DELETE /api/generated-images/:id',
+    } as const;
+    expect(Object.fromEntries(routes.map(([n, r]) => [n, `${r.method} ${r.path}`]))).toEqual(
+      EXPECTED,
+    );
   });
 });
 
@@ -91,5 +94,19 @@ describe('request schemas', () => {
       CreateGeneratedImageRequest.safeParse({ outfitId: '0d5d3c2e-7c1b-4f4a-9c2e-8f2b9b1e6a11' })
         .success,
     ).toBe(true);
+  });
+
+  it('does not resurrect defaulted array fields on a partial update', () => {
+    expect(UpdateOutfitRequest.parse({ name: 'x' })).toEqual({ name: 'x' });
+    expect(UpdateWardrobeItemRequest.parse({ name: 'Coat' })).toEqual({ name: 'Coat' });
+  });
+
+  it('types request bodies from input, not output', () => {
+    // Defaulted fields are optional to the caller...
+    expectTypeOf<{ name: string; category: 'outerwear'; imageKey: string }>().toMatchTypeOf<
+      RequestBodyOf<'createWardrobeItem'>
+    >();
+    // ...and a bodyless route resolves to undefined, not never.
+    expectTypeOf<RequestBodyOf<'me'>>().toEqualTypeOf<undefined>();
   });
 });
