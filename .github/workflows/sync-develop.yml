@@ -30,6 +30,9 @@ jobs:
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
+      # checkout fetches only the triggering ref; rev-list below needs both refs to exist.
+      - if: steps.key.outputs.present == 'true'
+        run: git fetch origin main develop
       - if: steps.key.outputs.present == 'true'
         env:
           GH_TOKEN: ${{ secrets.SYNC_TOKEN }}

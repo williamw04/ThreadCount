@@ -10,11 +10,15 @@ fields='{name, target, enforcement, conditions, rules, bypass_actors}'
 status=0
 for f in *.json; do
   name=$(jq -r .name "$f")
-  id=$(gh api "repos/$repo/rulesets" --jq ".[] | select(.name==\"$name\") | .id")
+  if ! id=$(gh api "repos/$repo/rulesets" --jq ".[] | select(.name==\"$name\") | .id"); then
+    echo "DRIFT: ruleset list could not be fetched; treating '$name' as drift"; status=1; continue
+  fi
   case "${1:-check}" in
     check)
       if [ -z "$id" ]; then echo "DRIFT: ruleset '$name' does not exist on GitHub"; status=1; continue; fi
-      live=$(gh api "repos/$repo/rulesets/$id" --jq "$fields" | jq -S .)
+      if ! live=$(gh api "repos/$repo/rulesets/$id" --jq "$fields" | jq -S .); then
+        echo "DRIFT: live ruleset '$name' could not be fetched; treating as drift"; status=1; continue
+      fi
       want=$(jq -S . "$f")
       # bypass_actors is only visible to a token with administration read (a PAT). The default
       # Actions token sees null, so compare without it and say so; an admin token compares fully.
