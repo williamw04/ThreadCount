@@ -38,7 +38,7 @@ for f in "${files[@]}"; do
   esac
 done
 {
-  if [ -s "$work/ts.tsv" ] && { [ -d node_modules ] || [ -d frontend/node_modules ]; }; then
+  if [ -s "$work/ts.tsv" ] && { [ -d node_modules ] || [ -d apps/web/node_modules ]; }; then
     echo "## eslint"
     cut -f1 "$work/ts.tsv" | sort -u | while IFS= read -r d; do
       rel=(); while IFS= read -r p; do rel+=("$p"); done < <(awk -F'\t' -v d="$d" '$1 == d { print $2 }' "$work/ts.tsv")
