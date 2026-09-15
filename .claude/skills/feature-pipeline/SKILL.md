@@ -11,7 +11,7 @@ Stages run in order. The builder never validates its own work; validators get a 
 Use `superpowers:brainstorming`. Output: a spec in `docs/features/<feature>/` with user story and acceptance criteria. Stop for human approval of the design.
 
 ## 1. Plan
-Use `superpowers:writing-plans`, then `superpowers:using-git-worktrees`. Branch name `feature/<name>` from `develop`.
+Use `superpowers:writing-plans`, then `superpowers:using-git-worktrees`. Branch name `feature/<name>` from `develop`. Claim the work before building: push the branch and open a draft PR against `develop` right away, listing the directories it will touch. Other sessions see claims in the PR list; if two claims overlap, coordinate before either continues.
 
 ## 2. Build
 Use `superpowers:subagent-driven-development` with `superpowers:test-driven-development`. Fresh implementer per task. Browser e2e tests are not written yet: they come after the Cloudflare move and the UI redesign (see `docs/decisions/cloudflare-architecture.md`, Testing). Once that suite exists, the first task of every feature becomes its browser demo test, written from the spec's acceptance criteria. `.claude/hooks/format.sh` formats every edit; `security-guidance` warns on sensitive edits. After each task, `superpowers:requesting-code-review`.

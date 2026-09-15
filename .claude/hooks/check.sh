@@ -35,5 +35,29 @@ git rev-parse HEAD > "$marker"; allowed 'git push -u origin feature/x'  # review
 
 # Worktree/other-repo: the gate must judge the repo the push runs in, not CLAUDE_PROJECT_DIR.
 git -C "$tmp" init -q && git -C "$tmp" -c user.email=t@t -c user.name=t commit -q --allow-empty -m x
-(cd "$tmp" && CLAUDE_PROJECT_DIR="$root" blocked 'git push origin feature/x')
+(cd "$tmp" && CLAUDE_PROJECT_DIR="$root" blocked 'git push origin feature/x') || exit 1
+
+# Worktree gate: branch-changing git commands and file writes are refused in a root checkout,
+# allowed in a worktree of it. $tmp is a root checkout; $tmp/wt is a worktree of it.
+# Every assertion below runs in a subshell, so each carries its own `|| exit 1`.
+git -C "$tmp" worktree add -q "$tmp/wt" -b wt-test || exit 1
+in_root() { (cd "$tmp" && "$@") || exit 1; }
+in_wt() { (cd "$tmp/wt" && "$@") || exit 1; }
+in_root blocked 'git commit -m x'; in_root blocked 'git checkout -b y'; in_root blocked 'git pull'; in_root blocked 'git branch -D x'
+in_root blocked 'git -C . commit -m x'; in_root blocked 'git -c user.name=z commit -m x'; in_root blocked 'git --git-dir=.git commit -m x'
+in_root blocked 'echo hi > a.txt'; in_root blocked 'sed -i "" s/a/b/ a.txt'; in_root blocked 'tee a.txt'
+in_root blocked 'echo pwn > /tmp/../etc/x'; in_root blocked "python3 -c \"open('a','w')\""; in_root blocked 'perl -i -pe s/a/b/ a.txt'
+in_root allowed 'git status'; in_root allowed 'git log --oneline'; in_root allowed 'git log --grep=commit'; in_root allowed 'git branch --show-current'
+in_root allowed 'ls 2>/dev/null'; in_root allowed 'echo hi > /tmp/x'; in_root allowed 'git -C . status'
+in_root allowed 'git worktree add .claude/worktrees/x -b x'; in_root allowed 'git worktree add .claude/worktrees/feature-restore'
+in_wt allowed 'git commit -m x'; in_wt allowed 'git checkout -b y'; in_wt allowed 'echo hi > a.txt'; in_wt allowed 'git pull'
+in_wt allowed 'cd backend && git commit -am x'; in_wt allowed 'cd sub; git checkout -b y'   # relative cd stays in the worktree
+in_wt blocked 'git -C /elsewhere commit -m x'; in_wt blocked 'cd /elsewhere && git commit -m x'   # cwd tricks, any cwd
+in_wt blocked $'cd /elsewhere\ngit commit -m x'; in_wt blocked 'pushd /elsewhere && git commit -m x'; in_wt blocked 'cd ../.. ; echo hi; git commit -m x'
+edit() { jq -n --arg f "$1" '{tool_input:{file_path:$f}}' | "$root/.claude/hooks/guard-edit.sh" 2>/dev/null; }
+edit "$tmp/a.txt";    [ $? -eq 2 ] || { echo "FAIL edit in root checkout should block"; exit 1; }
+edit "$tmp/x/y/z/a.txt"; [ $? -eq 2 ] || { echo "FAIL nested new file in root checkout should block"; exit 1; }
+edit "$tmp/wt/a.txt"; [ $? -eq 0 ] || { echo "FAIL edit in worktree should pass"; exit 1; }
+edit "/tmp/not-a-repo-$$.txt"; [ $? -eq 0 ] || { echo "FAIL edit outside a repo should pass"; exit 1; }
+jq -e '.hooks.PreToolUse[] | select(.matcher=="Edit|Write") | .hooks[0].command | test("guard-edit.sh")' "$root/.claude/settings.json" >/dev/null || { echo "FAIL guard-edit.sh not wired in settings.json"; exit 1; }
 echo "guard-bash.sh OK"
