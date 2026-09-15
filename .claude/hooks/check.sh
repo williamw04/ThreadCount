@@ -45,6 +45,8 @@ in_root() { (cd "$tmp" && "$@") || exit 1; }
 in_wt() { (cd "$tmp/wt" && "$@") || exit 1; }
 in_root blocked 'git commit -m x'; in_root blocked 'git checkout -b y'; in_root blocked 'git pull'; in_root blocked 'git branch -D x'
 in_root blocked 'git branch feature-new'; in_root blocked 'git branch --copy a b'; in_root blocked 'git worktree add /tmp/x'
+in_root blocked 'git worktree add .claude/worktrees/x; git worktree add /tmp/x'   # one bad add poisons the chain
+in_root allowed 'git worktree add .claude/worktrees/a; git worktree add .claude/worktrees/b'
 in_root blocked 'git -C . commit -m x'; in_root blocked 'git -c user.name=z commit -m x'; in_root blocked 'git --git-dir=.git commit -m x'
 in_root blocked 'echo hi > a.txt'; in_root blocked 'sed -i "" s/a/b/ a.txt'; in_root blocked 'tee a.txt'
 in_root blocked 'echo pwn > /tmp/../etc/x'; in_root blocked "python3 -c \"open('a','w')\""; in_root blocked 'perl -i -pe s/a/b/ a.txt'

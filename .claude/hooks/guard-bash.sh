@@ -51,10 +51,10 @@ if git rev-parse --git-dir >/dev/null 2>&1; then
   if [ "$gitdir" = "$common" ]; then
     # drop harmless redirects: &N, /dev/*, /tmp/* and /private/tmp/* without traversal (BSD sed: no \s)
     writes=$(echo "$flat" | sed -E 's#[0-9]?>{1,2}[[:space:]]*(&[0-9]|/dev/[a-z]+|/tmp/[^[:space:]./][^[:space:]]*|/private/tmp/[^[:space:]./][^[:space:]]*)##g')
-    # worktree add outside the conventional dir (flags incl. -b <name> skipped over)
+    # block if ANY worktree add is outside the conventional dir (flags incl. -b <name> skipped over)
     wt_add=$(echo "$flat" | grep -oE '\bworktree[[:space:]]+add([[:space:]]+-[bB][[:space:]]+[^[:space:]]+|[[:space:]]+-[^[:space:]]+)*[[:space:]]+[^[:space:]]+')
     if echo "$flat" | grep -qE "$gitmut" \
-       || { [ -n "$wt_add" ] && ! echo "$wt_add" | grep -qE '\.claude/worktrees/[^[:space:]]+'; } \
+       || { [ -n "$wt_add" ] && echo "$wt_add" | grep -vqE '\.claude/worktrees/[^[:space:]]+'; } \
        || echo "$writes" | grep -qE '>|\b(sed[[:space:]]+-i|perl[[:space:]]+-i|tee|mv|cp|rm|touch|mkdir|dd|install|ln|truncate|patch)\b|\b(python3?[[:space:]]+-c|node[[:space:]]+(-e|--eval))\b'; then
       echo "blocked by .claude/hooks/guard-bash.sh: this is the shared root checkout. Enter a worktree first (EnterWorktree, or git worktree add .claude/worktrees/<name>) and work there." >&2
       exit 2
