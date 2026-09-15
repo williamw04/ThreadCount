@@ -24,21 +24,26 @@ fi
 
 # Worktree gate (docs/decisions/merge-policy.md). Other sessions use the shared root checkout;
 # each session works in its own worktree. Two parts, both fail closed:
-#  a) from any cwd: git commands that point at another tree (-C, --git-dir, --work-tree) and
-#     `cd ... git <verb>` are refused, because the gate judges the hook's cwd, not the command's;
+#  a) from any cwd: git commands that point at another tree (-C, --git-dir, --work-tree,
+#     GIT_DIR/GIT_WORK_TREE/GIT_COMMON_DIR env prefixes) and `cd ... git <verb>` are refused,
+#     because the gate judges the hook's cwd, not the command's (an env prefix would run the
+#     verb against another tree while every check below sees this one);
 #  b) in a root checkout (git-dir equals git-common-dir): git verbs that change branch or tree
-#     state, and file writes via redirect, sed -i, tee, mv, cp, rm, touch, mkdir, are refused.
+#     state, `git worktree add` outside .claude/worktrees/, and file writes via redirect, sed -i,
+#     tee, mv, cp, rm, touch, mkdir, are refused. (From inside a worktree this part is inert,
+#     so creating the conventional worktree path keeps working.)
 # The Bash write check in (b) is best-effort by nature (a python one-liner can write a file);
 # guard-edit.sh on Edit|Write is the real gate. False positives in a root checkout are fine:
 # the answer to every one of them is "enter a worktree".
 verbs='commit|checkout|switch|merge|rebase|reset|stash|cherry-pick|pull|revert|restore|clean|am|apply'
 # git, optional global options (with or without a value), then a mutating subcommand in subcommand
 # position. Keeps `git log --grep=commit` and `git worktree add feature-restore` out of the match.
-gitmut="\bgit([[:space:]]+-[^[:space:]]+([[:space:]]+[^-[:space:]][^[:space:]]*)?)*[[:space:]]+(($verbs)\b|branch[[:space:]]+(-[dDmMf]|--delete|--move|--force))"
+gitmut="\bgit([[:space:]]+-[^[:space:]]+([[:space:]]+[^-[:space:]][^[:space:]]*)?)*[[:space:]]+(($verbs)\b|branch[[:space:]]+(-[dDmMfcC]|--delete|--move|--force|--copy|[^-[:space:]][^[:space:]]*))"
 flat=$(echo "$cmd" | tr '\n' ';')
 if echo "$flat" | grep -qE "\bgit[[:space:]]+(-C[[:space:]]+|--git-dir[= ]|--work-tree[= ])[^|;&]*\b($verbs)\b" \
+   || echo "$flat" | grep -qE '\bGIT_(DIR|COMMON_DIR|WORK_TREE)=' \
    || echo "$flat" | grep -qE "\b(cd|pushd)[[:space:]]+(/|~|[^[:space:]]*\.\.)[^;&|]*[;&|].*$gitmut"; then
-  echo "blocked by .claude/hooks/guard-bash.sh: git must run in the current worktree; no -C, --git-dir, --work-tree, or cd to an absolute path then git. A relative cd inside the worktree is fine." >&2
+  echo "blocked by .claude/hooks/guard-bash.sh: git must run in the current worktree; no -C, --git-dir, --work-tree, GIT_DIR/GIT_WORK_TREE/GIT_COMMON_DIR env, or cd to an absolute path then git. A relative cd inside the worktree is fine." >&2
   exit 2
 fi
 if git rev-parse --git-dir >/dev/null 2>&1; then
@@ -46,7 +51,10 @@ if git rev-parse --git-dir >/dev/null 2>&1; then
   if [ "$gitdir" = "$common" ]; then
     # drop harmless redirects: &N, /dev/*, /tmp/* and /private/tmp/* without traversal (BSD sed: no \s)
     writes=$(echo "$flat" | sed -E 's#[0-9]?>{1,2}[[:space:]]*(&[0-9]|/dev/[a-z]+|/tmp/[^[:space:]./][^[:space:]]*|/private/tmp/[^[:space:]./][^[:space:]]*)##g')
+    # worktree add outside the conventional dir (flags incl. -b <name> skipped over)
+    wt_add=$(echo "$flat" | grep -oE '\bworktree[[:space:]]+add([[:space:]]+-[bB][[:space:]]+[^[:space:]]+|[[:space:]]+-[^[:space:]]+)*[[:space:]]+[^[:space:]]+')
     if echo "$flat" | grep -qE "$gitmut" \
+       || { [ -n "$wt_add" ] && ! echo "$wt_add" | grep -qE '\.claude/worktrees/[^[:space:]]+'; } \
        || echo "$writes" | grep -qE '>|\b(sed[[:space:]]+-i|perl[[:space:]]+-i|tee|mv|cp|rm|touch|mkdir|dd|install|ln|truncate|patch)\b|\b(python3?[[:space:]]+-c|node[[:space:]]+(-e|--eval))\b'; then
       echo "blocked by .claude/hooks/guard-bash.sh: this is the shared root checkout. Enter a worktree first (EnterWorktree, or git worktree add .claude/worktrees/<name>) and work there." >&2
       exit 2
