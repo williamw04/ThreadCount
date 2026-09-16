@@ -94,6 +94,14 @@ describe('request schemas', () => {
       CreateGeneratedImageRequest.safeParse({ outfitId: '0d5d3c2e-7c1b-4f4a-9c2e-8f2b9b1e6a11' })
         .success,
     ).toBe(true);
+    // contradictory input must not validate via stripping: both fields present,
+    // empty itemIds, would otherwise pass through the outfitId branch.
+    expect(
+      CreateGeneratedImageRequest.safeParse({
+        outfitId: '0d5d3c2e-7c1b-4f4a-9c2e-8f2b9b1e6a11',
+        itemIds: [],
+      }).success,
+    ).toBe(false);
   });
 
   it('does not resurrect defaulted array fields on a partial update', () => {
