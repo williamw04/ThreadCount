@@ -43,7 +43,7 @@ GitHub and not in PR approvals.
 
 | Environment | Trigger | What runs | Data |
 |---|---|---|---|
-| Preview | CI success on push to any branch except `main` and `develop` (via `workflow_run`) | Automatic: deploy the branch-named Worker and Pages preview | Staging D1 and R2, fal.ai stubbed |
+| Preview | CI success on push to any branch except `main` (via `workflow_run`) | Automatic: deploy the branch-named Worker and Pages preview | Staging D1 and R2, fal.ai stubbed |
 | Staging | CI success on push to `main` (via `workflow_run`) | Automatic: deploy `api-staging` Worker and Pages branch deployment | Staging D1 and R2, real fal.ai |
 | Production | `workflow_dispatch` on `main` only | Human-confirmed: migrate prod D1, promote the pinned CI-built artifacts (Worker version + Pages deployment) to production | Production D1 and R2, real fal.ai |
 
@@ -132,15 +132,17 @@ identity (see Sequencing):
 
 ## Sequencing and prerequisites
 
-1. **Sub-project 2 builds the replacement workflows** (preview, staging-off-`main`, prod
-   dispatch) per this document.
-2. **The same PR deletes `develop`** and everything listed above.
-3. **Agent identity lands strictly before the prod workflow** (human task): shared
-   machine-user account plus one fine-grained PAT; sessions re-auth as the agent account
-   and the hook identity check verifies it. Only then does the prod-workflow PR land.
-   Identity without an automated prod path buys nothing, but the order matters: until the
-   split there is one shared credential, so any automated prod run before the split would
-   be self-approvable through the pending-deployments API.
+1. **Sub-project 2 builds the preview and staging workflows** per this document.
+2. **The cutover PR deletes `develop`** and everything listed above *except*
+   `deploy-production.yml`: preview/staging workflows, deletions, doc rewrites. No
+   half-migrated branch state — and no automated prod path yet.
+3. **Agent identity lands next** (human task): shared machine-user account plus one
+   fine-grained PAT; sessions re-auth as the agent account and the hook identity check
+   verifies it.
+4. **The prod-workflow PR lands last**, after identity is verified. Only then does an
+   automated prod path exist, and its first run is already non-self-approvable: until
+   the split there is one shared credential, so any automated prod run before the split
+   would be self-approvable through the pending-deployments API.
 
 ### Why identity can wait, and what it protects when it lands
 
