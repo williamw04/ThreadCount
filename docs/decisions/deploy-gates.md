@@ -108,8 +108,8 @@ When this is implemented — one PR, no half-migrated state:
   assertion, `versions upload` in CI, promote on dispatch, `environment: production`).
 - Create the `production` GitHub environment with the human as required reviewer; move prod
   secrets into it. Keep staging secrets in `staging`.
-- `main.json`: `required_approving_review_count` to 1 (possible only after the agent
-  identity exists; until then the environment gate is the only human step).
+- `main.json`: unchanged at zero required approvals. Agents self-merge into `main`
+  (staging); the human review point moves from merge to promotion.
 - Delete: `develop.json` (plus the live ruleset), `.github/workflows/sync-develop.yml`,
   `.github/workflows/deploy.yml`, the Render staging hook secret.
 - `guard-bash.sh` + `check.sh`: refuse `gh workflow run` for the production workflow.
@@ -119,12 +119,23 @@ When this is implemented — one PR, no half-migrated state:
 
 ## Sequencing and prerequisites
 
-1. **Agent identity first** (human task): shared machine-user account plus one fine-grained
-   PAT; sessions auth as the agent account. Until this lands, approval-gated `main` is
-   unmergeable and nothing below can ship.
-2. **Sub-project 2 builds the replacement workflows** (preview, staging-off-`main`, prod
+1. **Sub-project 2 builds the replacement workflows** (preview, staging-off-`main`, prod
    dispatch) per this document.
-3. **The same PR deletes `develop`** and everything listed above.
+2. **The same PR deletes `develop`** and everything listed above.
+3. **Agent identity lands with (not before) the prod workflow** (human task): shared
+   machine-user account plus one fine-grained PAT; sessions auth as the agent account.
+
+### Why identity can wait, and what it protects when it lands
+
+Until `deploy-production.yml` exists there is no automated path to production, so a
+separate identity buys nothing today. It becomes load-bearing the day prod deploys are
+automated: with one shared credential, GitHub cannot tell the human's approval click
+apart from a session's API call. The hook block on `gh workflow run` and the
+environment's required reviewer would both be honor-system — a session that bypasses
+the hook could dispatch *and* approve its own prod run through the pending-deployments
+API, which `guard-bash.sh` does not block. With the agent account excluded from the
+`production` environment's reviewer list, that approval is rejected and the gate is
+mechanical.
 
 ## Open items
 
