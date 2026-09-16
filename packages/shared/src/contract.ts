@@ -89,8 +89,8 @@ export const CreateOutfitRequest = OutfitFields.extend({
 export const UpdateOutfitRequest = OutfitFields.partial();
 
 export const CreateGeneratedImageRequest = z.union([
-  z.object({ outfitId: Id }),
-  z.object({ itemIds: z.array(Id).min(1) }),
+  z.object({ outfitId: Id }).strict(),
+  z.object({ itemIds: z.array(Id).min(1) }).strict(),
 ]);
 
 // --- route table ---
