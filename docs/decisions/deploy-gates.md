@@ -43,7 +43,7 @@ GitHub and not in PR approvals.
 
 | Environment | Trigger | What runs | Data |
 |---|---|---|---|
-| Preview | CI success on push to `feature/**` or `fix/**` (via `workflow_run`) | Automatic: deploy the branch-named Worker and Pages preview | Staging D1 and R2, fal.ai stubbed |
+| Preview | CI success on push to any branch except `main` and `develop` (via `workflow_run`) | Automatic: deploy the branch-named Worker and Pages preview | Staging D1 and R2, fal.ai stubbed |
 | Staging | CI success on push to `main` (via `workflow_run`) | Automatic: deploy `api-staging` Worker and Pages branch deployment | Staging D1 and R2, real fal.ai |
 | Production | `workflow_dispatch` on `main` only | Human-confirmed: migrate prod D1, promote the pinned CI-built artifacts (Worker version + Pages deployment) to production | Production D1 and R2, real fal.ai |
 
@@ -66,8 +66,10 @@ rebuilding — one primitive per platform. The human promotes the exact artifact
    sound once the agent identity exists: approval must come from a listed reviewer, and the
    agent account is not one.
 3. **Agents are blocked from dispatch at the hook layer.** `guard-bash.sh` refuses
-   `gh workflow run` for the production workflow, so sessions fail closed before creating
-   runs that nag the human. Prod secrets (Cloudflare token, prod D1/R2 bindings) live only
+   `gh workflow run` for the production workflow *and* `gh api` calls to `*/dispatches`
+   — the CLI string and the underlying API path are two spellings of the same action,
+   and both are covered — so sessions fail closed before creating runs that nag the
+   human. Prod secrets (Cloudflare token, prod D1/R2 bindings) live only
    in the `production` environment, which feature-branch runs cannot read.
 
 Any one gate failing still leaves the other two standing: a session that bypasses the hook
@@ -106,7 +108,9 @@ migration.
 
 ## What changes, file by file
 
-When this is implemented — one PR, no half-migrated state:
+When this is implemented — the cutover (workflows, deletions, doc rewrites) lands as one
+PR with no half-migrated branch state; the prod workflow follows as a second PR after
+identity (see Sequencing):
 
 - Add `.github/workflows/deploy-production.yml` (`workflow_dispatch`, sha input
   resolved and pinned at dispatch, green-CI assertion before the approval gate, promote
@@ -120,7 +124,8 @@ When this is implemented — one PR, no half-migrated state:
   (staging); the human review point moves from merge to promotion.
 - Delete: `develop.json` (plus the live ruleset), `.github/workflows/sync-develop.yml`,
   `.github/workflows/deploy.yml`, the Render staging hook secret.
-- `guard-bash.sh` + `check.sh`: refuse `gh workflow run` for the production workflow.
+- `guard-bash.sh` + `check.sh`: refuse `gh workflow run` for the production workflow and
+  `gh api` POSTs to `*/dispatches` (both spellings of the same action).
 - Rewrite the `develop`-staging sections of `merge-policy.md`, `DEPLOYMENT.md`, and the
   Environments table in `cloudflare-architecture.md`; update the feature-pipeline skill to
   target `main`.
