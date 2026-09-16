@@ -26,7 +26,7 @@ jobs:
           echo "present=$present" >> "$GITHUB_OUTPUT"
           [ "$present" = true ] || echo "::notice::MUSE_API_KEY not set; skipping AI review"
       - if: steps.key.outputs.present == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - if: steps.key.outputs.present == 'true'
         uses: actions/setup-node@v7
         with:
