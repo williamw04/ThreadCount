@@ -17,9 +17,9 @@ The outfit builder is not a normal scrolling page. Its header, canvas, saved-loo
 
 ## Current Implementation
 
-- `frontend/src/shared/layout/AppShell.tsx` detects `/outfit-builder`, pins the header to its builder presentation, removes normal page padding, and applies the body scroll lock.
-- `frontend/src/styles/globals.css` defines the shared viewport tokens and the `.builder-shell`, `.builder-controls`, and `.canvas-area` containment rules.
-- `frontend/src/features/outfit-builder/pages/OutfitBuilderPage.tsx` renders the builder as a three-column workspace inside `.builder-shell` and keeps the bottom action row separate from the canvas region.
+- `apps/web/src/shared/layout/AppShell.tsx` detects `/outfit-builder`, pins the header to its builder presentation, removes normal page padding, and applies the body scroll lock.
+- `apps/web/src/styles/globals.css` defines the shared viewport tokens and the `.builder-shell`, `.builder-controls`, and `.canvas-area` containment rules.
+- `apps/web/src/features/outfit-builder/pages/OutfitBuilderPage.tsx` renders the builder as a three-column workspace inside `.builder-shell` and keeps the bottom action row separate from the canvas region.
 
 ## Rationale
 

@@ -17,7 +17,7 @@ Seamless is a fashion web application where users can:
 
    ```bash
    # Frontend
-   cd frontend
+   cd apps/web
    npm install
    npm run dev
 
@@ -45,7 +45,7 @@ Seamless is a fashion web application where users can:
 ## Project Structure
 
 ```
-├── frontend/       # React SPA
+├── apps/web/       # React SPA
 ├── backend/        # FastAPI service
 ├── supabase/       # Database schema and config
 └── docs/           # Documentation

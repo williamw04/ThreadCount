@@ -56,13 +56,13 @@ If you prefer to run services locally without Docker, follow these steps.
 ### Installation
 
 ```bash
-cd frontend
+cd apps/web
 npm install
 ```
 
 ### Environment Variables
 
-Create a `.env.local` file in the `frontend/` directory:
+Create a `.env.local` file in the `apps/web/` directory:
 
 ```env
 VITE_SUPABASE_URL=https://your-project.supabase.co
@@ -73,7 +73,7 @@ VITE_API_BASE_URL=http://localhost:8000
 ### Running the Development Server
 
 ```bash
-cd frontend
+cd apps/web
 npm run dev
 ```
 

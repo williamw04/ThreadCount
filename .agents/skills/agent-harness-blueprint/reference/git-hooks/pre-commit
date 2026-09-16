@@ -1,0 +1,7 @@
+# Fast, staged-only. Slow checks live in pre-push and CI.
+cd frontend && npx lint-staged && cd ..
+py=$(git diff --cached --name-only --diff-filter=ACM -- '*.py')
+if [ -n "$py" ]; then
+  RUFF=backend/.venv/bin/ruff; [ -x "$RUFF" ] || RUFF=ruff
+  $RUFF format $py && $RUFF check --fix $py && git add $py
+fi

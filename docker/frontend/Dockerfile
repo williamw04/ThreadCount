@@ -1,12 +1,11 @@
-FROM node:20-alpine
-
+FROM node:22-alpine
 WORKDIR /app
-
-COPY frontend/package*.json ./
-RUN npm install
-
-COPY frontend/ .
-
+COPY package*.json ./
+COPY apps/web/package.json apps/web/
+COPY packages/shared/package.json packages/shared/
+RUN npm ci
+COPY apps/web apps/web
+COPY packages/shared packages/shared
+WORKDIR /app/apps/web
 EXPOSE 3000
-
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

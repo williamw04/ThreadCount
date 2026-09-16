@@ -19,7 +19,7 @@ docs/.docusaurus/
 .env
 .env.local
 .env.*.local
-!frontend/.env.example
+!apps/web/.env.example
 !backend/.env.example
 
 # Editor

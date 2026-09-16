@@ -1,12 +1,7 @@
-/**
- * Canonical wardrobe categories enforced by the backend API contract.
- * These values map directly to the `category` column in the `wardrobe_items` table
- * and are used as filter parameters in GET /api/wardrobe/items.
- * See docs/references/api-contracts.md § Categories.
- */
-export type Category = 'tops' | 'bottoms' | 'dresses' | 'shoes' | 'accessories' | 'outerwear';
+import type { Category, Season } from '@seamless/shared';
+import { CATEGORIES, COMMON_COLORS, SEASONS } from '@seamless/shared';
 
-export type Season = 'spring' | 'summer' | 'fall' | 'winter';
+export type { Category, Season };
 
 /**
  * Core wardrobe item shape returned from the API.
@@ -67,17 +62,6 @@ export const CATEGORY_LABELS: Record<Category, string> = {
   outerwear: 'Outerwear',
 };
 
-export const CATEGORIES: Category[] = [
-  'tops',
-  'bottoms',
-  'dresses',
-  'shoes',
-  'accessories',
-  'outerwear',
-];
-
-export const SEASONS: Season[] = ['spring', 'summer', 'fall', 'winter'];
-
 export const SEASON_LABELS: Record<Season, string> = {
   spring: 'Spring',
   summer: 'Summer',
@@ -85,30 +69,4 @@ export const SEASON_LABELS: Record<Season, string> = {
   winter: 'Winter',
 };
 
-/**
- * Preset color palette used by the color filter UI.
- * These names must match the color strings returned by the AI analysis endpoint
- * (POST /api/ai/analyze). The ColorFilter component maps these to hex values for display.
- */
-export const COMMON_COLORS = [
-  'black',
-  'white',
-  'gray',
-  'navy',
-  'blue',
-  'red',
-  'green',
-  'yellow',
-  'orange',
-  'pink',
-  'purple',
-  'brown',
-  'beige',
-  'cream',
-  'tan',
-  'burgundy',
-  'teal',
-  'coral',
-  'olive',
-  'charcoal',
-];
+export { CATEGORIES, SEASONS, COMMON_COLORS };

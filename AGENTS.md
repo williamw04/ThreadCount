@@ -50,6 +50,7 @@ Seamless is a fashion web app where users upload photos of themselves to create 
 | Deployment guide                | `docs/DEPLOYMENT.md`                   |
 | Tech debt backlog               | `docs/exec-plans/tech-debt-tracker.md` |
 | Library references              | `docs/references/`                     |
+| Agent workflow blueprint (portable) | `.agents/skills/agent-harness-blueprint/` |
 
 ## Running Documentation
 
@@ -61,7 +62,7 @@ npm run start  # Runs at http://localhost:3000
 
 ## Tech Stack
 
-### Frontend (`frontend/`)
+### Frontend (`apps/web/`)
 
 - React 19 + TypeScript
 - Vite 7 + SWC
@@ -82,7 +83,7 @@ npm run start  # Runs at http://localhost:3000
 
 ### Architectural Layers (Frontend)
 
-Within each domain (`frontend/src/features/`), dependencies flow forward:
+Within each domain (`apps/web/src/features/`), dependencies flow forward:
 
 ```
 Types → API → Stores → Components → Pages

@@ -36,7 +36,7 @@ Implement the Virtual Wardrobe feature allowing users to upload, categorize, bro
 
 ### Phase 2: Frontend Structure (Day 1-2)
 
-- [x] Create `frontend/src/features/wardrobe/` directory structure
+- [x] Create `apps/web/src/features/wardrobe/` directory structure
 - [x] Define types in `types.ts`
 - [x] Create API functions in `api.ts`
 - [x] Build wardrobe store with Zustand in `store.ts`

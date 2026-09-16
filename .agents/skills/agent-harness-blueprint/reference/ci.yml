@@ -1,0 +1,59 @@
+name: CI
+
+# One job per package. Each job's `name:` is a required check in the branch rulesets, so renaming a
+# job silently un-gates merging until github-setup.sh is rerun with the new names.
+# Every job: typecheck, lint, format check, tests with a coverage floor, build. The floor lives in the
+# test runner's config and is set to today's coverage, then ratcheted up as tests land.
+on:
+  push:
+    branches: [main, develop, 'feature/**', 'fix/**']
+  pull_request:
+    branches: [main, develop]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    name: Frontend checks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run test:coverage
+      - run: npm run build
+
+  backend:
+    name: Backend checks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+      - run: pip install -r requirements.txt
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: pytest   # --cov-fail-under lives in pytest.ini
+
+  # Add one job per further package (docs site, mobile app, ...) and register its name as a required check.

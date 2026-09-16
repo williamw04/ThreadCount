@@ -20,7 +20,9 @@ Use `superpowers:subagent-driven-development` with `superpowers:test-driven-deve
 Use `superpowers:verification-before-completion`. The full local gate, all must pass:
 
 ```bash
-cd frontend && npm run typecheck && npm run lint && npm run format:check && npm run test:coverage && npm run build
+npm ci
+npm run typecheck -w apps/web && npm run lint -w apps/web && npm run format:check -w apps/web && npm run test:coverage -w apps/web && npm run build -w apps/web
+npm run typecheck -w packages/shared && npm run lint -w packages/shared && npm run format:check -w packages/shared && npm run test -w packages/shared
 cd backend && ruff check . && ruff format --check . && pytest
 ```
 

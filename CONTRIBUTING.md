@@ -20,7 +20,7 @@ Types → API → Stores → Components → Pages
 - Keep files under **300 lines**
 - Use **named exports**
 - Validate API responses with **zod** at the boundary
-- Shared UI belongs in `frontend/src/shared/ui/`
+- Shared UI belongs in `apps/web/src/shared/ui/`
 - Don't import another feature's components directly - share types or primitives instead
 
 ### Code Quality
@@ -35,7 +35,7 @@ Types → API → Stores → Components → Pages
 
 ```bash
 # Frontend
-cd frontend
+cd apps/web
 npm run lint      # ESLint
 npm run typecheck # TypeScript
 npm run test:run  # Tests
