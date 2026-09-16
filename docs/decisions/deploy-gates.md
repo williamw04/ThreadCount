@@ -43,20 +43,24 @@ GitHub and not in PR approvals.
 
 | Environment | Trigger | What runs | Data |
 |---|---|---|---|
-| Preview | push to `feature/**` or `fix/**`, after CI is green | Automatic: deploy the branch-named Worker and Pages preview | Staging D1 and R2, fal.ai stubbed |
-| Staging | push to `main`, after CI is green | Automatic: deploy `api-staging` Worker and Pages branch deployment | Staging D1 and R2, real fal.ai |
-| Production | `workflow_dispatch` on `main` only | Human-confirmed: migrate prod D1, promote the CI-built version to the `api` production Worker and Pages production | Production D1 and R2, real fal.ai |
+| Preview | CI success on push to `feature/**` or `fix/**` (via `workflow_run`) | Automatic: deploy the branch-named Worker and Pages preview | Staging D1 and R2, fal.ai stubbed |
+| Staging | CI success on push to `main` (via `workflow_run`) | Automatic: deploy `api-staging` Worker and Pages branch deployment | Staging D1 and R2, real fal.ai |
+| Production | `workflow_dispatch` on `main` only | Human-confirmed: migrate prod D1, promote the pinned CI-built artifacts (Worker version + Pages deployment) to production | Production D1 and R2, real fal.ai |
 
-Preview and staging keep the shape in `cloudflare-architecture.md`. Production changes from
-"merge to `main`" to "promote the version CI built from `main`": `wrangler versions upload`
-in CI produces an immutable version, and the dispatch workflow promotes that version rather
-than rebuilding. The human promotes the exact artifact CI tested.
+Preview and staging keep the shape in `cloudflare-architecture.md`, including its
+shared-staging-data trade-off (previews bind to staging data, same as Vercel previews;
+migrations stay additive). Production changes from "merge to `main`" to "promote what CI
+built from `main`": CI records an immutable Worker version ID (`versions upload`) and the
+Pages deployment ID, and the dispatch workflow promotes those pinned IDs rather than
+rebuilding — one primitive per platform. The human promotes the exact artifacts CI tested.
 
 ### The three interlocking gates on production
 
-1. **`deploy-production.yml` is `workflow_dispatch`-only** (input: sha, defaulting to current
-   `main` HEAD). Its first job asserts the sha has green CI on `main` and fails otherwise,
-   so the human cannot accidentally ship untested code either.
+1. **`deploy-production.yml` is `workflow_dispatch`-only** (input: sha; empty means
+   resolve current `main` HEAD once, at dispatch — dispatch inputs cannot carry dynamic
+   defaults). The resolved sha is pinned, asserted green on `main`, rejected if not on
+   `main`, and never re-resolved: the approval wait and the promotion both use the pinned
+   value, so `main` moving mid-approval ships nothing new.
 2. **The deploy job targets a `production` GitHub environment with the human as required
    reviewer.** A dispatched run pauses for approval in the Actions tab. This is mechanically
    sound once the agent identity exists: approval must come from a listed reviewer, and the
@@ -104,8 +108,12 @@ migration.
 
 When this is implemented — one PR, no half-migrated state:
 
-- Add `.github/workflows/deploy-production.yml` (`workflow_dispatch`, sha input, green-CI
-  assertion, `versions upload` in CI, promote on dispatch, `environment: production`).
+- Add `.github/workflows/deploy-production.yml` (`workflow_dispatch`, sha input
+  resolved and pinned at dispatch, green-CI assertion before the approval gate, promote
+  the pinned Worker version ID plus the pinned Pages deployment ID,
+  `environment: production`).
+- Preview and staging deploy workflows trigger on `workflow_run` (CI success), never on
+  bare `push`, so only tested commits deploy.
 - Create the `production` GitHub environment with the human as required reviewer; move prod
   secrets into it. Keep staging secrets in `staging`.
 - `main.json`: unchanged at zero required approvals. Agents self-merge into `main`
@@ -122,16 +130,20 @@ When this is implemented — one PR, no half-migrated state:
 1. **Sub-project 2 builds the replacement workflows** (preview, staging-off-`main`, prod
    dispatch) per this document.
 2. **The same PR deletes `develop`** and everything listed above.
-3. **Agent identity lands with (not before) the prod workflow** (human task): shared
-   machine-user account plus one fine-grained PAT; sessions auth as the agent account.
+3. **Agent identity lands strictly before the prod workflow** (human task): shared
+   machine-user account plus one fine-grained PAT; sessions re-auth as the agent account
+   and the hook identity check verifies it. Only then does the prod-workflow PR land.
+   Identity without an automated prod path buys nothing, but the order matters: until the
+   split there is one shared credential, so any automated prod run before the split would
+   be self-approvable through the pending-deployments API.
 
 ### Why identity can wait, and what it protects when it lands
 
-Until `deploy-production.yml` exists there is no automated path to production, so a
-separate identity buys nothing today. It becomes load-bearing the day prod deploys are
-automated: with one shared credential, GitHub cannot tell the human's approval click
-apart from a session's API call. The hook block on `gh workflow run` and the
-environment's required reviewer would both be honor-system — a session that bypasses
+Until `deploy-production.yml` exists there is no automated path to production, so no
+identity work happens today. When implementation comes, identity still goes first within
+it, for the reason above: with one shared credential, GitHub cannot tell the human's
+approval click apart from a session's API call. The hook block on `gh workflow run` and
+the environment's required reviewer would both be honor-system — a session that bypasses
 the hook could dispatch *and* approve its own prod run through the pending-deployments
 API, which `guard-bash.sh` does not block. With the agent account excluded from the
 `production` environment's reviewer list, that approval is rejected and the gate is
