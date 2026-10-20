@@ -38,6 +38,7 @@ const sidebars: SidebarsConfig = {
         'decisions/technology-selection',
         'decisions/cloudflare-architecture',
         'decisions/merge-policy',
+        'decisions/deploy-gates',
         'decisions/core-beliefs',
         'decisions/visual-style',
         'decisions/image-processing',
